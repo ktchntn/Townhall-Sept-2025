@@ -1,0 +1,21 @@
+{
+  "name": "townhall-sept-2025",
+  "version": "1.0.0",
+  "description": "A nostalgic 90s-style web experience",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server -p 3000 -c-1",
+    "dev": "http-server -p 3000 -c-1"
+  },
+  "keywords": [
+    "90s",
+    "retro",
+    "popup",
+    "nostalgia"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
