@@ -47,6 +47,7 @@ const banner = createVerticalAdBanner({
   counterSpeed: 100,               // Speed of counter decrease in ms
   floatingEffect: true,            // Enable/disable floating animation
   sparkleEffect: true,             // Enable/disable sparkle effect
+  customClass: 'anniversary',      // Add custom CSS class for style overrides
   
   // Callback when button is clicked
   onButtonClick: () => {
@@ -81,6 +82,7 @@ Creates and displays a vertical ad banner.
 | `counterSpeed` | number | `100` | Milliseconds between counter decrements |
 | `floatingEffect` | boolean | `true` | Enable floating animation for the image |
 | `sparkleEffect` | boolean | `true` | Enable sparkle effect around the header |
+| `customClass` | string | `''` | Additional CSS class to apply to the banner |
 | `onButtonClick` | function | Alert message | Callback when button is clicked |
 | `onClose` | function | `null` | Callback when banner is closed |
 

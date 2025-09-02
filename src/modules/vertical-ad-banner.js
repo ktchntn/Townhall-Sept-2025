@@ -208,12 +208,13 @@ export function createVerticalAdBanner(options = {}) {
     onButtonClick = () => alert('You clicked a 90s ad! Your computer is now infected with 37 viruses.'),
     onClose = null,
     floatingEffect = true,
-    sparkleEffect = true
+    sparkleEffect = true,
+    customClass = '' // New option for custom CSS class
   } = options;
 
   // Create banner element
   const banner = document.createElement('div');
-  banner.className = `vab-container vab-${position}`;
+  banner.className = `vab-container vab-${position} ${customClass}`.trim();
   banner.setAttribute('role', 'complementary');
   banner.setAttribute('aria-label', '90s Advertisement');
 

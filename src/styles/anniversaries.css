@@ -3,9 +3,14 @@ body {
     background-color: aqua;
 }
 
-.vab-container {
+.anniversary-banner-1 {
     position: absolute;
     top: 70px;
+}
+
+.anniversary-banner-2 {
+    position: absolute;
+    top: 350px;
 }
 
 h1 {
