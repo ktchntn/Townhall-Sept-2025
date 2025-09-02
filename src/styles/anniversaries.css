@@ -8,9 +8,14 @@ body {
     top: 70px;
 }
 
-.anniversary-banner-2 {
+.vab-container.anniversary-banner-2 {
     position: absolute;
     top: 350px;
+    background: linear-gradient(to bottom, #ffff00, #ff6600);
+}
+
+.vab-container.anniversary-banner-2 .vab-counter {
+    display: none;
 }
 
 h1 {
