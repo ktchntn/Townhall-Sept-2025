@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="anniversaries.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
+        rel="stylesheet">
+    <title>Anniversaries!</title>
+</head>
+
+<body>
+    <div class="top-banners">
+        <img src="/assets/at-t-the-first-banner-1994.png" class="h-banner">
+        <img src="/assets/panasonic-1998.gif" class="h-banner">
+    </div>
+    <h1>Anniversaries!</h1>
+    <div class="side-banners"></div>
+    <table class="anniversaries-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Years</th>
+            </tr>
+            <tbody>
+                <tr id="anniversary-1">
+                    <td>Alice</td>
+                    <td>5</td>
+                </tr>
+                <tr id="anniversary-2">
+                    <td>Bob</td>
+                    <td>4</td>
+                </tr>
+                <tr id="anniversary-3">
+                    <td>Charlie</td>
+                    <td>8</td>
+                </tr>
+                <tr id="anniversary-4">
+                    <td>David</td>
+                    <td>2</td>
+                </tr>
+                <tr id="anniversary-5">
+                    <td>Eve</td>
+                    <td>5</td>
+                </tr>
+                <tr id="anniversary-6">
+                    <td>Frank</td>
+                    <td>4</td>
+                </tr>
+            </tbody>
+    </table>
+    <button id="spawn">Spawn Popup</button>
+    <div class="flashy-buttons">
+        <img src="/assets/amazing_free_stuff.gif">
+        <img src="/assets/winrar.gif">
+        <img src="/assets/angelfire.gif">
+        <img src="/assets/netscape.gif">
+
+    </div>
+
+    <script type="module">
+        import { createPopup as createNinetiesPopup } from './modules/nineties-popup.js';
+        import { createGlitterBackground, enablePageGlitter } from './modules/glitter-background.js';
+
+        const pageGlitter = enablePageGlitter({
+                density: 'medium',
+                enableRainbow: true,
+                enableDrift: false,
+                enableRain: false,
+            });
+
+        document.getElementById('spawn').addEventListener('click', () => {
+            createNinetiesPopup({
+                title: '*** Best Viewed in 800x600 ***',
+                headline: 'INCREDIBLE OFFER',
+                subhead: 'Free upgrade to “Deluxe Clipart Pack”!',
+                bullets: [
+                    'Unlimited glitter text (terms apply)',
+                    'Premium cursor trails (rainbow mode)',
+                    'Bonus: 30-day ICQ “invisible” status'
+                ],
+                ctaText: 'Install Now',
+                onCta: () => alert('Now installing hundreds of viruses for you to cry about later!'),
+                annoyMode: true,
+                allowBounce: false
+            });
+        });
+
+        // Optional: auto-show one on load
+        window.addEventListener('DOMContentLoaded', () => {
+            createNinetiesPopup({
+                title: 'YOU WON A SCREENSAVER',
+                headline: 'FINAL NOTICE',
+                subhead: 'Your free Flying Toasters expire soon!',
+                bullets: ['Hypnotic 3D pipes', 'Minesweeper pro tips', 'Dial-up tone ringtone'],
+                ctaText: 'Claim Toasters',
+                allowBounce: false
+            });
+        });
+    </script>
+</body>
+
+</html>
