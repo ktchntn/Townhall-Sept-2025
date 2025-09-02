@@ -3,8 +3,6 @@
 
 This project recreates the authentic look and feel of 90s-era websites, complete with popup windows, blinking text, animated banners, and glitter effects. Perfect for nostalgic web experiences or themed events.
 
-![90s Web Experience](https://placeholder-for-screenshot.png)
-
 ## Features
 
 - **Nineties Popup**: Authentic 90s-style popup windows with:
