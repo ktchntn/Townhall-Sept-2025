@@ -3,8 +3,13 @@ body {
     background-color: aqua;
 }
 
+.vab-container {
+    position: absolute;
+    top: 70px;
+}
+
 h1 {
-    font-size: 50px;
+    font-size: 90px;
     font-weight: 700;
     text-align: center;
 }
@@ -16,4 +21,5 @@ h1 {
 .anniversaries-table {
     margin: 0 auto;
     text-align: center;
+    font-size: 40px;
 }

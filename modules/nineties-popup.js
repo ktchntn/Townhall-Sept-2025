@@ -568,4 +568,4 @@ export function createPopup(options = {}) {
   };
 }
 
-console.log('Nineties popup module loaded successfully');
+console.log(`90s popup module loaded successfully`);

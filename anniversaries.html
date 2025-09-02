@@ -18,43 +18,45 @@
         <img src="/assets/panasonic-1998.gif" class="h-banner">
     </div>
     <h1>Anniversaries!</h1>
-    <div class="side-banners"></div>
-    <table class="anniversaries-table">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Years</th>
-            </tr>
-            <tbody>
-                <tr id="anniversary-1">
-                    <td>Alice</td>
-                    <td>5</td>
+    <div class="content-container">
+        <table class="anniversaries-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Years</th>
                 </tr>
-                <tr id="anniversary-2">
-                    <td>Bob</td>
-                    <td>4</td>
-                </tr>
-                <tr id="anniversary-3">
-                    <td>Charlie</td>
-                    <td>8</td>
-                </tr>
-                <tr id="anniversary-4">
-                    <td>David</td>
-                    <td>2</td>
-                </tr>
-                <tr id="anniversary-5">
-                    <td>Eve</td>
-                    <td>5</td>
-                </tr>
-                <tr id="anniversary-6">
-                    <td>Frank</td>
-                    <td>4</td>
-                </tr>
-            </tbody>
-    </table>
+                <tbody>
+                    <tr id="anniversary-1">
+                        <td>Alice</td>
+                        <td>5</td>
+                    </tr>
+                    <tr id="anniversary-2">
+                        <td>Bob</td>
+                        <td>4</td>
+                    </tr>
+                    <tr id="anniversary-3">
+                        <td>Charlie</td>
+                        <td>8</td>
+                    </tr>
+                    <tr id="anniversary-4">
+                        <td>David</td>
+                        <td>2</td>
+                    </tr>
+                    <tr id="anniversary-5">
+                        <td>Eve</td>
+                        <td>5</td>
+                    </tr>
+                    <tr id="anniversary-6">
+                        <td>Frank</td>
+                        <td>4</td>
+                    </tr>
+                </tbody>
+        </table>
+
+    </div>
     <button id="spawn">Spawn Popup</button>
     <div class="flashy-buttons">
-        <img src="/assets/amazing_free_stuff.gif">
+        <img src="/assets/free-stuff-center.gif">
         <img src="/assets/winrar.gif">
         <img src="/assets/angelfire.gif">
         <img src="/assets/netscape.gif">
@@ -64,6 +66,8 @@
     <script type="module">
         import { createPopup as createNinetiesPopup } from './modules/nineties-popup.js';
         import { createGlitterBackground, enablePageGlitter } from './modules/glitter-background.js';
+        import { createVerticalAdBanner } from './modules/vertical-ad-banner.js';
+
 
         const pageGlitter = enablePageGlitter({
                 density: 'medium',
@@ -71,6 +75,19 @@
                 enableDrift: false,
                 enableRain: false,
             });
+
+        // Auto-show banner on load
+        createVerticalAdBanner({
+            position: 'left',
+            header: 'HOT DEAL!',
+            imageSrc: '/assets/amazing_free_stuff.gif',
+            text: 'Get your FREE anniversary gift pack! Limited time offer!',
+            buttonText: 'CLAIM NOW',
+            counterStart: 8888,
+            onButtonClick: () => {
+                alert('Congratulations! Your anniversary gift is a free animated cursor pack!');
+            }
+        });
 
         document.getElementById('spawn').addEventListener('click', () => {
             createNinetiesPopup({
