@@ -3,8 +3,6 @@
 
 A nostalgic JavaScript module that creates authentic 90s-style popup windows with all the classic features: blinking text, draggable windows, "screensaver" bounce animations, and more!
 
-![90s Popup Example](https://via.placeholder.com/600x400?text=90s+Popup+Screenshot)
-
 ## Features
 
 - 🖱️ Draggable windows with classic titlebar
