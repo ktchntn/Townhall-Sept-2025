@@ -1,0 +1,240 @@
+body {
+	margin: 0;
+	height: 100vh;
+	width: 100vw;
+	overflow: hidden;
+}
+
+main {
+	width: 100vw;
+	height: 100vh;
+	background-image: url('../assets/background-images/night.gif');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	position: relative;
+}
+
+.top {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.top img {
+	width: 20%;
+	height: auto;
+	margin: 0 auto;
+}
+
+.circle {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 750px;
+	height: 650px;
+	background: #000;
+	border-radius: 50%;
+	margin-top: 80px;
+}
+
+.circle-border {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	border-radius: 50%;
+}
+
+.circle-border img {
+	position: absolute;
+	width: 200px;
+}
+
+.circle-border img.motorolla {
+	left: 50px;
+	top: -80px;
+	width: 230px;
+	transform: rotate(20deg);
+}
+
+.circle-border img.poptart {
+	left: 200px;
+	top: -70px;
+	width: 120px;
+	transform: rotate(-10deg);
+}
+
+.circle-border img.troll-doll {
+	width: 80px;
+	left: 297px;
+	top: -90px;
+}
+
+.circle-border img.fresh-prince {
+	width: 130px;
+	right: 10px;
+}
+
+.circle-border img.hubba-bubba {
+	top: -50px;
+	right: 240px;
+}
+
+.circle-border img.britney-spears {
+	right: 190px;
+	top: -90px;
+	width: 140px;
+}
+
+.circle-border img.lisa-frank {
+	width: 120px;
+	right: 93px;
+	top: -25px;
+}
+
+.circle-border img.tupac {
+	top: 90px;
+	left: -70px;
+}
+
+.circle-border img.zima {
+	width: 69px;
+	right: 0px;
+	top: 80px;
+	transform: rotate(15deg);
+}
+
+.circle-border img.rugrats {
+	width: 150px;
+	right: -60px;
+	top: 210px;
+}
+
+.circle-border img.cassette {
+	top: 200px;
+	left: -40px;
+	width: 150px;
+}
+
+.circle-border img.game-boy {
+	top: 340px;
+	right: -40px;
+	width: 110px;
+}
+
+.circle-border img.casio {
+	top: 280px;
+	left: -70px;
+	width: 180px;
+	transform: rotate(-10deg);
+}
+
+.circle-border img.hey-arnold {
+	top: 420px;
+	left: 0px;
+	width: 130px;
+}
+
+.circle-border img.urkle {
+	top: 450px;
+	left: 70px;
+	width: 170px;
+}
+
+.circle-border img.nintendo-64 {
+	top: 545px;
+	right: 110px;
+}
+
+.circle-border img.justin-nsync {
+	top: 470px;
+	left: 180px;
+  width: 150px;
+}
+
+.circle-border img.princess-diana-beanie-baby {
+	top: 440px;
+	right: 10px;
+	width: 150px;
+}
+
+.circle-border img.pbj {
+	top: 510px;
+	right: 270px;
+  width: 150px;
+}
+
+.circle-border img.vhs {
+	top: 550px;
+	right: 370px;
+	width: 190px;
+	transform: rotate(12deg);
+}
+
+.content {
+	position: absolute;
+	top: 15%;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	height: 70%;
+	width: 50%;
+	color: white;
+}
+
+.content a {
+	color: white;
+}
+
+.nav {
+	display: block;
+	/* margin-top: 30px; */
+}
+
+.nav .anniversaries {
+	/* margin-bottom: -80px; */
+  width: 225px;
+  margin-bottom: -10px;
+  margin-left: -10px;
+}
+
+.nav .anniversaries:hover {
+	cursor: pointer;
+	animation: hoverCMVP 0.25s ease alternate infinite;
+}
+
+@keyframes hoverCMVP {
+	0% { transform: rotate(10deg); }
+	100% { transform: rotate(-10deg); }
+}
+
+.body-content {
+	height: 70%;
+	overflow-y: scroll;
+	/* margin-top: 10px; */
+}
+
+.body-content p img {
+	width: 15px;
+}
+
+.facebook-default-no-profile-pic {
+	width: 100px;
+	position: relative;
+}
+
+::-webkit-scrollbar {
+    height: 12px;
+    width: 12px;
+    background: #4e4e4e;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #a8a8a8;
+    -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
+}
+
+::-webkit-scrollbar-corner {
+    background: #4e4e4e;
+}
