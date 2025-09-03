@@ -35,15 +35,23 @@ main {
 	right: 0;
 	margin: 0 auto;
 	height: 80%;
-	width: 55%;
+	width: 60%;
 	color: white;
 }
 
 .nav-items {		
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	justify-content: flex-start;
-	/* align-items: center; */
+	flex-wrap: wrap;
+	height: 200px;
+	align-items: center;
+}
+
+.nav-items a {
+	width: auto;
+	/* display: block; */
+	/* background-color: red; */
 }
 
 .welcome {
@@ -61,8 +69,8 @@ main {
 
 .nav .anniversaries {
   width: 280px;
-  margin-bottom: -10px;
-  margin-left: -50px;
+  /* margin-bottom: -10px;
+  margin-left: -50px; */
 }
 
 .nav .anniversaries:hover {
@@ -72,7 +80,7 @@ main {
 
 .nav .windows {
     width: 150px;
-		margin-left: -50px;
+		/* margin-left: -50px; */
  }
 
 @keyframes hoverCMVP {

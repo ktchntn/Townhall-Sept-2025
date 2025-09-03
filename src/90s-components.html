@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles/index.css">
+  <title>Townhall September 1990</title>
+</head>
+<body>
+  <h1>Townhall 1990</h1>
+
+  <img src="assets/welcome-2.jpg">
+  
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="anniversaries.html">Anniversaries</a>
+    <a href="documentation.html">Documentation</a>
+  </div>
+  
+  <div class="demo-section">
+    <h2>Welcome to the 90s Web Experience!</h2>
+    <p>This project showcases various nostalgic 90s-style web components including popups, banners, and glitter effects.</p>
+    
+    <div class="demo-buttons">
+      <button id="popup-demo" class="demo-cta">Show 90s Popup</button>
+      <button id="banner-demo" class="demo-button">Show Ad Banner</button>
+      <button id="glitter-demo" class="demo-button">Toggle Page Glitter</button>
+    </div>
+  </div>
+  
+  <div class="demo-section">
+    <h2>Available Components:</h2>
+    <ul>
+      <li><strong>Nineties Popup</strong> - Authentic 90s-style popup windows with draggable functionality</li>
+      <li><strong>Vertical Ad Banner</strong> - Classic sidebar advertisements with blinking text</li>
+      <li><strong>Glitter Background</strong> - Add sparkles and glitter effects to any element</li>
+    </ul>
+  </div>
+
+  <script type="module">
+    import { createPopup } from './modules/nineties-popup.js';
+    import { createVerticalAdBanner } from './modules/vertical-ad-banner.js';
+    import { enablePageGlitter } from './modules/glitter-background.js';
+    
+    let glitterEnabled = false;
+    let glitterInstance = null;
+    let bannerInstance = null;
+    
+    document.getElementById('popup-demo').addEventListener('click', () => {
+      createPopup({
+        title: '*** Best Viewed in 800x600 ***',
+        headline: 'INCREDIBLE OFFER',
+        subhead: 'Free upgrade to "Deluxe Clipart Pack"!',
+        bullets: [
+          'Unlimited glitter text (terms apply)',
+          'Premium cursor trails (rainbow mode)',
+          'Bonus: 30-day ICQ "invisible" status'
+        ],
+        ctaText: 'Install Now',
+        onCta: () => alert('Installing... just kidding.'),
+        annoyMode: true,
+        allowBounce: true
+      });
+    });
+    
+    document.getElementById('banner-demo').addEventListener('click', () => {
+      if (bannerInstance) {
+        bannerInstance.close();
+        bannerInstance = null;
+        return;
+      }
+      
+      bannerInstance = createVerticalAdBanner({
+        position: 'right',
+        header: 'HOT DEAL!',
+        imageSrc: '/assets/amazing_free_stuff.gif',
+        text: 'Get your FREE download pack! Limited time offer!',
+        buttonText: 'CLAIM NOW',
+        counterStart: 9999,
+        onButtonClick: () => {
+          alert('Congratulations! Your download is a free animated cursor pack!');
+        },
+        onClose: () => {
+          bannerInstance = null;
+        }
+      });
+    });
+    
+    document.getElementById('glitter-demo').addEventListener('click', () => {
+      if (glitterEnabled) {
+        if (glitterInstance && glitterInstance.disable) {
+          glitterInstance.disable();
+        }
+        glitterEnabled = false;
+      } else {
+        glitterInstance = enablePageGlitter({
+          density: 'medium',
+          enableRainbow: true,
+          enableDrift: true,
+          enableRain: false
+        });
+        glitterEnabled = true;
+      }
+    });
+  </script>
+</body>
+</html>
