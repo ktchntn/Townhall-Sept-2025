@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>September Town Hall</title>
+		<link rel="stylesheet" href="./styles/back-to-the-future.css">
+
+		<!-- Google Font -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<!-- <link href="https://fonts.googleapis.com/css2?family=Coral+Pixels&family=Slackey&display=swap" rel="stylesheet"> -->
+		<link href="https://fonts.googleapis.com/css2?family=Handjet:wght@100..900&family=VT323&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<div class="main">
+			<div class="container">
+				<div class="folder-container">
+					<img class="icon" src="./assets/icons/folder-color.png"/>
+					<p>CMVP</p>
+				</div>
+				<div class="folder-container">
+					<a href="./assets/PDFs/CMVP.pdf">
+						<img class="icon" src="./assets/icons/folder-color.png"/>
+					</a>
+					<p>Shout Outs</p>
+				</div>
+				<div class="folder-container">
+          <a href="/src/index.html">
+            <img class="icon" src="./assets/picture-ring/windows.gif"/>
+            <p>Internet</p>
+          </a>
+				</div>
+			</div>
+			<div class="bottom-nav">
+				<button><img class="cm-logo" src="./assets/90s-CM-Logo.png"/>Start</button>
+				<div class="time-container">
+					<img class="icon" src="./assets/icons/volume-up.png"/>
+					<p id="time"></p>
+				</div>
+			</div>
+		</div>
+	</body>
+
+  <script>
+    function updateClock() {
+      const now = new Date();
+      const time = now.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" });
+      document.getElementById('time').innerText = `${time}`;
+    }
+
+    // Call updateClock initially to display the time immediately
+    updateClock();
+
+    // Update the clock every second
+    setInterval(updateClock, 1000);
+  </script>
+</html>
