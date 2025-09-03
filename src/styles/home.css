@@ -3,6 +3,7 @@ body {
 	height: 100vh;
 	width: 100vw;
 	overflow: hidden;
+	cursor: url('../assets/cursors/cursor.png'), auto;
 }
 
 main {
@@ -25,6 +26,31 @@ main {
 	width: 20%;
 	height: auto;
 	margin: 0 auto;
+}
+
+
+.nav {
+	display: block;
+}
+
+* .nav a:hover {
+	cursor: url('../assets/cursors/hover.png'), auto;
+}
+
+.nav .anniversaries {
+  width: 225px;
+  margin-bottom: -10px;
+  margin-left: -10px;
+}
+
+.nav .anniversaries:hover {
+	/* cursor: pointer; */
+	animation: hoverCMVP 0.25s ease alternate infinite;
+}
+
+@keyframes hoverCMVP {
+	0% { transform: rotate(10deg); }
+	100% { transform: rotate(-10deg); }
 }
 
 .circle {
@@ -185,28 +211,6 @@ main {
 
 .content a {
 	color: white;
-}
-
-.nav {
-	display: block;
-	/* margin-top: 30px; */
-}
-
-.nav .anniversaries {
-	/* margin-bottom: -80px; */
-  width: 225px;
-  margin-bottom: -10px;
-  margin-left: -10px;
-}
-
-.nav .anniversaries:hover {
-	cursor: pointer;
-	animation: hoverCMVP 0.25s ease alternate infinite;
-}
-
-@keyframes hoverCMVP {
-	0% { transform: rotate(10deg); }
-	100% { transform: rotate(-10deg); }
 }
 
 .body-content {
