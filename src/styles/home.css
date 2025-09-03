@@ -28,9 +28,31 @@ main {
 	margin: 0 auto;
 }
 
+.content {
+	position: absolute;
+	top: 15%;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	height: 80%;
+	width: 55%;
+	color: white;
+}
 
-.nav {
-	display: block;
+.nav-items {		
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	/* align-items: center; */
+}
+
+.welcome {
+	display: flex;
+}
+
+.welcome img {
+	width: 350px;
+	margin: 10px auto 0;
 }
 
 * .nav a:hover {
@@ -38,15 +60,20 @@ main {
 }
 
 .nav .anniversaries {
-  width: 225px;
+  width: 280px;
   margin-bottom: -10px;
-  margin-left: -10px;
+  margin-left: -50px;
 }
 
 .nav .anniversaries:hover {
 	/* cursor: pointer; */
 	animation: hoverCMVP 0.25s ease alternate infinite;
 }
+
+.nav .windows {
+    width: 150px;
+		margin-left: -50px;
+ }
 
 @keyframes hoverCMVP {
 	0% { transform: rotate(10deg); }
@@ -198,30 +225,14 @@ main {
 	transform: rotate(12deg);
 }
 
-.content {
-	position: absolute;
-	top: 15%;
-	left: 0;
-	right: 0;
-	margin: 0 auto;
-	height: 70%;
-	width: 50%;
-	color: white;
-}
-
-.content a {
-	color: white;
-}
-
-.body-content {
+/* .body-content {
 	height: 70%;
 	overflow-y: scroll;
-	/* margin-top: 10px; */
 }
 
 .body-content p img {
 	width: 15px;
-}
+} */
 
 .facebook-default-no-profile-pic {
 	width: 100px;
