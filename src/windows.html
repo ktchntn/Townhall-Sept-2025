@@ -13,7 +13,7 @@
 	<body>
 		<div class="main">
 			<div class="container">
-				<div class="folder-container">
+				<div class="folder-container" id ="cmvp">
 					<img class="icon" src="./assets/icons/folder-color.png"/>
 					<p>CMVP</p>
 				</div>
@@ -53,4 +53,33 @@
     // Update the clock every second
     setInterval(updateClock, 1000);
   </script>
+
+  <script type="module">
+	import { createMediaPlayer } from './modules/windows98-media-player.js';
+		const videos = [
+			{ title: "Welcome Video", src: "./assets/videos/placeholder.mp4" }
+		];
+
+		// Track if player is already open
+		let mediaPlayer = null;
+
+		// Add click event listener to the CMVP folder
+		document.getElementById('cmvp').addEventListener('click', function () {
+			// Only create a new player if one isn't already open
+			if (!mediaPlayer) {
+				mediaPlayer = createMediaPlayer({
+					videos: videos,
+					width: 640,
+					height: 480,
+					centered: true,
+					initialVolume: 1
+				});
+
+				// Reset the mediaPlayer variable when the player is closed
+				mediaPlayer.onClose(() => {
+					mediaPlayer = null;
+				});
+			}
+		});
+</script>
 </html>
