@@ -352,7 +352,6 @@ function trapFocus(container) {
  * @returns {Function} - Function to stop the animation
  */
 function bounceAround(popup) {
-  // old-school screensaver bounce
   const speed = 0.6 + Math.random() * 0.8;
   let vx = (Math.random() > 0.5 ? 1 : -1) * (0.4 + Math.random() * 0.6);
   let vy = (Math.random() > 0.5 ? 1 : -1) * (0.4 + Math.random() * 0.6);
@@ -411,14 +410,12 @@ export function createPopup(options = {}) {
     startPosition = null
   } = options;
 
-  // Create popup element
   const popup = document.createElement('section');
   popup.className = 'np-popup';
   popup.setAttribute('role', 'dialog');
   popup.setAttribute('aria-modal', 'true');
   popup.setAttribute('aria-label', title);
 
-  // Set popup content
   popup.innerHTML = `
     <div class="np-focus-sentinel" tabindex="0"></div>
     <div class="np-titlebar">
@@ -452,10 +449,8 @@ export function createPopup(options = {}) {
     <div class="np-focus-sentinel" tabindex="0"></div>
   `;
 
-  // Add to DOM
   document.body.appendChild(popup);
 
-  // Position the popup
   const rect = popup.getBoundingClientRect();
   const maxLeft = Math.max(8, window.innerWidth - rect.width - 8);
   const maxTop = Math.max(8, window.innerHeight - rect.height - 8);
@@ -466,11 +461,11 @@ export function createPopup(options = {}) {
   popup.style.left = `${left}px`;
   popup.style.top = `${top}px`;
 
-  // Setup dragging
+
   const titlebar = popup.querySelector('.np-titlebar');
   makeDraggable(popup, titlebar);
 
-  // Setup focus trap
+
   trapFocus(popup);
 
   if (autoFocus) {
@@ -478,13 +473,12 @@ export function createPopup(options = {}) {
     firstButton?.focus();
   }
 
-  // Setup bounce animation
+
   let stopBounce = null;
 
   if (allowBounce) {
     stopBounce = bounceAround(popup);
 
-    // Stop bouncing on first interaction
     ['mousedown', 'keydown', 'touchstart'].forEach(evt => {
       popup.addEventListener(evt, () => {
         if (stopBounce) {
@@ -510,7 +504,6 @@ export function createPopup(options = {}) {
     }
   }
 
-  // Button handlers
   popup.addEventListener('click', (e) => {
     const btn = e.target.closest('button[data-action]');
     if (!btn) return;
@@ -555,7 +548,6 @@ export function createPopup(options = {}) {
     }
   });
 
-  // Keyboard handling
   const onKey = (e) => {
     if (e.key === 'Escape') close();
   };

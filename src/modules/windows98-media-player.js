@@ -304,41 +304,65 @@ function formatTime(seconds) {
 }
 
 /**
+ * Clamps a value between min and max
+ * @param {number} val - Value to clamp
+ * @param {number} min - Minimum value
+ * @param {number} max - Maximum value
+ * @returns {number} - Clamped value
+ */
+function clamp(val, min, max) {
+    return Math.max(min, Math.min(max, val));
+}
+
+/**
  * Makes an element draggable
  * @param {HTMLElement} element - Element to make draggable
  * @param {HTMLElement} handle - Element to use as drag handle
  */
 function makeDraggable(element, handle) {
-  let offsetX = 0, offsetY = 0;
-  
-  const onMouseDown = (e) => {
-    e.preventDefault();
-    offsetX = e.clientX - element.getBoundingClientRect().left;
-    offsetY = e.clientY - element.getBoundingClientRect().top;
-    
-    document.addEventListener('mousemove', onMouseMove);
-    document.addEventListener('mouseup', onMouseUp);
-  };
-  
-  const onMouseMove = (e) => {
-    e.preventDefault();
-    const x = e.clientX - offsetX;
-    const y = e.clientY - offsetY;
-    
-    // Keep within viewport bounds
-    const maxX = window.innerWidth - element.offsetWidth;
-    const maxY = window.innerHeight - element.offsetHeight;
-    
-    element.style.left = `${Math.max(0, Math.min(maxX, x))}px`;
-    element.style.top = `${Math.max(0, Math.min(maxY, y))}px`;
-  };
-  
-  const onMouseUp = () => {
-    document.removeEventListener('mousemove', onMouseMove);
-    document.removeEventListener('mouseup', onMouseUp);
-  };
-  
-  handle.addEventListener('mousedown', onMouseDown);
+    let x = 0, y = 0, sx = 0, sy = 0, dragging = false;
+
+    const onDown = (e) => {
+        dragging = true;
+        const p = e.touches ? e.touches[0] : e;
+        sx = p.clientX;
+        sy = p.clientY;
+
+        const rect = element.getBoundingClientRect();
+        x = rect.left;
+        y = rect.top;
+
+        document.addEventListener('mousemove', onMove);
+        document.addEventListener('touchmove', onMove, { passive: false });
+        document.addEventListener('mouseup', onUp);
+        document.addEventListener('touchend', onUp);
+    };
+
+    const onMove = (e) => {
+        if (!dragging) return;
+
+        const p = e.touches ? e.touches[0] : e;
+        const nx = x + (p.clientX - sx);
+        const ny = y + (p.clientY - sy);
+        const maxX = window.innerWidth - element.offsetWidth;
+        const maxY = window.innerHeight - element.offsetHeight;
+
+        element.style.left = clamp(nx, 0, Math.max(0, maxX)) + 'px';
+        element.style.top = clamp(ny, 0, Math.max(0, maxY)) + 'px';
+
+        e.preventDefault?.();
+    };
+
+    const onUp = () => {
+        dragging = false;
+        document.removeEventListener('mousemove', onMove);
+        document.removeEventListener('touchmove', onMove);
+        document.removeEventListener('mouseup', onUp);
+        document.removeEventListener('touchend', onUp);
+    };
+
+    handle.addEventListener('mousedown', onDown);
+    handle.addEventListener('touchstart', onDown, { passive: true });
 }
 
 /**
@@ -360,13 +384,13 @@ export function createMediaPlayer(options = {}) {
     initialVolume = 0.7
   } = options;
   
-  // Create player container
+
   const playerEl = document.createElement('div');
   playerEl.className = 'win98-player';
   playerEl.style.width = `${width}px`;
   playerEl.style.top = position.top;
   
-  // Handle centering if requested
+  
   if (centered) {
     playerEl.style.left = '50%';
     playerEl.style.transform = 'translateX(-50%)';
@@ -374,7 +398,7 @@ export function createMediaPlayer(options = {}) {
     playerEl.style.left = position.left;
   }
   
-  // Create player HTML structure
+ 
   playerEl.innerHTML = `
     <div class="win98-player-titlebar">
       <div class="win98-player-title">
@@ -424,10 +448,9 @@ export function createMediaPlayer(options = {}) {
     </div>
   `;
   
-  // Add to DOM
+
   document.body.appendChild(playerEl);
   
-  // Get elements
   const videoEl = playerEl.querySelector('.win98-player-video');
   const playBtn = playerEl.querySelector('[data-action="play"]');
   const pauseBtn = playerEl.querySelector('[data-action="pause"]');
@@ -444,47 +467,38 @@ export function createMediaPlayer(options = {}) {
   const statusBar = playerEl.querySelector('.win98-player-status-bar');
   const volumeSlider = playerEl.querySelector('.win98-player-volume input');
   
-  // Current video index
   let currentVideoIndex = 0;
   
-  // Make draggable if enabled
   if (draggable) {
     makeDraggable(playerEl, titleBar);
   }
   
-  // Set initial volume
   videoEl.volume = initialVolume;
   
-  // Load the first video
   if (videos.length > 0) {
     loadVideo(0);
   }
   
-  // Set up autoplay if enabled
   if (autoplay && videos.length > 0) {
     videoEl.autoplay = true;
   }
   
-  // Play button click handler
   playBtn.addEventListener('click', () => {
     videoEl.play();
     statusBar.textContent = 'Playing';
   });
   
-  // Pause button click handler
   pauseBtn.addEventListener('click', () => {
     videoEl.pause();
     statusBar.textContent = 'Paused';
   });
   
-  // Stop button click handler
   stopBtn.addEventListener('click', () => {
     videoEl.pause();
     videoEl.currentTime = 0;
     statusBar.textContent = 'Stopped';
   });
   
-  // Previous button click handler
   prevBtn.addEventListener('click', () => {
     if (currentVideoIndex > 0) {
       loadVideo(currentVideoIndex - 1);
@@ -492,7 +506,6 @@ export function createMediaPlayer(options = {}) {
     }
   });
   
-  // Next button click handler
   nextBtn.addEventListener('click', () => {
     if (currentVideoIndex < videos.length - 1) {
       loadVideo(currentVideoIndex + 1);
@@ -500,30 +513,25 @@ export function createMediaPlayer(options = {}) {
     }
   });
   
-  // Rewind button click handler
   rewindBtn.addEventListener('click', () => {
     videoEl.currentTime = Math.max(0, videoEl.currentTime - 10);
   });
   
-  // Forward button click handler
   forwardBtn.addEventListener('click', () => {
     videoEl.currentTime = Math.min(videoEl.duration, videoEl.currentTime + 10);
   });
   
-  // Progress bar click handler
   progressContainer.addEventListener('click', (e) => {
     const rect = progressContainer.getBoundingClientRect();
     const pos = (e.clientX - rect.left) / rect.width;
     videoEl.currentTime = pos * videoEl.duration;
   });
   
-  // Volume slider handler
   volumeSlider.addEventListener('input', (e) => {
     const vol = e.target.value / 100;
     videoEl.volume = vol;
   });
   
-  // Menu item click handlers
   menuItems.forEach(item => {
     item.addEventListener('click', () => {
       statusBar.textContent = `Menu item clicked: ${item.textContent}`;
@@ -533,12 +541,10 @@ export function createMediaPlayer(options = {}) {
     });
   });
   
-  // Close button click handler
   closeBtn.addEventListener('click', () => {
     close();
   });
   
-  // Time update handler
   videoEl.addEventListener('timeupdate', () => {
     const current = videoEl.currentTime;
     const duration = videoEl.duration || 0;
@@ -547,9 +553,8 @@ export function createMediaPlayer(options = {}) {
     progressBar.style.width = `${percent}%`;
   });
   
-  // Video ended handler
+
   videoEl.addEventListener('ended', () => {
-    // Play next video if available
     if (currentVideoIndex < videos.length - 1) {
       loadVideo(currentVideoIndex + 1);
       videoEl.play();
@@ -567,7 +572,6 @@ export function createMediaPlayer(options = {}) {
       currentVideoIndex = index;
       const video = videos[index];
       
-      // Update video source
       videoEl.src = video.src;
       videoEl.load();
       
