@@ -18,51 +18,62 @@
         <img src="./assets/at-t-the-first-banner-1994.png" class="h-banner">
         <img src="./assets/panasonic-1998.gif" class="h-banner">
     </div>
-    <h1>Anniversaries!</h1>
-    <div class="content-container">
-        <table class="anniversaries-table">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Years</th>
-                </tr>
-                <tbody>
-                    <tr id="anniversary-1">
-                        <td>Alice</td>
-                        <td>5</td>
-                    </tr>
-                    <tr id="anniversary-2">
-                        <td>Bob</td>
-                        <td>4</td>
-                    </tr>
-                    <tr id="anniversary-3">
-                        <td>Charlie</td>
-                        <td>8</td>
-                    </tr>
-                    <tr id="anniversary-4">
-                        <td>David</td>
-                        <td>2</td>
-                    </tr>
-                    <tr id="anniversary-5">
-                        <td>Eve</td>
-                        <td>5</td>
-                    </tr>
-                    <tr id="anniversary-6">
-                        <td>Frank</td>
-                        <td>4</td>
-                    </tr>
-                </tbody>
-        </table>
+    <main>
+        <div class="title-container">
+            <img src="./assets/moon-sprite1.gif" class="title-sprite">
+            <img src="./assets/Anniversaries-9-8-2025.png" class="title">
+            <img src="./assets/moon-sprite2.gif" class="title-sprite">
+        </div>
+        <div class="anniversaries-container">
+            <table class="anniversaries-table">
+                <thead>
+                    <tbody>
+                        <tr id="anniversary-1">
+                            <td>Alice</td>
+                            <td>5 years</td>
+                        </tr>
+                        <tr id="anniversary-2">
+                            <td>Bob</td>
+                            <td>4 years</td>
+                        </tr>
+                        <tr id="anniversary-3">
+                            <td>Keegan Techentin</td>
+                            <td>8 years</td>
+                        </tr>
+                        <tr id="anniversary-4">
+                            <td>David</td>
+                            <td>2 years</td>
+                        </tr>
+                        <tr id="anniversary-5">
+                            <td>Eve</td>
+                            <td>5 years</td>
+                        </tr>
+                        <tr id="anniversary-6">
+                            <td>Frank</td>
+                            <td>4 years</td>
+                        </tr>
+                    </tbody>
+            </table>
+            <img src="./assets/moon.gif" class="moon">
+            
+            <img src="./assets/sailor-moon-divider.gif" class="divider">
+        </div>
+        
+        <img src="./assets/sailor-moon1.gif" class="sailor-moon sailor-moon--1">
+        <img src="./assets/sailor-moon2.gif" class="sailor-moon sailor-moon--2">
+        <img src="./assets/sailor-moon3.gif" class="sailor-moon sailor-moon--3">
+        <img src="./assets/sailor-moon4.gif" class="sailor-moon sailor-moon--4">
 
-    </div>
-    <button id="spawn">Spawn Popup</button>
-    <div class="flashy-buttons">
-        <img src="./assets/free-stuff-center.gif">
-        <img src="./assets/winrar.gif">
-        <img src="./assets/angelfire.gif">
-        <img src="./assets/netscape.gif">
-
-    </div>
+        <button id="spawn">Spawn Popup</button>
+        <div class="flashy-buttons">
+            <img src="./assets/free-stuff-center.gif">
+            <img src="./assets/hotmail2.gif">
+            <img src="./assets/FreewareGuide.gif">
+            <img src="./assets/winrar.gif">
+            <img src="./assets/angelfire.gif">
+            <img src="./assets/netscape.gif">
+        </div>
+    </main>
 
     <script type="module">
         import { createPopup as createNinetiesPopup } from './modules/nineties-popup.js';
@@ -94,7 +105,7 @@
         createVerticalAdBanner({
             position: 'left',
             header: 'SPECIAL OFFER!',
-            imageSrc: '/assets/amazing_free_stuff.gif',
+            imageSrc: '/assets/free.gif',
             text: 'Download more RAM for FREE!',
             buttonText: 'DOWNLOAD',
             counterStart: 0,
