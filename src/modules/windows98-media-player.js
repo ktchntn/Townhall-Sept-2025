@@ -10,6 +10,10 @@ function injectStyles() {
   const styleEl = document.createElement('style');
   styleEl.id = 'win98-media-player-styles';
   styleEl.textContent = `
+    .win98-hidden {
+      display: none !important;
+    }
+
     .win98-player {
       font-family: 'Tahoma', 'Arial', sans-serif;
       background: #c0c0c0;
@@ -485,18 +489,18 @@ export function createMediaPlayer(options = {}) {
   
   playBtn.addEventListener('click', () => {
     videoEl.play();
-    statusBar.textContent = 'Playing';
+    statusBar.textContent = `${videos[currentVideoIndex]?.title || 'Video'}: Playing`;
   });
   
   pauseBtn.addEventListener('click', () => {
     videoEl.pause();
-    statusBar.textContent = 'Paused';
+    statusBar.textContent = `${videos[currentVideoIndex]?.title || 'Video'}: Paused`;
   });
   
   stopBtn.addEventListener('click', () => {
     videoEl.pause();
     videoEl.currentTime = 0;
-    statusBar.textContent = 'Stopped';
+    statusBar.textContent = `${videos[currentVideoIndex]?.title || 'Video'}: Stopped`;
   });
   
   prevBtn.addEventListener('click', () => {
@@ -587,6 +591,73 @@ export function createMediaPlayer(options = {}) {
     playerEl.remove();
   }
   
+  // Add minimize and maximize functionality
+  const minBtn = playerEl.querySelector('[aria-label="Minimize"]');
+  const maxBtn = playerEl.querySelector('[aria-label="Maximize"]');
+  const content = playerEl.querySelector('.win98-player-content');
+  
+  /**
+   * Minimizes or restores the player
+   */
+  function minimize() {
+    content.classList.toggle('win98-hidden');
+    
+    if (content.classList.contains('win98-hidden')) {
+      if (!playerEl.dataset.originalHeight) {
+        playerEl.dataset.originalHeight = playerEl.style.height || `${height}px`;
+      }
+      playerEl.style.height = 'auto';
+    } 
+
+    else if (playerEl.dataset.originalHeight) {
+      if (!playerEl.dataset.originalSize) {
+        playerEl.style.height = playerEl.dataset.originalHeight;
+      }
+      delete playerEl.dataset.originalHeight;
+    }
+  }
+  
+  /**
+   * Maximizes or restores the player
+   */
+  function maximize() {
+    if (!playerEl.dataset.originalSize) {
+      playerEl.dataset.originalSize = JSON.stringify({
+        width: playerEl.style.width,
+        height: playerEl.style.height || `${height}px`, // Use initial height if not set
+        left: playerEl.style.left,
+        top: playerEl.style.top,
+        transform: playerEl.style.transform
+      });
+      
+      playerEl.style.width = '100vw';
+      playerEl.style.height = '100vh';
+      playerEl.style.left = '0';
+      playerEl.style.top = '0';
+      playerEl.style.transform = 'none';
+      
+      const videoEl = playerEl.querySelector('.win98-player-video');
+      videoEl.style.height = `${window.innerHeight - 100}px`;
+    } else {
+      const originalSize = JSON.parse(playerEl.dataset.originalSize);
+      
+      if (originalSize.width) playerEl.style.width = originalSize.width;
+      if (originalSize.height) playerEl.style.height = originalSize.height;
+      if (originalSize.left) playerEl.style.left = originalSize.left;
+      if (originalSize.top) playerEl.style.top = originalSize.top;
+      if (originalSize.transform) playerEl.style.transform = originalSize.transform;
+      
+      const videoEl = playerEl.querySelector('.win98-player-video');
+      const contentHeight = parseInt(originalSize.height) - 100;
+      videoEl.style.height = contentHeight > 0 ? `${contentHeight}px` : '';
+      
+      delete playerEl.dataset.originalSize;
+    }
+  }
+
+  minBtn.addEventListener('click', minimize);
+  maxBtn.addEventListener('click', maximize);
+  
   // Return public API
   return {
     element: playerEl,
@@ -618,6 +689,8 @@ export function createMediaPlayer(options = {}) {
     center: () => {
       playerEl.style.left = '50%';
       playerEl.style.transform = 'translateX(-50%)';
-    }
+    },
+    minimize: minimize,
+    maximize: maximize
   };
 }

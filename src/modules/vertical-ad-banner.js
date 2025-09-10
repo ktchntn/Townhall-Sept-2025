@@ -23,7 +23,7 @@ const baseStyles = `
   font-family: "Comic Sans MS", "Comic Neue", cursive;
   color: var(--vab-text);
   text-align: center;
-  padding: 10px 5px;
+  padding: 18px 5px 10px;
   text-shadow: 2px 2px 0 #000;
 }
 
@@ -99,7 +99,8 @@ const baseStyles = `
   border: 1px solid #fff;
   width: 16px;
   height: 16px;
-  font-size: 10px;
+  padding-left: 2px;
+  font-size: 18px;
   line-height: 14px;
   text-align: center;
   cursor: pointer;
@@ -152,13 +153,13 @@ const baseStyles = `
 }
 
 .vab-sparkle::before {
-  left: -15px;
+  left: -2px;
   top: 0;
   animation-delay: 0s;
 }
 
 .vab-sparkle::after {
-  right: -15px;
+  right: -2px;
   top: 0;
   animation-delay: 0.5s;
 }
@@ -209,7 +210,8 @@ export function createVerticalAdBanner(options = {}) {
     onClose = null,
     floatingEffect = true,
     sparkleEffect = true,
-    customClass = '' // New option for custom CSS class
+    customClass = '',
+    container = document.body // New option to specify container element
   } = options;
 
   // Create banner element
@@ -220,7 +222,7 @@ export function createVerticalAdBanner(options = {}) {
 
   // Set banner content
   banner.innerHTML = `
-    <button class="vab-close" aria-label="Close advertisement">X</button>
+    <button class="vab-close" aria-label="Close advertisement">×</button>
     <div class="vab-header ${sparkleEffect ? 'vab-sparkle' : ''}">${header}</div>
     <img src="${imageSrc}" alt="${imageAlt}" class="vab-image ${floatingEffect ? 'vab-float' : ''}">
     <div class="vab-text">${text}</div>
@@ -228,8 +230,9 @@ export function createVerticalAdBanner(options = {}) {
     <div class="vab-counter">Visitors: <span id="vab-counter-value">${counterStart}</span></div>
   `;
 
-  // Add to DOM
-  document.body.appendChild(banner);
+  // Add to specified container or fall back to document.body
+  const targetContainer = container || document.body;
+  targetContainer.appendChild(banner);
 
   // Setup counter animation
   let counterValue = counterStart;

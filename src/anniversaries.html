@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="styles/anniversaries.css">
+    <link rel="stylesheet" href="./styles/anniversaries.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -13,11 +13,11 @@
 </head>
 
 <body>
-    <a href="index.html" class="back-button"></a>
-    <div class="top-banners">
+    <section class="top-banners">
         <img src="./assets/at-t-the-first-banner-1994.png" class="h-banner">
         <img src="./assets/panasonic-1998.gif" class="h-banner">
-    </div>
+        <a href="index.html" class="back-button"></a>
+    </section>
     <main>
         <div class="title-container">
             <img src="./assets/moon-sprite1.gif" class="title-sprite">
@@ -29,7 +29,7 @@
                 <thead>
                     <tbody>
                         <tr id="anniversary-1">
-                            <td>Alice</td>
+                            <td>Brian Kelley</td>
                             <td>5 years</td>
                         </tr>
                         <tr id="anniversary-2">
@@ -61,19 +61,22 @@
         
         <img src="./assets/sailor-moon1.gif" class="sailor-moon sailor-moon--1">
         <img src="./assets/sailor-moon2.gif" class="sailor-moon sailor-moon--2">
-        <img src="./assets/sailor-moon3.gif" class="sailor-moon sailor-moon--3">
         <img src="./assets/sailor-moon4.gif" class="sailor-moon sailor-moon--4">
 
-        <button id="spawn">Spawn Popup</button>
         <div class="flashy-buttons">
+            <img src="./assets/100hot.gif">
             <img src="./assets/free-stuff-center.gif">
             <img src="./assets/hotmail2.gif">
             <img src="./assets/FreewareGuide.gif">
             <img src="./assets/winrar.gif">
             <img src="./assets/angelfire.gif">
             <img src="./assets/netscape.gif">
+            <img src="./assets/gameboy_advance_net.gif">
         </div>
     </main>
+    <aside class="sidebar">
+        <img src="./assets/sailor-moon3.gif" class="sailor-moon sailor-moon--3">
+    </aside>
 
     <script type="module">
         import { createPopup as createNinetiesPopup } from './modules/nineties-popup.js';
@@ -88,6 +91,7 @@
                 enableRain: false,
             });
 
+        const sidebar = document.querySelector('.sidebar');
         // Auto-show banner on load
         createVerticalAdBanner({
             position: 'left',
@@ -99,7 +103,8 @@
             customClass: 'anniversary-banner-1',
             onButtonClick: () => {
                 alert('Congratulations! Your anniversary gift is a free animated cursor pack!');
-            }
+            },
+            container: sidebar,
         });
 
         createVerticalAdBanner({
@@ -111,28 +116,25 @@
             counterStart: 0,
             customClass: 'anniversary-banner-2',
             onButtonClick: () => {
-                alert('Congratulations! Your anniversary gift is a free animated cursor pack!');
-            }
+                createNinetiesPopup({
+                    title: '*** Best Viewed in 800x600 ***',
+                    headline: 'INCREDIBLE OFFER',
+                    subhead: 'Free upgrade to “Deluxe Clipart Pack”!',
+                    bullets: [
+                        'Unlimited glitter text (terms apply)',
+                        'Premium cursor trails (rainbow mode)',
+                        'Bonus: 30-day ICQ “invisible” status'
+                    ],
+                    ctaText: 'Install Now',
+                    onCta: () => alert('Now installing hundreds of viruses for you to cry about later!'),
+                    annoyMode: true,
+                    allowBounce: false
+                });
+            },
+            container: sidebar,
         });
 
-        document.getElementById('spawn').addEventListener('click', () => {
-            createNinetiesPopup({
-                title: '*** Best Viewed in 800x600 ***',
-                headline: 'INCREDIBLE OFFER',
-                subhead: 'Free upgrade to “Deluxe Clipart Pack”!',
-                bullets: [
-                    'Unlimited glitter text (terms apply)',
-                    'Premium cursor trails (rainbow mode)',
-                    'Bonus: 30-day ICQ “invisible” status'
-                ],
-                ctaText: 'Install Now',
-                onCta: () => alert('Now installing hundreds of viruses for you to cry about later!'),
-                annoyMode: true,
-                allowBounce: false
-            });
-        });
-
-        // Optional: auto-show one on load
+        // auto-show popup on load
         window.addEventListener('DOMContentLoaded', () => {
             createNinetiesPopup({
                 title: 'YOU WON A SCREENSAVER',

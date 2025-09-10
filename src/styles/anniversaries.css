@@ -3,21 +3,6 @@ body {
     background-color: #5158ff;
 }
 
-.anniversary-banner-1 {
-    position: absolute;
-    top: 70px;
-}
-
-.vab-container.anniversary-banner-2 {
-    position: absolute;
-    top: 350px;
-    background: linear-gradient(to bottom, #ffff00, #ff6600);
-}
-
-.vab-container.anniversary-banner-2 .vab-counter {
-    display: none;
-}
-
 main {
     width: 1160px;
 }
@@ -44,6 +29,12 @@ main {
 
 .top-banners {
     display: flex;
+    width: 100%;
+}
+
+.h-banner {
+    width: 40%;
+    object-fit: cover;
 }
 
 .anniversaries-container {
@@ -91,14 +82,40 @@ main {
 }
 
 .sailor-moon--3 {
-    top: 68%;
+    position: relative;
     left: 10px;
     width: 136px;
+    margin-bottom: 10px;
 }
 
 .sailor-moon--4 {
     top: 77%;
     left: 880px;
+}
+
+.sidebar {
+    position: absolute;
+    top: 78px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 140px;
+    height: 100%;
+}
+
+.anniversary-banner-1,
+.anniversary-banner-2 {
+    position: relative;
+    top: 0;
+    margin-bottom: 10px;
+}
+
+.vab-container.anniversary-banner-2 {
+    background: linear-gradient(to bottom, #ffff00, #ff6600);
+}
+
+.vab-container.anniversary-banner-2 .vab-counter {
+    display: none;
 }
 
 .flashy-buttons {
@@ -110,11 +127,11 @@ main {
 
 .back-button {
     position: absolute;
-    top: 20px;
+    top: 0px;
     right: 20px;
     width: 200px;
     height: 100px;
-    background-image: url('../assets/back-button.png');
+    background-image: url('../assets/sailor-moon-home.gif');
     background-size: contain;
     background-repeat: no-repeat;
 }

@@ -60,22 +60,18 @@
 			{ title: "Welcome Video", src: "./assets/videos/placeholder.mp4" }
 		];
 
-		// Track if player is already open
 		let mediaPlayer = null;
 
-		// Add click event listener to the CMVP folder
 		document.getElementById('cmvp').addEventListener('click', function () {
-			// Only create a new player if one isn't already open
 			if (!mediaPlayer) {
 				mediaPlayer = createMediaPlayer({
 					videos: videos,
 					width: 640,
 					height: 480,
-					centered: true,
+					centered: false,
 					initialVolume: 1
 				});
 
-				// Reset the mediaPlayer variable when the player is closed
 				mediaPlayer.onClose(() => {
 					mediaPlayer = null;
 				});
