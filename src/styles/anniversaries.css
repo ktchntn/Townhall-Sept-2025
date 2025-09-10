@@ -29,12 +29,15 @@ main {
 
 .top-banners {
     display: flex;
-    width: 100%;
+    max-width: 100%;
+    align-items: flex-start;
 }
 
 .h-banner {
-    width: 40%;
-    object-fit: cover;
+    width: 45%;
+    height: auto;
+    margin-right: 10px;
+    object-fit: contain;
 }
 
 .anniversaries-container {
@@ -63,8 +66,8 @@ main {
 
 .moon {
     position: absolute;
-    top: 27%;
-    left: 21%;
+    top: 280px;
+    left: 250px;
 }
 
 .sailor-moon {
@@ -72,12 +75,12 @@ main {
 }
 
 .sailor-moon--1 {
-    top: 35%;
+    top: 334px;
     left: 830px;
 }
 
 .sailor-moon--2 {
-    top: 55%;
+    top: 525px;
     left: 180px;
 }
 
@@ -89,13 +92,20 @@ main {
 }
 
 .sailor-moon--4 {
-    top: 77%;
+    top: 650px;
     left: 880px;
+}
+
+.guestbook {
+    position: relative;
+    margin: 50px -50% 0 0;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .sidebar {
     position: absolute;
-    top: 78px;
+    top: 84px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -122,14 +132,11 @@ main {
     display: flex;
     justify-content: center;
     width: 100%;
-    margin-top: 50px;
+    margin-top: 30px;
 }
 
 .back-button {
-    position: absolute;
-    top: 0px;
-    right: 20px;
-    width: 200px;
+    width: 150px;
     height: 100px;
     background-image: url('../assets/sailor-moon-home.gif');
     background-size: contain;
