@@ -62,8 +62,12 @@
         <img src="./assets/sailor-moon1.gif" class="sailor-moon sailor-moon--1">
         <img src="./assets/sailor-moon2.gif" class="sailor-moon sailor-moon--2">
         <img src="./assets/sailor-moon4.gif" class="sailor-moon sailor-moon--4">
+    </main>
+    <aside class="sidebar">
+        <img src="./assets/sailor-moon3.gif" class="sailor-moon sailor-moon--3">
+    </aside>
+    <footer>
         <img src="./assets/signmygb.gif" class="guestbook">
-
         <div class="flashy-buttons">
             <img src="./assets/100hot.gif">
             <img src="./assets/free-stuff-center.gif">
@@ -74,15 +78,13 @@
             <img src="./assets/netscape.gif">
             <img src="./assets/gameboy_advance_net.gif">
         </div>
-    </main>
-    <aside class="sidebar">
-        <img src="./assets/sailor-moon3.gif" class="sailor-moon sailor-moon--3">
-    </aside>
+    </footer>
 
     <script type="module">
         import { createPopup as createNinetiesPopup } from './modules/nineties-popup.js';
         import { createGlitterBackground, enablePageGlitter } from './modules/glitter-background.js';
         import { createVerticalAdBanner } from './modules/vertical-ad-banner.js';
+        import { createVisitorCounter } from './modules/visitor-counter.js';
 
 
         const pageGlitter = enablePageGlitter({
@@ -145,6 +147,24 @@
                 ctaText: 'Claim Toasters',
                 allowBounce: false
             });
+        });
+
+        const counter = createVisitorCounter({
+            container: document.querySelector('.sidebar'),
+            label: 'Visitors:',
+            startValue: 9876,
+            digits: 8,
+            theme: 'pink',
+            size: 'small',
+            glowEffect: true,
+            lcdStyle: false,
+            crtEffect: false,
+            sparkleEffect: true,
+            autoIncrement: true,
+            incrementInterval: 30000,
+            incrementMin: 1,
+            incrementMax: 10,
+            customClass: 'moon-counter'    // Additional custom class
         });
     </script>
 </body>
