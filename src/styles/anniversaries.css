@@ -3,9 +3,7 @@ body {
     background-color: #5158ff;
 }
 
-main {
-    width: 1160px;
-}
+/* Title Elements */
 
 .title-container {
     display: flex;
@@ -27,6 +25,8 @@ main {
     object-fit: contain;
 }
 
+/* Top Banner Elements */
+
 .top-banners {
     display: flex;
     max-width: 100%;
@@ -38,6 +38,20 @@ main {
     height: auto;
     margin-right: 10px;
     object-fit: contain;
+}
+
+.back-button {
+    width: 150px;
+    height: 100px;
+    background-image: url('../assets/sailor-moon-home.gif');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+/* Main Content Elements */
+
+main {
+    width: 1160px;
 }
 
 .anniversaries-container {
@@ -96,12 +110,7 @@ main {
     left: 880px;
 }
 
-.guestbook {
-    position: relative;
-    margin: 50px -50% 0 0;
-    left: 50%;
-    transform: translateX(-50%);
-}
+/* Sidebar Elements */
 
 .sidebar {
     position: absolute;
@@ -128,17 +137,47 @@ main {
     display: none;
 }
 
+.vc-container.moon-counter {
+    width: 106px;
+    height: 50px;
+    margin-left: 10px;
+    color: #fc8dfc;
+    background-image: url('../assets/pastel-glitter.gif');
+    background-position: center;
+    background-size: cover;
+}
+
+.vc-container.moon-counter .vc-label {
+    font-size: 14px;
+    color: #500d50;
+    text-shadow: 1px 1px 2px #eb06eb;
+}
+
+
+/* Footer Elements */
+
+footer {
+    position: relative;
+    left: 230px;
+    max-width: fit-content;
+}
+
 .flashy-buttons {
     display: flex;
     justify-content: center;
-    width: 100%;
-    margin-top: 30px;
+    max-width: 700px;
+    margin: 20px auto 0;
 }
 
-.back-button {
-    width: 150px;
-    height: 100px;
-    background-image: url('../assets/sailor-moon-home.gif');
-    background-size: contain;
-    background-repeat: no-repeat;
+.flashy-buttons img {
+    width: 88px;
+    height: 31px;
+}
+
+.guestbook {
+    position: relative;
+    width: 300px;
+    margin: 50px -50% 0 0;
+    left: 50%;
+    transform: translateX(-50%);
 }
