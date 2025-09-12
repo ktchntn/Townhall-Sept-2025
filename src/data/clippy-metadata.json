@@ -1,0 +1,176 @@
+{
+    "spriteSheetPath": "/assets/spritesheets/clippy-spritesheet.png",
+    "spriteWidth": 124,
+    "spriteHeight": 93,
+    "sheetWidth": 13392,
+    "emotes": [
+        {
+            "name": "raise-eyebrow",
+            "rowIndex": 0,
+            "duration": 1500,
+            "numFrames": 17
+        },
+        {
+            "name": "point-down",
+            "rowIndex": 1,
+            "duration": 2000,
+            "numFrames": 18
+        },
+        {
+            "name": "look-left-right",
+            "rowIndex": 2,
+            "duration": 2100,
+            "numFrames": 21
+        },
+        {
+            "name": "look-around",
+            "rowIndex": 3,
+            "duration": 7000,
+            "numFrames": 65
+        },
+        {
+            "name": "knock",
+            "rowIndex": 4,
+            "duration": 3000,
+            "numFrames": 32
+        },
+        {
+            "name": "exclamation",
+            "rowIndex": 5,
+            "duration": 2300,
+            "numFrames": 22
+        },
+        {
+            "name": "trapped",
+            "rowIndex": 6,
+            "duration": 5100,
+            "numFrames": 51
+        },
+        {
+            "name": "point-left",
+            "rowIndex": 7,
+            "duration": 2000,
+            "numFrames": 20
+        },
+        {
+            "name": "read",
+            "rowIndex": 8,
+            "duration": 5200,
+            "numFrames": 53
+        },
+        {
+            "name": "tornado",
+            "rowIndex": 9,
+            "duration": 3400,
+            "numFrames": 36
+        },
+        {
+            "name": "dozing",
+            "rowIndex": 10,
+            "duration": 9500,
+            "numFrames": 93
+        },
+        {
+            "name": "point-up",
+            "rowIndex": 11,
+            "duration": 2000,
+            "numFrames": 18
+        },
+        {
+            "name": "airplane",
+            "rowIndex": 12,
+            "duration": 9900,
+            "numFrames": 96
+        },
+        {
+            "name": "search",
+            "rowIndex": 13,
+            "duration": 8200,
+            "numFrames": 80
+        },
+        {
+            "name": "point-right",
+            "rowIndex": 14,
+            "duration": 2000,
+            "numFrames": 18
+        },
+        {
+            "name": "idle-bored",
+            "rowIndex": 15,
+            "duration": 3500,
+            "numFrames": 38
+        },
+        {
+            "name": "idle-lean",
+            "rowIndex": 16,
+            "duration": 7200,
+            "numFrames": 69
+        },
+        {
+            "name": "shocked",
+            "rowIndex": 17,
+            "duration": 2900,
+            "numFrames": 30
+        },
+        {
+            "name": "music",
+            "rowIndex": 18,
+            "duration": 6900,
+            "numFrames": 62
+        },
+        {
+            "name": "check-mark",
+            "rowIndex": 19,
+            "duration": 2900,
+            "numFrames": 31
+        },
+        {
+            "name": "dig",
+            "rowIndex": 20,
+            "duration": 4800,
+            "numFrames": 46
+        },
+        {
+            "name": "bike-leave",
+            "rowIndex": 21,
+            "duration": 3500,
+            "numFrames": 37
+        },
+        {
+            "name": "lounge",
+            "rowIndex": 22,
+            "duration": 10500,
+            "numFrames": 107
+        },
+        {
+            "name": "scientist-start",
+            "rowIndex": 23,
+            "duration": 7300,
+            "numFrames": 71
+        },
+        {
+            "name": "scientist-write",
+            "rowIndex": 24,
+            "duration": 7400,
+            "numFrames": 73
+        },
+        {
+            "name": "bike-arrive",
+            "rowIndex": 25,
+            "duration": 2300,
+            "numFrames": 22
+        },
+        {
+            "name": "noodle",
+            "rowIndex": 26,
+            "duration": 7300,
+            "numFrames": 70
+        },
+        {
+            "name": "head-scratch",
+            "rowIndex": 27,
+            "duration": 3000,
+            "numFrames": 32
+        }
+    ]
+}

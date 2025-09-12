@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>September Town Hall</title>
+    <link rel="stylesheet" href="./styles/shoutouts.css" />
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Coral+Pixels&family=Slackey&display=swap" rel="stylesheet"> -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Handjet:wght@100..900&family=VT323&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <section>
+      <header>
+        <h1>
+          404 Not Found
+          <span class="icon"
+            ><img class="icon-error" src="./assets/icons/error.png"
+          /></span>
+        </h1>
+      </header>
+    </section>
+    <section class="content">
+      <div class="clippy-container" />
+    </section>
+    <section>
+        <button class="test-button">test</button>
+    </section>
+  </body>
+
+  <script type="module">
+    import Clippy from "./modules/clippy.js";
+    const clippyContainer = document.querySelector(".clippy-container");
+    const clippy = new Clippy(clippyContainer, { size: 2 });
+
+    const test = document.querySelector(".test-button");
+    test.addEventListener("click", () => {
+        clippy.updateEmote("head-scratch");
+    })
+  </script>
+</html>
