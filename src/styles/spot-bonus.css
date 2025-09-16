@@ -1,0 +1,180 @@
+body {
+    background-image: url("../assets/background-images/yellow-confetti.jpg");
+    background-repeat: repeat;
+    background-size: auto;
+    font-family: var(--font-family, "Comic Neue", "Handjet", cursive, sans-serif);
+}
+
+.spot-bonus.glitter-container {
+    overflow: unset;
+    overflow-x: hidden;
+}
+
+.spot-bonus_fireworks {
+    position: absolute;
+    top: 0;
+}
+
+.spot-bonus_banner {
+    display: flex;
+    justify-content: space-between;
+    background: linear-gradient(to bottom, #e9dc2a, #ffbb00);
+    border: 2px solid red;
+    border-radius: 20px;
+    width: 100%;
+    margin: 20px 0;
+}
+
+.banner-list {
+    margin: 0;
+    padding: 0 20px;
+    flex: 1;
+    box-sizing: border-box;
+}
+
+.banner-end-image {
+    align-self: center;
+}
+
+.banner-end-image {
+    position: absolute;
+    rotate: 40deg;
+    height: 90px;
+    align-self: center;
+    float: inline-end;
+    padding: 0 30px;
+    right: 0;
+
+    animation: spin 3s infinite;
+}
+
+.spot-bonus_banner ul > li {
+    display: inline-block;
+    height: calc(100% - 10px);
+    align-content: center;
+    padding: 0 10px;
+    background: rgb(255, 136, 0);
+    border: 5px solid;
+    border-top-color: rgb(224, 120, 0);
+    border-right-color: rgb(224, 120, 0);
+    border-left-color: rgb(255, 164, 61);
+    border-bottom-color: rgb(255, 164, 61);
+}
+
+.spot-bonus_banner ul > li a {
+    align-self: center;
+}
+
+.spot-bonus_container {
+    margin: auto;
+    padding: 20px 0;
+    width: 60%;
+}
+
+.spot-bonus_headline {
+    color: yellow;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    font-style: italic;
+    z-index: 1;
+}
+
+.spot-bonus_star_gif {
+    position: absolute;
+    top: 120px;
+    left: 15%;
+}
+
+.spot-bonus_table {
+    color: yellow;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    font-style: italic;
+    font-size: 32px;
+    width: 100%;
+}
+
+.spot-bonus_copy_section {
+    position: relative;
+}
+
+.spot-bonus_copy_cover {
+    position: absolute;
+    background: rgb(255, 136, 0);
+    border: 5px solid;
+    border-top-color: rgb(224, 120, 0);
+    border-right-color: rgb(224, 120, 0);
+    border-left-color: rgb(255, 164, 61);
+    border-bottom-color: rgb(255, 164, 61);
+    top: 0;
+    width: calc(100% - 10px);
+    height: 90%;
+    opacity: 1;
+}
+
+.spot-bonus_copy_cover.reveal {
+    opacity: 0;
+    animation: reveal 1s;
+}
+
+.spot-bonus_copy {
+    padding: 0 5px;
+}
+
+.spot-bonus_reveal_button {
+    position: absolute;
+    bottom: 0;
+}
+
+.vab-close {
+    display: none;
+}
+
+.vab-container {
+    position: absolute;
+    top: 20%;
+}
+
+.spot-bonus_banner2.vab-container {
+    background-image: url('../assets/background-images/rainbow_trip.gif');
+}
+
+.spot-bonus_banner2 .vab-button{
+    display: none;
+}
+
+.spot-bonus_banner2 .vab-header {
+    background-image: url('../assets/Graphic-Design-Is-My-Passion.gif');
+    background-size: 100%;
+    height: 60px;
+}
+
+.spot-bonus_banner2 .vab-text {
+    line-break: anywhere;
+}
+
+.spot-bonus_banner2 .vab-text .vab_website {
+    color: rgb(19, 255, 19);
+}
+
+.spot-bonus_banner2 .vab-counter {
+    display: none;
+}
+
+@keyframes spin {
+    from {
+        rotate: 40deg;
+    }
+
+    to {
+        rotate: 400deg;
+    }
+}
+
+@keyframes reveal {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
