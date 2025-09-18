@@ -2,324 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>Ask Jason (Retro)</title>
+    <title>Ask Sydney</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <style>
-        :root{
-            --bg: #fbf4c8;           /* pale yellow */
-            --panel: #efe3a9;        /* darker yellow panel */
-            --panel-2: #f4e9b7;      /* lighter yellow inset */
-            --tab: #b2a3c9;          /* purple-ish tab */
-            --tab-active: #c9bdde;   /* active tab */
-            --tab-text: #222;
-            --link: #0047cc;         /* classic blue link */
-            --link-visited: #551a8b;
-            --accent: #b30000;       /* red highlights */
-            --border: #cbbf8a;
-            --shadow: rgba(0,0,0,0.15);
-            --footer: #d8cc97;
-        }
-        html, body {
-            height: 100%;
-        }
-        body{
-            margin:0;
-            font: 14px/1.35 "Arial", "Helvetica", sans-serif;
-            color:#222;
-            background: var(--bg);
-        }
-
-        /* Top tab bar */
-        .tabs{
-            display:flex;
-            gap: 2px;
-            background:#dcd5f0;
-            padding: 0 8px;
-            border-bottom: 1px solid #a79bbf;
-        }
-        .tab{
-            padding: 10px 14px;
-            background: var(--tab);
-            color: var(--tab-text);
-            text-decoration:none;
-            font-weight:bold;
-            border-top-left-radius:4px;
-            border-top-right-radius:4px;
-        }
-        .tab.active{
-            background: var(--tab-active);
-        }
-
-        /* Page container */
-        .wrap{
-            max-width: 940px;
-            margin: 0 auto;
-            padding: 12px 14px 28px;
-        }
-
-        /* Header band: logo/mascot + right ad */
-        .brand-band{
-            display:grid;
-            grid-template-columns: 240px 1fr 220px;
-            align-items: center;
-            gap: 16px;
-            margin-top: 6px;
-        }
-        .mascot{
-            display:flex;
-            gap:10px;
-            align-items:flex-start;
-        }
-        .jason {
-            width: 70px; height: 140px;
-            background: linear-gradient(#ddd,#bbb);
-            border: 2px solid #222;
-            border-radius: 6px;
-            box-shadow: 2px 2px 0 var(--shadow);
-            position: relative;
-        }
-        .ask-logo{
-            display:flex;
-            align-items:center;
-            gap:10px;
-        }
-        .ask-badge{
-            background: #b30000;
-            color:#fff;
-            font-weight:900;
-            padding: 8px 12px;
-            border-radius: 18px;
-            box-shadow: 2px 2px 0 var(--shadow);
-            font-size: 18px;
-        }
-        .logo-word{
-            font-size: 28px;
-            font-style: italic;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-        }
-
-        .right-ad{
-            justify-self: end;
-            background: #fffef3;
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            padding: 10px 12px;
-            box-shadow: 1px 1px 0 var(--shadow) inset;
-            width: 220px;
-        }
-        .right-ad h4{
-            margin: 0 0 8px;
-            text-align:center;
-            color:#333;
-        }
-        .right-ad .sponsor{
-            font-size: 12px;
-            color:#666;
-            text-align:right;
-        }
-
-        /* Headline + search */
-        .hero{
-            text-align:center;
-            margin: 8px 0 12px;
-        }
-        .hero h1{
-            font-size: 24px;
-            color: var(--accent);
-            margin: 8px 0 12px;
-            font-weight: 800;
-        }
-        .search-row{
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            gap: 8px;
-            margin-bottom: 12px;
-        }
-        .search-input{
-            width: min(680px, 90%);
-            height: 36px;
-            border: 1px solid #777;
-            border-radius: 4px;
-            background:#f7f7f7;
-            padding: 0 10px;
-            box-shadow: inset 1px 1px 0 #fff;
-            font-size: 16px;
-        }
-        .ask-pill{
-            background: #b30000;
-            color:#fff;
-            border: none;
-            padding: 6px 14px;
-            border-radius: 18px;
-            font-weight: 800;
-            cursor:pointer;
-            box-shadow: 1px 1px 0 var(--shadow);
-        }
-
-        .recent{
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            gap: 10px;
-            margin: 8px 0 18px;
-            flex-wrap: wrap;
-        }
-        .recent .topic{
-            color:#444;
-        }
-        .recent .topic b{
-            color: var(--accent);
-        }
-        .recent .recent-input{
-            width: min(520px, 90%);
-            height: 30px;
-            border: 1px solid #777;
-            border-radius: 4px;
-            background:#eee;
-            padding: 0 8px;
-            box-shadow: inset 1px 1px 0 #fff;
-            font-size: 14px;
-        }
-        .recent .ask-small{
-            padding: 4px 12px;
-            border-radius: 14px;
-            font-weight: 800;
-            border: none;
-            color: #fff;
-            background: #b30000;
-            cursor: pointer;
-        }
-
-        .mid-grid{
-            display:grid;
-            grid-template-columns: 220px 1fr;
-            gap: 16px;
-            align-items:start;
-        }
-        .popularity{
-            color:#555;
-            font-size: 12px;
-        }
-        .stars{
-            margin-top: 6px;
-            color: #ff6a00;
-            font-size: 18px;
-            letter-spacing: 2px;
-        }
-
-        .panel{
-            background: var(--panel);
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            padding: 10px;
-            box-shadow: 2px 2px 0 var(--shadow);
-        }
-        .panel-inner{
-            background: var(--panel-2);
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            padding: 12px;
-            display:grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-        }
-        .panel h3{
-            margin: 0 0 8px;
-            font-size: 16px;
-        }
-        .subtle{
-            color:#333;
-            font-weight: normal;
-        }
-
-        .left-links, .right-links{
-            display:block;
-        }
-        .left-links a, .right-links a{
-            color: var(--link);
-            text-decoration: underline;
-            display: inline-block;
-            margin: 4px 8px 4px 0;
-            white-space: nowrap;
-        }
-        .left-links a:visited, .right-links a:visited{
-            color: var(--link-visited);
-        }
-        .right-links{
-            padding-left: 12px;
-            border-left: 1px solid var(--border);
-        }
-        .right-links .title{
-            font-weight: 800;
-            color:#111;
-            margin-bottom: 6px;
-            display:block;
-        }
-        .right-links ul{
-            list-style: none;
-            padding:0;
-            margin: 0;
-        }
-        .right-links li{
-            margin: 4px 0;
-        }
-        .right-links li a{
-            text-decoration: underline;
-        }
-        .right-links .kids{
-            color: #d10000;
-            font-weight: bold;
-        }
-
-        .footer{
-            margin-top: 22px;
-            background: var(--footer);
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-            padding: 10px 8px;
-            display:flex;
-            flex-wrap: wrap;
-            gap: 18px;
-            justify-content: center;
-            font-weight: bold;
-        }
-        .footer a{
-            color:#0c2c77;
-            text-decoration: underline;
-            white-space: nowrap;
-        }
-
-        @media (max-width: 840px){
-            .brand-band{
-                grid-template-columns: 1fr;
-                justify-items: center;
-            }
-            .right-ad{ justify-self: center; width: 100%; max-width: 360px; }
-            .mid-grid{ grid-template-columns: 1fr; }
-            .panel-inner{ grid-template-columns: 1fr; }
-            .right-links{ border-left: none; padding-left: 0; }
-        }
-    </style>
+    <link rel="stylesheet" href="styles/question-and-answer.css" >
 </head>
 <body>
 <nav class="tabs" role="navigation" aria-label="Main">
-    <a class="tab active" href="#">Ask Jason Home</a>
-    <a class="tab" href="#">Personal Jason</a>
-    <a class="tab" href="#">Shopping</a>
-    <a class="tab" href="#">Answer Point</a>
+    <a class="tab active" href="#">Ask <Del>Jason</Del> Sydney Home</a>
+    <a class="tab" href="#">Personal <Del>Jason</Del> Sydney</a>
+    <a class="tab" href="#">OmniAI</a>
+    <a class="tab" href="#">ArtBot</a>
     <a class="tab" href="#">Help</a>
 </nav>
 
 <div class="wrap">
     <div class="brand-band">
         <div class="mascot">
-            <div class="jason" aria-hidden="true"></div>
-            <div class="ask-logo" aria-label="Ask Jason">
-                <div class="ask-badge">Ask</div>
-                <div class="logo-word">Jason</div>
-            </div>
+<!--            TODO: update icon to remove 'ask jeeves'-->
+            <img src="assets/question-and-answer/jeeves-transparent.png" />
+            <!-- Ask Jason logo (SVG) -->
+            <img src="assets/question-and-answer/ask.svg"/>
         </div>
 
         <div class="hero">
@@ -377,13 +79,13 @@
                 </div>
 
                 <div class="right-links">
-                    <span class="title">Favorite destinations:</span>
+                    <span class="title">Frequently Asked Questions:</span>
                     <ul>
-                        <li><a class="kids" href="#">Ask Jason Kids</a></li>
-                        <li><a href="#">Ask Jason UK</a></li>
-                        <li><a href="#">Ask Jason Studios</a></li>
-                        <li><a href="#">Jason Peek</a></li>
-                        <li><a href="#">Shopping</a></li>
+                        <li><a class="kids" href="#">When will kombucha be available? </a></li>
+                        <li><a href="#">Ask <del><Del>Jason</Del> Sydney</del> Sydney UK</a></li>
+                        <li><a href="#">In-office requirement reduced to two days a week?</a></li>
+                        <li><a href="#">How do I control the music in the bathroom?</a></li>
+                        <li><a href="#">Vacation Request</a></li>
                     </ul>
                 </div>
             </div>
@@ -392,7 +94,7 @@
 
     <footer class="footer" aria-label="Footer">
         <a href="#">About</a>
-        <a href="#">Ask Jason Business Solutions</a>
+        <a href="#">Ask <Del>Jason</Del> Sydney Business Solutions</a>
         <a href="#">Advertising</a>
         <a href="#">Investor Relations</a>
         <a href="#">Become an Affiliate</a>
