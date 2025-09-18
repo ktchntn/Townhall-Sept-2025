@@ -56,10 +56,12 @@ main {
 
 .anniversaries-container {
     width: 50%;
+    max-height: 400px;
     padding: 50px 0;
     margin: 0 auto;
     border: double 5px #e96cfc;
     background-color: #ffec00;
+    overflow-y: scroll;
 }
 
 .anniversaries-table {
@@ -73,9 +75,58 @@ main {
     padding: 10px 25px
 }
 
+/* Custom Scrollbar */
+.anniversaries-container::-webkit-scrollbar {
+    width: 16px;
+}
+
+.anniversaries-container::-webkit-scrollbar-track {
+    background-color: #ffec00;
+}
+
+.anniversaries-container::-webkit-scrollbar-thumb {
+    background-color: #e96cfc;
+    border-radius: 2px;
+    border: 2px solid;
+    border-color: #fff #888 #888 #fff;
+}
+
+.anniversaries-container::-webkit-scrollbar-thumb:hover {
+    background-color: #d457e7;
+}
+
+/* Hide unwanted scrollbar buttons */
+.anniversaries-container::-webkit-scrollbar-button:vertical:increment:start,
+.anniversaries-container::-webkit-scrollbar-button:vertical:decrement:end {
+    display: none;
+}
+
+.anniversaries-container::-webkit-scrollbar-button:vertical:decrement:start {
+    display: block;
+    height: 16px;
+    background-color: #e96cfc;
+    border: 2px solid;
+    border-color: #fff #888 #888 #fff;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' fill='blue'><polygon points='5,0 10,10 0,10'/></svg>");
+}
+
+.anniversaries-container::-webkit-scrollbar-button:vertical:increment:end {
+    display: block;
+    height: 16px;
+    background-color: #e96cfc;
+    border: 2px solid;
+    border-color: #fff #888 #888 #fff;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' fill='blue'><polygon points='0,0 10,0 5,10'/></svg>");
+}
+
 .divider {
-    width: 100%;
-    margin-bottom: -72px;
+    position: absolute;
+    top: 794px;
+    width: 565px;
 }
 
 .moon {

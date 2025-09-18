@@ -26,33 +26,9 @@
         </div>
         <div class="anniversaries-container">
             <table class="anniversaries-table">
-                <thead>
-                    <tbody>
-                        <tr id="anniversary-1">
-                            <td>Brian Kelley</td>
-                            <td>5 years</td>
-                        </tr>
-                        <tr id="anniversary-2">
-                            <td>Bob</td>
-                            <td>4 years</td>
-                        </tr>
-                        <tr id="anniversary-3">
-                            <td>Keegan Techentin</td>
-                            <td>8 years</td>
-                        </tr>
-                        <tr id="anniversary-4">
-                            <td>David</td>
-                            <td>2 years</td>
-                        </tr>
-                        <tr id="anniversary-5">
-                            <td>Eve</td>
-                            <td>5 years</td>
-                        </tr>
-                        <tr id="anniversary-6">
-                            <td>Frank</td>
-                            <td>4 years</td>
-                        </tr>
-                    </tbody>
+                <tbody id="anniversaries-tbody">
+                    <!-- Anniversaries will be dynamically inserted here -->
+                </tbody>
             </table>
             <img src="./assets/moon.gif" class="moon">
             
@@ -93,6 +69,34 @@
                 enableDrift: false,
                 enableRain: false,
             });
+
+        async function populateAnniversaries() {
+            try {
+                const response = await fetch('./data/anniversaries.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const anniversaries = await response.json();
+                const tbody = document.getElementById('anniversaries-tbody');
+
+                anniversaries.forEach(anniversary => {
+                    const row = document.createElement('tr');
+                    row.id = anniversary.id;
+
+                    const nameCell = document.createElement('td');
+                    nameCell.textContent = anniversary.name;
+                    row.appendChild(nameCell);
+
+                    const durationCell = document.createElement('td');
+                    durationCell.textContent = anniversary.duration;
+                    row.appendChild(durationCell);
+
+                    tbody.appendChild(row);
+                });
+            } catch (error) {
+                console.error("Could not load anniversaries:", error);
+            }
+        }
 
         const sidebar = document.querySelector('.sidebar');
         // Auto-show banner on load
@@ -139,6 +143,7 @@
 
         // auto-show popup on load
         window.addEventListener('DOMContentLoaded', () => {
+            populateAnniversaries();
             createNinetiesPopup({
                 title: 'YOU WON A SCREENSAVER',
                 headline: 'FINAL NOTICE',
@@ -164,7 +169,7 @@
             incrementInterval: 30000,
             incrementMin: 1,
             incrementMax: 10,
-            customClass: 'moon-counter'    // Additional custom class
+            customClass: 'moon-counter'
         });
     </script>
 </body>
