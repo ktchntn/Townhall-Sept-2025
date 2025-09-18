@@ -48,18 +48,30 @@
       </div>
       <div class="content">
         <div class="nav">
-          <div class="welcome">
+          <!-- <div class="welcome">
             <img src="./assets/welcome.gif" alt="">
-          </div>
+          </div> -->
           <div class="nav-items">
-            <a href="/src/anniversaries.html">
+            <a href="anniversaries.html">
               <img class="anniversaries" src="./assets/nav/anniversaries.gif"/>
             </a>
-            <a href="/src/windows.html">
+            <a href="windows.html">
               <img class="windows" src="./assets/nav/Windows-CM.png"/>
             </a>
             <a href="/src/question-and-answer.html">
                 Q&A
+            </a>
+            <a href="promotions.html" class="promotions">
+              <img src="https://text.glitter-graphics.net/sblue/p.gif" alt="P" />
+              <img src="https://text.glitter-graphics.net/sblue/r.gif" alt="R" />
+              <img src="https://text.glitter-graphics.net/sblue/o.gif" alt="O" />
+              <img src="https://text.glitter-graphics.net/sblue/m.gif" alt="M" />
+              <img src="https://text.glitter-graphics.net/sblue/o.gif" alt="O" />
+              <img src="https://text.glitter-graphics.net/sblue/t.gif" alt="T" />
+              <img src="https://text.glitter-graphics.net/sblue/i.gif" alt="I" />
+              <img src="https://text.glitter-graphics.net/sblue/o.gif" alt="O" />
+              <img src="https://text.glitter-graphics.net/sblue/n.gif" alt="N" />
+              <img src="https://text.glitter-graphics.net/sblue/s.gif" alt="S" />
             </a>
           </div>
           <!-- <div class="nav-items">
@@ -73,72 +85,5 @@
         </div>
       </div>
     </div>
-
-  <script type="module">
-    import { createPopup } from './modules/nineties-popup.js';
-    import { createVerticalAdBanner } from './modules/vertical-ad-banner.js';
-    import { enablePageGlitter } from './modules/glitter-background.js';
-    
-    let glitterEnabled = false;
-    let glitterInstance = null;
-    let bannerInstance = null;
-    
-    document.getElementById('popup-demo').addEventListener('click', () => {
-      createPopup({
-        title: '*** Best Viewed in 800x600 ***',
-        headline: 'INCREDIBLE OFFER',
-        subhead: 'Free upgrade to "Deluxe Clipart Pack"!',
-        bullets: [
-          'Unlimited glitter text (terms apply)',
-          'Premium cursor trails (rainbow mode)',
-          'Bonus: 30-day ICQ "invisible" status'
-        ],
-        ctaText: 'Install Now',
-        onCta: () => alert('Installing... just kidding.'),
-        annoyMode: true,
-        allowBounce: true
-      });
-    });
-    
-    document.getElementById('banner-demo').addEventListener('click', () => {
-      if (bannerInstance) {
-        bannerInstance.close();
-        bannerInstance = null;
-        return;
-      }
-      
-      bannerInstance = createVerticalAdBanner({
-        position: 'right',
-        header: 'HOT DEAL!',
-        imageSrc: '/assets/amazing_free_stuff.gif',
-        text: 'Get your FREE download pack! Limited time offer!',
-        buttonText: 'CLAIM NOW',
-        counterStart: 9999,
-        onButtonClick: () => {
-          alert('Congratulations! Your download is a free animated cursor pack!');
-        },
-        onClose: () => {
-          bannerInstance = null;
-        }
-      });
-    });
-    
-    document.getElementById('glitter-demo').addEventListener('click', () => {
-      if (glitterEnabled) {
-        if (glitterInstance && glitterInstance.disable) {
-          glitterInstance.disable();
-        }
-        glitterEnabled = false;
-      } else {
-        glitterInstance = enablePageGlitter({
-          density: 'medium',
-          enableRainbow: true,
-          enableDrift: true,
-          enableRain: false
-        });
-        glitterEnabled = true;
-      }
-    });
-  </script>
 </body>
 </html>

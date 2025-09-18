@@ -1,16 +1,186 @@
 body {
     font-family: "Comic Neue";
-    background-color: aqua;
+    background-color: #5158ff;
 }
 
-.anniversary-banner-1 {
+/* Title Elements */
+
+.title-container {
+    display: flex;
+    justify-content: space-around;
+    width: 70%;
+    margin: 0 auto;
+}
+
+.title {
+    display: block;
+    width: 70%;
+    margin: 15px auto;
+}
+
+.title-sprite {
+    display: inline-block;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Top Banner Elements */
+
+.top-banners {
+    display: flex;
+    max-width: 100%;
+    align-items: flex-start;
+}
+
+.h-banner {
+    width: 45%;
+    height: auto;
+    margin-right: 10px;
+    object-fit: contain;
+}
+
+.back-button {
+    width: 150px;
+    height: 100px;
+    background-image: url('../assets/sailor-moon-home.gif');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+/* Main Content Elements */
+
+main {
+    width: 1160px;
+}
+
+.anniversaries-container {
+    width: 50%;
+    max-height: 400px;
+    padding: 50px 0;
+    margin: 0 auto;
+    border: double 5px #e96cfc;
+    background-color: #ffec00;
+    overflow-y: scroll;
+}
+
+.anniversaries-table {
+    margin: 0 auto;
+    font-size: 32px;
+    font-weight: 600;
+    color: blue;
+}
+
+.anniversaries-table td {
+    padding: 10px 25px
+}
+
+/* Custom Scrollbar */
+.anniversaries-container::-webkit-scrollbar {
+    width: 16px;
+}
+
+.anniversaries-container::-webkit-scrollbar-track {
+    background-color: #ffec00;
+}
+
+.anniversaries-container::-webkit-scrollbar-thumb {
+    background-color: #e96cfc;
+    border-radius: 2px;
+    border: 2px solid;
+    border-color: #fff #888 #888 #fff;
+}
+
+.anniversaries-container::-webkit-scrollbar-thumb:hover {
+    background-color: #d457e7;
+}
+
+/* Hide unwanted scrollbar buttons */
+.anniversaries-container::-webkit-scrollbar-button:vertical:increment:start,
+.anniversaries-container::-webkit-scrollbar-button:vertical:decrement:end {
+    display: none;
+}
+
+.anniversaries-container::-webkit-scrollbar-button:vertical:decrement:start {
+    display: block;
+    height: 16px;
+    background-color: #e96cfc;
+    border: 2px solid;
+    border-color: #fff #888 #888 #fff;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' fill='blue'><polygon points='5,0 10,10 0,10'/></svg>");
+}
+
+.anniversaries-container::-webkit-scrollbar-button:vertical:increment:end {
+    display: block;
+    height: 16px;
+    background-color: #e96cfc;
+    border: 2px solid;
+    border-color: #fff #888 #888 #fff;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' fill='blue'><polygon points='0,0 10,0 5,10'/></svg>");
+}
+
+.divider {
     position: absolute;
-    top: 70px;
+    top: 794px;
+    width: 565px;
+}
+
+.moon {
+    position: absolute;
+    top: 280px;
+    left: 250px;
+}
+
+.sailor-moon {
+    position: absolute;
+}
+
+.sailor-moon--1 {
+    top: 334px;
+    left: 870px;
+}
+
+.sailor-moon--2 {
+    top: 525px;
+    left: 180px;
+}
+
+.sailor-moon--3 {
+    position: relative;
+    left: 10px;
+    width: 136px;
+    margin-bottom: 10px;
+}
+
+.sailor-moon--4 {
+    top: 650px;
+    left: 880px;
+}
+
+/* Sidebar Elements */
+
+.sidebar {
+    position: absolute;
+    top: 84px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 140px;
+    height: 100%;
+}
+
+.anniversary-banner-1,
+.anniversary-banner-2 {
+    position: relative;
+    top: 0;
+    margin-bottom: 10px;
 }
 
 .vab-container.anniversary-banner-2 {
-    position: absolute;
-    top: 350px;
     background: linear-gradient(to bottom, #ffff00, #ff6600);
 }
 
@@ -18,30 +188,47 @@ body {
     display: none;
 }
 
-h1 {
-    font-size: 90px;
-    font-weight: 700;
-    text-align: center;
+.vc-container.moon-counter {
+    width: 106px;
+    height: 50px;
+    margin-left: 10px;
+    color: #fc8dfc;
+    background-image: url('../assets/pastel-glitter.gif');
+    background-position: center;
+    background-size: cover;
 }
 
-.top-banners {
+.vc-container.moon-counter .vc-label {
+    font-size: 14px;
+    color: #500d50;
+    text-shadow: 1px 1px 2px #eb06eb;
+}
+
+
+/* Footer Elements */
+
+footer {
+    position: relative;
+    left: 230px;
+    max-width: fit-content;
+}
+
+.flashy-buttons {
     display: flex;
+    justify-content: center;
+    max-width: 700px;
+    margin: 20px auto 0;
 }
 
-.anniversaries-table {
-    margin: 0 auto;
-    text-align: center;
-    font-size: 40px;
+.flashy-buttons img {
+    width: 88px;
+    height: 31px;
 }
 
-
-.back-button {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 200px;
-    height: 100px;
-    background-image: url('../assets/back-button.png');
-    background-size: contain;
-    background-repeat: no-repeat;
+.guestbook {
+    position: relative;
+    width: 300px;
+    margin: 50px -50% 0 0;
+    left: 50%;
+    transform: translateX(-50%);
 }
