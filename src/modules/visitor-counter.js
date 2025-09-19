@@ -8,7 +8,7 @@ const baseStyles = `
   --vc-bg1: #000000;
   --vc-bg2: #333333;
   --vc-text: #00ff00;
-  --vc-border: #ff00ff;
+  --vc-border: #00ff00;
   --vc-shadow: 0 0 0 2px #000, 4px 4px 0 rgba(0, 0, 0, 0.5);
 }
 
