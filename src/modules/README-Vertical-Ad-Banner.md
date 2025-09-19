@@ -48,6 +48,7 @@ const banner = createVerticalAdBanner({
   floatingEffect: true,            // Enable/disable floating animation
   sparkleEffect: true,             // Enable/disable sparkle effect
   customClass: 'anniversary',      // Add custom CSS class for style overrides
+  container: document.querySelector('.sidebar'), // DOM element to append the banner to
   
   // Callback when button is clicked
   onButtonClick: () => {
@@ -83,6 +84,7 @@ Creates and displays a vertical ad banner.
 | `floatingEffect` | boolean | `true` | Enable floating animation for the image |
 | `sparkleEffect` | boolean | `true` | Enable sparkle effect around the header |
 | `customClass` | string | `''` | Additional CSS class to apply to the banner |
+| `container` | HTMLElement | `document.body` | DOM element to append the banner to |
 | `onButtonClick` | function | Alert message | Callback when button is clicked |
 | `onClose` | function | `null` | Callback when banner is closed |
 
