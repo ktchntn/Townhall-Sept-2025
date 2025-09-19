@@ -1,8 +1,9 @@
 {
     "spriteSheetPath": "/assets/spritesheets/clippy-spritesheet.png",
     "spriteWidth": 124,
-    "spriteHeight": 93,
+    "spriteHeight": 100,
     "sheetWidth": 13392,
+    "dialogueArrowHeight": 22,
     "emotes": [
         {
             "name": "raise-eyebrow",

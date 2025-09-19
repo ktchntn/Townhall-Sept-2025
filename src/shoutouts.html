@@ -16,8 +16,8 @@
   <body>
     <section>
       <header>
-        <h1>
-          404 Not Found
+        <h1 class="start-header">
+          404 Page Not Found
           <span class="icon"
             ><img class="icon-error" src="./assets/icons/error.png"
           /></span>
@@ -25,7 +25,9 @@
       </header>
     </section>
     <section class="content">
-      <div class="clippy-container" />
+      <div class="start-button-container">
+        <button>Click this button, if you dare...</button>
+      </div>
     </section>
     <section>
         <button class="test-button">test</button>
@@ -34,12 +36,12 @@
 
   <script type="module">
     import Clippy from "./modules/clippy.js";
-    const clippyContainer = document.querySelector(".clippy-container");
-    const clippy = new Clippy(clippyContainer, { size: 2 });
+
+    const clippy = new Clippy({ size: 2 });
 
     const test = document.querySelector(".test-button");
     test.addEventListener("click", () => {
-        clippy.updateEmote("head-scratch");
+        clippy.updateEmote("airplane");
     })
   </script>
 </html>
