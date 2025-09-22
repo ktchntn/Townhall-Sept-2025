@@ -30,18 +30,31 @@
       </div>
     </section>
     <section>
-        <button class="test-button">test</button>
+      <button id="test-anim">Test Animation</button>
+      <button id="show-dialogue">Show Dialogue</button>
+      <button id="hide-dialogue">Hide Dialogue</button>
     </section>
   </body>
 
   <script type="module">
+    import shoutoutsData from "./data/shoutouts.json";
     import Clippy from "./modules/clippy.js";
 
-    const clippy = new Clippy({ size: 2 });
+    const clippy = new Clippy({ size: 2, slides: shoutoutsData.slides, startingEmote: "bike-arrive" });
 
-    const test = document.querySelector(".test-button");
-    test.addEventListener("click", () => {
-        clippy.updateEmote("airplane");
-    })
+    const testAnimButton = document.querySelector("#test-anim");
+    testAnimButton.addEventListener("click", () => {
+      clippy.queueNextEmote(["point-up", "tornado", "bike-leave"], "stop-at-end");
+    });
+
+    const showDialogueButton = document.querySelector("#show-dialogue");
+      showDialogueButton.addEventListener("click", () => {
+      clippy.showDialogue();
+    });
+
+    const hideDialogueButton = document.querySelector("#hide-dialogue");
+      hideDialogueButton.addEventListener("click", () => {
+      clippy.hideDialogue();
+    });
   </script>
 </html>
