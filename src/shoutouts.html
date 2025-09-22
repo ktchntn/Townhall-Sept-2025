@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>September Town Hall</title>
+    <link rel="stylesheet" href="./styles/shoutouts.css" />
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Coral+Pixels&family=Slackey&display=swap" rel="stylesheet"> -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Handjet:wght@100..900&family=VT323&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <section class="header">
+      <header>
+        <h1 class="start-header">
+          404 Page Not Found
+          <span class="icon"
+            ><img class="icon-error" src="./assets/icons/error.png"
+          /></span>
+        </h1>
+      </header>
+    </section>
+    <section class="content">
+      <div class="start-button-container">
+        <button id="ominous-button">Ominous Button</button>
+      </div>
+    </section>
+  </body>
+
+  <script type="module">
+    import shoutoutsData from "./data/shoutouts.json";
+    import clippyMetaData from "./data/clippy-metadata.json";
+    import Clippy from "./modules/clippy.js";
+
+    let clippy;
+
+    const { spriteWidth: SPRITE_WIDTH, spriteHeight: SPRITE_HEIGHT } =
+      clippyMetaData;
+
+    const vw = Math.max(
+      document.documentElement.clientWidth || 0,
+      window.innerWidth || 0
+    );
+    const vh = Math.max(
+      document.documentElement.clientHeight || 0,
+      window.innerHeight || 0
+    );
+
+    const ominousButton = document.querySelector("#ominous-button");
+    ominousButton.addEventListener("click", () => {
+      const headerSection = document.querySelector(".header");
+      const contentSection = document.querySelector(".content");
+      headerSection.style.display = "none";
+      contentSection.style.display = "none";
+
+      clippy = new Clippy({
+        size: 2,
+        slides: shoutoutsData.slides,
+        startingEmote: "bike-arrive",
+        startingPosition: {
+          top: vh / 2 - SPRITE_HEIGHT,
+          left: vw / 2 - SPRITE_WIDTH,
+        },
+      });
+
+      const onClippyEndTransition = () => {
+        clippy.containerEl.classList.remove("position-transition");
+        clippy.containerEl.removeEventListener("transitionend", onClippyEndTransition);
+        
+        setTimeout(() => {
+          clippy.showDialogue();  
+          clippy.queueNextEmote("knock", "return-to-blink", true);
+        }, 100)
+      };
+
+      const onClippyEnter = () => {
+        clippy.containerEl.classList.add("position-transition");
+        clippy.containerEl.addEventListener("transitionend", onClippyEndTransition);
+        clippy.updatePosition(); // move to corner
+
+        clippy.spriteSheetEl.removeEventListener("animationend", onClippyEnter);
+      };
+
+      clippy.spriteSheetEl.addEventListener("animationend", onClippyEnter);
+    });
+  </script>
+</html>
