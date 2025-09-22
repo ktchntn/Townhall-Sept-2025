@@ -13,6 +13,7 @@ const STYLE_ID = "clippy-styles-v1";
 
 /**
  * @typedef {Object} DialogueContentData
+ * @property {string} slideId Unique identifier of the content.
  * @property {string} message Main message of content
  * @property {string} [recipient] Recipient of message
  * @property {string} [sender] Sender of message
@@ -89,19 +90,23 @@ class Clippy {
   /**
    * Renders Clippy onto the page.
    * @public
-   * @param {Object} options
+   * @param {{ left: number, top: number }} startingPosition Position on page where Clippy renders
    */
   render(startingPosition) {
     this.containerEl = document.createElement("div");
     this.containerEl.className = "clippy-container";
     this.clippyEl = document.createElement("div");
     this.clippyEl.className = "clippy";
-    this.clippyEl.innerHTML = `<img class="clippy-spritesheet" src="${metadata.spriteSheetPath}" />`;
+    this.clippyEl.innerHTML = `<img class="clippy-spritesheet" src="${metadata.spriteSheetPath}" draggable="false"/>`;
     this.containerEl.appendChild(this.clippyEl);
     document.body.appendChild(this.containerEl);
     this.updatePosition(startingPosition);
   }
 
+  /**
+   * Moves Clippy to a specified position
+   * @param {{ left: number, top: number }} position
+   */
   updatePosition(position) {
     const rect = this.containerEl.getBoundingClientRect();
     const maxLeft = Math.max(8, window.innerWidth - rect.width - 8);
@@ -129,6 +134,7 @@ class Clippy {
     endBehaviour = "return-to-blink",
     playImmediately = false
   ) {
+    this.previousEmoteArray = this.emoteArray;
     this.emoteArray = !Array.isArray(emote) ? [emote] : emote;
 
     // queue up emote
@@ -176,8 +182,15 @@ class Clippy {
       this.currentEndBehaviour = "loop";
     }
 
-    if (isLastEmote && this.emoteEndCallback) {
-      this.emoteEndCallback();
+    if (
+      isLastEmote &&
+      this.emoteEndCallback &&
+      !(
+        JSON.stringify(this.emoteEndCallback?.slideEmote) ===
+        JSON.stringify(this.emoteArray) // TODO: Find a better way to make sure the slides don't match
+      )
+    ) {
+      this.emoteEndCallback.cb();
       this.emoteEndCallback = null;
     }
 
@@ -245,17 +258,17 @@ class Clippy {
               image-rendering: pixelated;
               filter: drop-shadow(5px 5px 3px rgba(0, 0, 0, 0.4));
               user-drag: none;
+              pointer-events: none;
               -webkit-user-drag: none;
               user-select: none;
               -moz-user-select: none;
               -webkit-user-select: none;
-              -ms-user-select: none;            
+              -ms-user-select: none;     
             }
 
             .clippy-dialogue-wrapper {
               position: relative;
             }
-
 
             .clippy-dialogue-wrapper::after {
               content: url("../assets/speech-arrow.png");
@@ -320,6 +333,17 @@ class Clippy {
               
             .hidden {
               display: none;
+            }
+
+            @media only screen and (min-width: 1300px) {
+              .clippy-dialogue {
+                font-size: 28px;
+                max-width: 50vw;
+              }
+              
+              .clippy-dialogue-button {
+                font-size: 24px;
+              }
             }
         `;
 
@@ -490,11 +514,14 @@ class Clippy {
 
     // set one time callback to change to next slide when emote(s) end
     if (slideData.nextSlideOnEmoteEnd) {
-      this.emoteEndCallback = () => {
-        this.setDialogueContent(
-          Math.abs(this.currentSlideIndex + 1) % this.slides.length
-        );
-      }
+      this.emoteEndCallback = {
+        cb: () => {
+          this.setDialogueContent(
+            Math.abs(this.currentSlideIndex + 1) % this.slides.length
+          );
+        },
+        slideEmote: [...slideData.emote],
+      };
     }
 
     // queue / play emote
