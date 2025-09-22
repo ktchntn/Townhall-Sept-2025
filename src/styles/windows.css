@@ -62,6 +62,25 @@ p {
 	background-image: url('../assets/picture-ring/windows.gif');
 }
 
+.folder-container .icon.solitaire {
+	background-image: url('../assets/icons/solitaire.png');
+	margin-bottom: 8px;
+}
+
+.folder-container .icon.paint {
+	background-image: url('../assets/icons/paint.png');
+	/* background-position-x: -5px; */
+	background-size: contain;
+	margin-left: -9px;
+	margin-bottom: 8px;
+}
+
+.folder-container .icon.internet:hover,
+.folder-container .icon.paint:hover,
+.folder-container .icon.solitaire:hover {
+	transform: scale(1.1);
+}
+
 .folder-container p {
 	font-size: 20px;
 	margin-top: 0;
