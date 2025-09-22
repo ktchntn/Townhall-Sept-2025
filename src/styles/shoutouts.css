@@ -59,6 +59,10 @@ h1 {
   flex-grow: 1;
 }
 
+.position-transition {
+    transition: top linear 0.5s, left linear 0.5s;
+}
+
 .pixel-corners-8,
 .pixel-corners-8--wrapper {
   clip-path: polygon(
@@ -101,13 +105,16 @@ h1 {
   );
   position: relative;
 }
+
 .pixel-corners-8 {
   border: 2px solid transparent;
 }
+
 .pixel-corners-8--wrapper {
   width: fit-content;
   height: fit-content;
 }
+
 .pixel-corners-8--wrapper .pixel-corners-8 {
   display: block;
   clip-path: polygon(
@@ -141,6 +148,7 @@ h1 {
     2px calc(100% - 10px)
   );
 }
+
 .pixel-corners-8::after,
 .pixel-corners-8--wrapper::after {
   content: "";
@@ -223,6 +231,7 @@ h1 {
   display: block;
   pointer-events: none;
 }
+
 .pixel-corners-8::after {
   margin: -2px;
 }
@@ -257,13 +266,16 @@ h1 {
     0px 4px);
   position: relative;
 }
+
 .pixel-corners-4 {
   border: 2px solid transparent;
 }
+
 .pixel-corners-4--wrapper {
   width: fit-content;
   height: fit-content;
 }
+
 .pixel-corners-4--wrapper .pixel-corners-4 {
   display: block;
   clip-path: polygon(2px 4px,
@@ -327,6 +339,7 @@ h1 {
   display: block;
   pointer-events: none;
 }
+
 .pixel-corners-4::after {
   margin: -2px;
 }

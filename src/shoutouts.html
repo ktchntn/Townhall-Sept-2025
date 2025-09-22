@@ -14,7 +14,7 @@
     />
   </head>
   <body>
-    <section>
+    <section class="header">
       <header>
         <h1 class="start-header">
           404 Page Not Found
@@ -26,35 +26,66 @@
     </section>
     <section class="content">
       <div class="start-button-container">
-        <button>Click this button, if you dare...</button>
+        <button id="ominous-button">Ominous Button</button>
       </div>
-    </section>
-    <section>
-      <button id="test-anim">Test Animation</button>
-      <button id="show-dialogue">Show Dialogue</button>
-      <button id="hide-dialogue">Hide Dialogue</button>
     </section>
   </body>
 
   <script type="module">
     import shoutoutsData from "./data/shoutouts.json";
+    import clippyMetaData from "./data/clippy-metadata.json";
     import Clippy from "./modules/clippy.js";
 
-    const clippy = new Clippy({ size: 2, slides: shoutoutsData.slides, startingEmote: "bike-arrive" });
+    let clippy;
 
-    const testAnimButton = document.querySelector("#test-anim");
-    testAnimButton.addEventListener("click", () => {
-      clippy.queueNextEmote(["point-up", "tornado", "bike-leave"], "stop-at-end");
-    });
+    const { spriteWidth: SPRITE_WIDTH, spriteHeight: SPRITE_HEIGHT } =
+      clippyMetaData;
 
-    const showDialogueButton = document.querySelector("#show-dialogue");
-      showDialogueButton.addEventListener("click", () => {
-      clippy.showDialogue();
-    });
+    const vw = Math.max(
+      document.documentElement.clientWidth || 0,
+      window.innerWidth || 0
+    );
+    const vh = Math.max(
+      document.documentElement.clientHeight || 0,
+      window.innerHeight || 0
+    );
 
-    const hideDialogueButton = document.querySelector("#hide-dialogue");
-      hideDialogueButton.addEventListener("click", () => {
-      clippy.hideDialogue();
+    const ominousButton = document.querySelector("#ominous-button");
+    ominousButton.addEventListener("click", () => {
+      const headerSection = document.querySelector(".header");
+      const contentSection = document.querySelector(".content");
+      headerSection.style.display = "none";
+      contentSection.style.display = "none";
+
+      clippy = new Clippy({
+        size: 2,
+        slides: shoutoutsData.slides,
+        startingEmote: "bike-arrive",
+        startingPosition: {
+          top: vh / 2 - SPRITE_HEIGHT,
+          left: vw / 2 - SPRITE_WIDTH,
+        },
+      });
+
+      const onClippyEndTransition = () => {
+        clippy.containerEl.classList.remove("position-transition");
+        clippy.containerEl.removeEventListener("transitionend", onClippyEndTransition);
+        
+        setTimeout(() => {
+          clippy.showDialogue();  
+          clippy.queueNextEmote("knock", "return-to-blink", true);
+        }, 100)
+      };
+
+      const onClippyEnter = () => {
+        clippy.containerEl.classList.add("position-transition");
+        clippy.containerEl.addEventListener("transitionend", onClippyEndTransition);
+        clippy.updatePosition(); // move to corner
+
+        clippy.spriteSheetEl.removeEventListener("animationend", onClippyEnter);
+      };
+
+      clippy.spriteSheetEl.addEventListener("animationend", onClippyEnter);
     });
   </script>
 </html>

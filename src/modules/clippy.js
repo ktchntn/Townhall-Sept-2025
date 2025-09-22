@@ -1,6 +1,6 @@
 import metadata from "../data/clippy-metadata.json";
 
-import { clamp, makeDraggable, sleep } from "./utils";
+import { clamp, makeDraggable } from "./utils";
 
 const {
   spriteWidth: SPRITE_WIDTH,
@@ -18,7 +18,11 @@ const STYLE_ID = "clippy-styles-v1";
  * @property {string} [sender] Sender of message
  * @property {Object[]} [buttons] Array of buttons to display and their action
  * @property {string} buttons[].text Text to display on button
- * @property {("next" | "previous" | "hide" )} [buttons[].action] Behaviour of button
+ * @property {("next" | "previous" | "disabled" | "hide" | "hide-and-leave" )} [buttons[].action] Behaviour of button
+ * @property {string | string[]} [emote] A single emote or array of emotes that Clippy will display.
+ * @property {("loop" | "stop-at-end" | "return-to-blink")} [endBehaviour] Behaviour of emote when it reaches the end
+ * @property {boolean} [playImmediately] Flag to play animation immediately when this method is called.
+ * @property {boolean} [nextSlideOnEmoteEnd] Flag to switch to the next slide once the emote(s) end.
  */
 
 /**
@@ -31,10 +35,15 @@ const STYLE_ID = "clippy-styles-v1";
 
 /**
  * The OG AI assistant, Clippy has now come to the web! Clippy just wants to help.
- * Import Clippy onto your page and trigger his various emotes.
+ * Spawn Clippy onto your page and:
+ * - trigger his various emotes
+ * - give him content to display
  * @class
  */
 class Clippy {
+  spriteSheetEl = null;
+  containerEl = null;
+
   /**
    * Create an instance of Clippy.
    * @param {HTMLElement} containerEl Container element to place Clippy in.
@@ -58,6 +67,7 @@ class Clippy {
     this.size = options.size || 1;
     this.slides = options.slides || [];
     this.currentSlideIndex = 0;
+    this.emoteEndCallback = null;
 
     // Public methods
     this.queueNextEmote = this.queueNextEmote.bind(this);
@@ -65,11 +75,12 @@ class Clippy {
     this.showDialogue = this.showDialogue.bind(this);
     this.hideDialogue = this.hideDialogue.bind(this);
     this.onAnimationEnd = this.onAnimationEnd.bind(this);
-    this.playEmote = this.playEmote.bind(this);
+    this.playCurrentEmote = this.playCurrentEmote.bind(this);
+    this.updatePosition = this.updatePosition.bind(this);
 
     // Initialization
     this.renderStyles();
-    this.render(this.options?.startPosition);
+    this.render(options?.startingPosition);
     makeDraggable(this.containerEl, this.containerEl);
     this.spriteSheetEl = document.querySelector(".clippy-spritesheet");
     this.queueNextEmote(this.currentEmote);
@@ -78,9 +89,9 @@ class Clippy {
   /**
    * Renders Clippy onto the page.
    * @public
-   * @param {Object} options 
+   * @param {Object} options
    */
-  render(startPosition) {
+  render(startingPosition) {
     this.containerEl = document.createElement("div");
     this.containerEl.className = "clippy-container";
     this.clippyEl = document.createElement("div");
@@ -88,15 +99,17 @@ class Clippy {
     this.clippyEl.innerHTML = `<img class="clippy-spritesheet" src="${metadata.spriteSheetPath}" />`;
     this.containerEl.appendChild(this.clippyEl);
     document.body.appendChild(this.containerEl);
+    this.updatePosition(startingPosition);
+  }
 
+  updatePosition(position) {
     const rect = this.containerEl.getBoundingClientRect();
     const maxLeft = Math.max(8, window.innerWidth - rect.width - 8);
     const maxTop = Math.max(8, window.innerHeight - rect.height - 8);
 
-    const left = startPosition?.left ?? clamp(0, 8, maxLeft);
+    const left = position?.left ?? clamp(0, 8, maxLeft);
     const top =
-      startPosition?.top ??
-      clamp(window.innerHeight - rect.height, 8, maxTop);
+      position?.top ?? clamp(window.innerHeight - rect.height, 8, maxTop);
 
     this.containerEl.style.left = `${left}px`;
     this.containerEl.style.top = `${top}px`;
@@ -105,13 +118,18 @@ class Clippy {
   /**
    * Queues Clippy's next emote(s).
    * @public
-   * @param {string | string[]} emoteName A single emote or array of emotes that Clippy will display.
+   * @param {string | string[]} emote A single emote or array of emotes that Clippy will display.
    * If it is an array of emotes, they will be played in order.
-   * If Clippy is in the middle of an emote, play the queued emote(s) once the current emote ends.
-   * @param {("loop" | "stop-at-end" | "return-to-blink")} endBehaviour Behaviour of emote when it reaches the end
+   * If playImmediately is disabled, Clippy is in the middle of an emote, play the queued emote(s) once the current emote ends.
+   * @param {("loop" | "stop-at-end" | "return-to-blink")} [endBehaviour] Behaviour of emote when it reaches the end
+   * @param {boolean} [playImmediately] Flag to play animation immediately when this method is called.
    */
-  queueNextEmote(emoteName, endBehaviour = "return-to-blink") {
-    this.emoteArray = !Array.isArray(emoteName) ? [emoteName] : emoteName;
+  queueNextEmote(
+    emote,
+    endBehaviour = "return-to-blink",
+    playImmediately = false
+  ) {
+    this.emoteArray = !Array.isArray(emote) ? [emote] : emote;
 
     // queue up emote
     this.queuedEmote = {
@@ -124,7 +142,7 @@ class Clippy {
     this.spriteSheetEl.addEventListener("animationend", this.onAnimationEnd);
 
     // auto play if just initialized or ended
-    if (this.currentEndBehaviour === null) {
+    if (this.currentEndBehaviour === null || playImmediately) {
       this.spriteSheetEl.removeAttribute("style");
       this.onAnimationEnd();
     }
@@ -134,7 +152,7 @@ class Clippy {
    * Plays the currently set emote.
    * @private
    */
-  playEmote() {
+  playCurrentEmote() {
     setTimeout(() => {
       this.spriteSheetEl.classList.add(`anim_${this.currentEmote}`);
       this.stopOnFinalEmote();
@@ -158,9 +176,15 @@ class Clippy {
       this.currentEndBehaviour = "loop";
     }
 
+    if (isLastEmote && this.emoteEndCallback) {
+      this.emoteEndCallback();
+      this.emoteEndCallback = null;
+    }
+
     const { emoteName: queuedEmoteName, endBehaviour: queuedEndBehaviour } =
       this.queuedEmote || {};
 
+    // if emote was queued, set next emote to the queued one - otherwise, play emote in current array
     this.currentEmoteIndex = this.queuedEmote
       ? 0
       : (this.currentEmoteIndex + 1) % this.emoteArray.length;
@@ -168,7 +192,8 @@ class Clippy {
       queuedEmoteName || this.emoteArray[this.currentEmoteIndex];
     this.currentEndBehaviour = queuedEndBehaviour || this.currentEndBehaviour;
     this.queuedEmote = null;
-    this.playEmote();
+
+    this.playCurrentEmote();
   }
 
   /**
@@ -384,6 +409,7 @@ class Clippy {
     if (!this.dialogueEl || slideIndex < 0) return;
     const slideData = this.slides[slideIndex];
 
+    // render content
     this.dialogueEl.innerHTML = `
       <p class="clippy-dialogue-message">
         ${slideData.recipient ? `${slideData.recipient} — ` : ""}${
@@ -398,6 +424,7 @@ class Clippy {
     `;
     this.currentSlideIndex = slideIndex;
 
+    // render buttons
     if (slideData.buttons) {
       const buttons = slideData.buttons.map((buttonData) => {
         const buttonWrapperEl = document.createElement("div");
@@ -432,6 +459,21 @@ class Clippy {
               });
             }
             break;
+          case "disabled":
+            buttonWrapperEl.disabled = true;
+            buttonEl.disabled = true;
+            break;
+          case "hide":
+            buttonEl.addEventListener("click", () => {
+              this.hideDialogue();
+            });
+            break;
+          case "hide-and-leave":
+            buttonEl.addEventListener("click", () => {
+              this.hideDialogue();
+              this.queueNextEmote("bike-leave", "stop-at-end", true);
+            });
+            break;
           default:
             break;
         }
@@ -444,6 +486,24 @@ class Clippy {
       buttonSection.className = "clippy-dialogue-button-section";
       buttons.forEach((buttonEl) => buttonSection.appendChild(buttonEl));
       this.dialogueEl.appendChild(buttonSection);
+    }
+
+    // set one time callback to change to next slide when emote(s) end
+    if (slideData.nextSlideOnEmoteEnd) {
+      this.emoteEndCallback = () => {
+        this.setDialogueContent(
+          Math.abs(this.currentSlideIndex + 1) % this.slides.length
+        );
+      }
+    }
+
+    // queue / play emote
+    if (slideData.emote) {
+      this.queueNextEmote(
+        slideData.emote,
+        slideData.endBehaviour || "return-to-blink",
+        slideData.playImmediately
+      );
     }
 
     this.repositionDialogue();
