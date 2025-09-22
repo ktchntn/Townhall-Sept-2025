@@ -15,6 +15,66 @@ body {
     top: 0;
 }
 
+.spot-bonus {
+    display: grid;
+    grid-template-areas: 
+        "menu content"
+        "footer footer";
+}
+
+.spot-bonus_side-bar {
+    grid-area: menu;
+    max-width: 220px;
+    background: rgb(255, 238, 89);
+    border: 2px solid red;
+    border-radius: 20px;
+    margin: 20px 5px;
+}
+
+.spot-bonus_side-bar .promo_block img {
+    width: 200px;
+    object-fit: cover;
+}
+
+.spot-bonus_side-bar .promo_block {
+    margin: 5px 10px;
+}
+
+.spot-bonus_side-bar .promo_description {
+    font-size: 12px;
+    margin: 0;
+}
+
+.spot-bonus_side-bar_top {
+    padding: 10px;
+    background-color: rgb(255, 0, 179);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.spot-bonus_side-bar_top p {
+    margin: 0;
+    color: white;
+    font-weight: bold;
+}
+
+.spot-bonus_body {
+    grid-area: content;
+}
+
+.spot-bonus_winner {
+    position: absolute;
+}
+
+.spot-bonus_winner.winner_1 {
+    top: 45%;
+}
+
+.spot-bonus_winner.winner_2 {
+    top: 80%;
+    right: 50px;
+}
+
 .spot-bonus_banner {
     display: flex;
     justify-content: space-between;
@@ -61,6 +121,14 @@ body {
     border-bottom-color: rgb(255, 164, 61);
 }
 
+.spot-bonus_banner .spot-bonus_clicked {
+    background-color: rgb(255, 0, 179);
+    border-top-color: rgb(224, 0, 49);
+    border-right-color: rgb(224, 0, 104);
+    border-left-color: rgb(255, 61, 135);
+    border-bottom-color: rgb(255, 61, 103);
+}
+
 .spot-bonus_banner ul > li a {
     align-self: center;
 }
@@ -81,7 +149,7 @@ body {
 .spot-bonus_star_gif {
     position: absolute;
     top: 120px;
-    left: 15%;
+    left: 20%;
 }
 
 .spot-bonus_table {
@@ -124,13 +192,45 @@ body {
     bottom: 0;
 }
 
+.spot-bonus_footer {
+    grid-area: footer;
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid black;
+}
+
+.spot-bonus_footer img {
+    margin: 10px;
+    height: 50px;
+}
+
+.spot-bonus_footer ul {
+    padding: 0;
+}
+
+.spot-bonus_footer li {
+    display: inline;
+    padding: 0 5px;
+    border-right: 1px solid black;
+}
+
+.spot-bonus_footer li:last-child {
+    border-right: 0px;
+}
+
 .vab-close {
     display: none;
 }
 
-.vab-container {
+.vab-container.vab-right {
     position: absolute;
-    top: 20%;
+    top: 10%;
+}
+
+.vab-container.vab-left.integrated_banner {
+    position: relative;
+    margin:  10px auto;
+    left: 0;
 }
 
 .spot-bonus_banner2.vab-container {
