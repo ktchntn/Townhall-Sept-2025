@@ -1,0 +1,44 @@
+<svg width="400" height="240" viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+    <defs>
+        <radialGradient id="redGrad" cx="35%" cy="30%" r="80%">
+            <stop offset="0%" stop-color="#ff3a3a"/>
+            <stop offset="60%" stop-color="#e01616"/>
+            <stop offset="100%" stop-color="#b90d0d"/>
+        </radialGradient>
+
+        <radialGradient id="vignette" cx="50%" cy="50%" r="60%">
+            <stop offset="70%" stop-color="rgba(0,0,0,0)"/>
+            <stop offset="100%" stop-color="rgba(0,0,0,0.2)"/>
+        </radialGradient>
+
+        <linearGradient id="gloss" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="rgba(255,255,255,0.75)"/>
+            <stop offset="60%" stop-color="rgba(255,255,255,0.15)"/>
+            <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+        </linearGradient>
+
+        <filter id="shadowRough" x="-50%" y="-50%" width="200%" height="200%">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="off"/>
+            <feGaussianBlur in="off" stdDeviation="2" result="blur"/>
+            <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0                 0 0 0 0 0                 0 0 0 0 0                 0 0 0 0.45 0" result="shadow"/>
+            <feTurbulence type="fractalNoise" baseFrequency="0.2" numOctaves="8" seed="1" stitchTiles="stitch" result="noise"/>
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.3" xChannelSelector="R" yChannelSelector="G" result="rough"/>
+            <feMerge>
+                <feMergeNode in="shadow"/>
+                <feMergeNode in="rough"/>
+            </feMerge>
+        </filter>
+    </defs>
+
+    <g transform="rotate(-10 200 120)" filter="url(#shadowRough)">
+        <g id="badge">
+            <ellipse cx="200" cy="120" rx="180" ry="100" fill="url(#redGrad)"/>
+            <ellipse cx="200" cy="120" rx="180" ry="100" fill="url(#vignette)"/>
+            <path d="M40,70 C90,30 310,30 360,70 C320,85 280,95 200,95 C120,95 80,85 40,70 Z" fill="url(#gloss)"/>
+            <ellipse cx="200" cy="120" rx="180" ry="100" fill="none" stroke="rgba(0,0,0,0.35)" stroke-width="3"/>
+        </g>
+        <g>
+            <text x="190" y="150" font-family="Verdana, Arial, Helvetica, sans-serif" font-size="110" font-weight="700" font-style="italic" text-anchor="middle" letter-spacing="-5" fill="white" transform="translate(200 120) skewX(-20) scale(1.10 1.10) translate(-200 -120)">Q&amp;A</text>
+        </g>
+    </g>
+</svg>
