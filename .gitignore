@@ -1,3 +1,7 @@
 node_modules/
+<<<<<<< HEAD
 **/.DS_Store
 .DS_Store
+=======
+**/.DS_Store
+>>>>>>> ca51be3 (i hate ds_store)
