@@ -71,3 +71,12 @@ h1 {
 .promotions img {
   height: 25px;
 }
+
+.new-hires {
+  margin: -30px 0 0 -30px;
+  transform: rotate(-0.02turn)
+}
+
+.new-hires img {
+  width: 200px;
+}
