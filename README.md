@@ -110,3 +110,4 @@ const glitter = enablePageGlitter({
 
 // To disable glitter effects:
 glitter.disable();
+```
