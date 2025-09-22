@@ -1,6 +1,7 @@
 {
   "slides": [
     {
+      "slideId": "intro-1",
       "message": "Hey, it's me, Clippy!<br/><br/>It looks like you are in need of some assistance.<br/><br/>Would you like some help?",
       "buttons": [
         {
@@ -13,23 +14,42 @@
       ]
     },
     {
+      "slideId": "intro-2",
       "message": "Are you sure about that?<br/><br/>You're kinda f*cked without me right now, bro.",
+      "buttons": [
+        {
+          "text": "I don't need your help 🙄",
+          "action": "next"
+        },
+        {
+          "text": "Please help me 🥺"
+        }
+      ],
+      "emote": ["head-scratch", "raise-eyebrow"],
+      "playImmediately": true
+    },
+    {
+      "slideId": "intro-3",
+      "message": "Look, I really insist that you do bud. Just look at the sorry state of this page...<br/><br/>Oh, and do you remember your last townhall? You know, the hot-takes live poll app that literally sh*t itself 3 questions in? 😐",
       "buttons": [
         {
           "text": "Ok, fine.",
           "action": "next"
         }
       ],
-      "emote": ["head-scratch"],
+      "emote": ["point-right", "point-right" ],
+      "endBehaviour": "stop-at-end",
       "playImmediately": true
     },
     {
+      "slideId": "intro-4",
       "message": "Great choice!<br/><br/>Hold on, fetching Shout Outs...",
       "nextSlideOnEmoteEnd": true,
       "emote": ["scientist-start", "exclamation"],
       "playImmediately": true
     },
     {
+      "slideId": "intro-5",
       "message": "I was able to fetch the Shout Outs.<br/><br/>Would you like me to display them? ",
       "buttons": [
         {
@@ -43,6 +63,7 @@
       "emote": ["raise-eyebrow"]
     },
     {
+      "slideId": "shoutout-1",
       "message": "Thank you so much for taking a leading role on the new Search discipline newsletter, Pulse on Search. I’m so friggin’ happy with the newsletter, and it’s all thanks to your great ideas, attention to detail, and industrious work ethic. I’ve told you so many times before, but I’ll say it again now: you are an absolute rockstar! Thank you!",
       "sender": "Carl Hiehn",
       "recipient": "Nafsa Karwani",
@@ -55,9 +76,12 @@
           "text": "Next",
           "action": "next"
         }
-      ]
+      ],
+      "playImmediately": true,
+      "emote": ["point-up", "blink", "idle-lean", "music", "music"]
     },
     {
+      "slideId": "shoutout-2",
       "message": "Big thanks to Chris for putting a ton of elbow grease into a massive J&J Careers keyword deliverable this month. I know it was a frustratingly monotonous task that repeatedly grew in size and scale. But I appreciate that you stuck with it and really helped execute the dang thing. I KNOW the clients will appreciate all of your energy and thinking. Thanks, Chris!",
       "sender": "Carl Hiehn",
       "recipient": "Chris Miranda",
@@ -70,9 +94,12 @@
           "text": "Next",
           "action": "next"
         }
-      ]
+      ],
+      "emote": ["tornado", "blink"],
+      "endBehaviour": "loop"
     },
     {
+      "slideId": "shoutout-3",
       "message": "You’ve been an absolute powerhouse on BP planning — your strategic brain and attention to detail have been driving this forward in all the right ways. Big props for keeping the Figma boards tight and making sure everyone’s got what they need to collaborate smoothly. Your ability to juggle all the moving parts while keeping the vibe positive is a total win. Appreciate you tons — keep doing your thing! 🙌",
       "sender": "Anna Stevens",
       "recipient": "Kelly Brand",
@@ -85,9 +112,12 @@
           "text": "Next",
           "action": "next"
         }
-      ]
+      ],
+      "emote": ["dig", "blink"],
+      "endBehaviour": "loop"
     },
     {
+      "slideId": "shoutout-4",
       "message": "Thank you for always picking up my off the books Teams messages to work through a Client production issue and navigating the endless eComm Client data issues they find. Appreciate your patience, positivity and good vibes! Keep up the great work.",
       "sender": "Anna Stevens",
       "recipient": "Brett Miller",
@@ -100,9 +130,12 @@
           "text": "Next",
           "action": "next"
         }
-      ]
+      ],
+      "emote": ["noodle", "blink", "noodle"],
+      "endBehaviour": "return-to-blink"
     },
     {
+      "slideId": "shoutout-5",
       "message": "I want to be Linda when I grow up (ignoring that I'm older than her). She is truly a kind and benevolent leader who runs Calgary with an iron fist. Someone who is still around should definitely nominate her for CMVP.",
       "sender": "Joshua Hale",
       "recipient": "Linda Chan",
@@ -115,9 +148,12 @@
           "text": "Next",
           "action": "next"
         }
-      ]
+      ],
+      "emote": ["airplane", "raise-eyebrow"],
+      "endBehaviour": "loop"
     },
     {
+      "slideId": "outro-1",
       "message": "Looks like those are all the Shout Outs!<br/><br/>",
       "buttons": [
         {
@@ -129,7 +165,7 @@
           "action": "hide-and-leave"
         }
       ],
-      "emote": ["head-scratch"],
+      "emote": ["check-mark", "blink", "lounge", "blink", "dozing"],
       "playImmediately": true
     }
   ]
