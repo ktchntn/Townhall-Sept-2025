@@ -130,6 +130,10 @@ a {
     color: #0f0;
 }
 
+.contact {
+    margin-inline-start: 25px;
+}
+
 /* Main Content */
 .content-container {
     position: relative;
@@ -173,9 +177,11 @@ a {
 /* Footer Content */
 .footer-content {
     display: flex;
+    padding-left: 20px;
 }
 
-.counter-container {
-    margin-inline-start: auto;
- }
-
+.footer-img {
+    width: 420px;
+    height: 60px;
+    margin: 10px 0 0 auto;
+}
