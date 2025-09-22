@@ -29,7 +29,7 @@ body {
 
 .top-banners {
     display: flex;
-    max-width: 1160px;
+    max-width: 100%;
     align-items: flex-start;
 }
 
@@ -41,8 +41,8 @@ body {
 }
 
 .back-button {
-    width: 90px;
-    height: 65px;
+    width: 150px;
+    height: 100px;
     background-image: url('../assets/sailor-moon-home.gif');
     background-size: contain;
     background-repeat: no-repeat;
@@ -125,7 +125,7 @@ main {
 
 .divider {
     position: absolute;
-    top: 762px;
+    top: 794px;
     width: 565px;
 }
 
