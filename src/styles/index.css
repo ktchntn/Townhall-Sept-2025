@@ -52,20 +52,56 @@ h1 {
   border-style: inset;
 }
 
-.nav-links {
+.nav-items {
   display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin: 20px 0;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
-.nav-links a {
-  color: #0018ff;
-  text-decoration: underline;
+.nav-items a {
+  position: relative;
+  width: auto;
+}
+
+.anniversaries {
+  top: -40px;
+  left: 60px;
+}
+
+.anniversaries img {
+  width: 280px;
+}
+
+.anniversaries:hover {
+  /* cursor: pointer; */
+  animation: hoverCMVP 0.25s ease alternate infinite;
+}
+
+.windows {
+  top: 20px;
+  right: -90px;
+}
+
+.windows img {
+  width: 150px;
 }
 
 .promotions {
-  margin: 40px 0;
+  top: -100px;
+  left: 20px;
+}
+
+.shout-outs {
+  top: -120px;
+  left: 20px;
+  transform: rotate(0.02turn)
+
+}
+
+.shout-outs img {
+  width: 350px;
 }
 
 .promotions img {
@@ -73,10 +109,37 @@ h1 {
 }
 
 .new-hires {
-  margin: -30px 0 0 -30px;
+  top: 30px;
+  left: 60px;
   transform: rotate(-0.02turn)
 }
 
 .new-hires img {
   width: 200px;
+}
+
+.spot-bonuses {
+  top: -140px;
+  left: 40px;
+  transform: rotate(0.03turn)
+}
+
+.spot-bonuses img {
+  width: 250px;
+}
+
+.qna {
+  top: -80px;
+  left: 40px;
+}
+
+/* Animations */
+@keyframes hoverCMVP {
+  0% {
+    transform: rotate(10deg);
+  }
+
+  100% {
+    transform: rotate(-10deg);
+  }
 }

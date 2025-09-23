@@ -35,23 +35,8 @@ main {
 	right: 0;
 	margin: 0 auto;
 	height: 80%;
-	width: 60%;
+	width: 70%;
 	color: white;
-}
-
-.nav-items {		
-	display: flex;
-	flex-direction: row;
-	justify-content: flex-start;
-	flex-wrap: wrap;
-	height: 200px;
-	align-items: center;
-}
-
-.nav-items a {
-	width: auto;
-	/* display: block; */
-	/* background-color: red; */
 }
 
 .welcome {
@@ -65,27 +50,6 @@ main {
 
 * .nav a:hover {
 	cursor: url('../assets/cursors/hover.png'), auto;
-}
-
-.nav .anniversaries {
-  width: 280px;
-  /* margin-bottom: -10px;
-  margin-left: -50px; */
-}
-
-.nav .anniversaries:hover {
-	/* cursor: pointer; */
-	animation: hoverCMVP 0.25s ease alternate infinite;
-}
-
-.nav .windows {
-    width: 150px;
-		/* margin-left: -50px; */
- }
-
-@keyframes hoverCMVP {
-	0% { transform: rotate(10deg); }
-	100% { transform: rotate(-10deg); }
 }
 
 .circle {
