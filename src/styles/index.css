@@ -96,6 +96,7 @@ h1 {
 .shout-outs {
   top: -120px;
   left: 20px;
+  transform: rotate(0.02turn)
 
 }
 
@@ -118,8 +119,9 @@ h1 {
 }
 
 .spot-bonuses {
-  top: -150px;
-  left: 50px;
+  top: -140px;
+  left: 40px;
+  transform: rotate(0.03turn)
 }
 
 .spot-bonuses img {
