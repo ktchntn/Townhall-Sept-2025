@@ -18,8 +18,8 @@ body {
 }
 
 .promotions div {
-  width: 400px;
-  max-width: 600px;
+  width: 750px;
+  max-width: 800px;
   margin: 40px auto;
   background: rgba(0, 255, 255, 0.05);
   border: 3px dashed blue;
@@ -35,7 +35,7 @@ body {
 .promotions h2 {
   color: magenta;
   text-align: center;
-  font-size: 2.2em;
+  font-size: 3em;
   margin-bottom: 18px;
 }
 
@@ -49,6 +49,47 @@ body {
 
 .promotions li {
   margin-bottom: 10px;
+}
+
+.promotions li span:last-child {
+  position: relative;
+  color: #fff700;
+  text-shadow: 0 0 8px #fff700, 0 0 16px #ff00de;
+  font-weight: bold;
+  padding: 0 6px;
+  font-size: 1.2em;
+  animation: sparkle-glow 1.2s infinite alternate;
+}
+
+@keyframes sparkle-glow {
+  0% {
+    text-shadow: 0 0 8px #fff700, 0 0 16px #ff00de;
+    filter: brightness(1.1);
+  }
+  100% {
+    text-shadow: 0 0 16px #fff700, 0 0 32px #ff00de;
+    filter: brightness(1.4);
+  }
+}
+
+.promotions li span:last-child::before,
+.promotions li span:last-child::after {
+  content: "✨";
+  margin: 0 2px;
+  font-size: 1.1em;
+  vertical-align: middle;
+  animation: sparkle-twinkle 1.2s infinite alternate;
+}
+
+@keyframes sparkle-twinkle {
+  0% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
 }
 
 .back-button {
