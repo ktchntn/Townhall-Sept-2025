@@ -1,14 +1,23 @@
+:root {
+    /* vars */
+    --page-width: 1512px;
+    --page-height: 982px;
+}
+
+
 body {
-    font-family: "Comic Neue";
+    font-family: "Comic Sans MS", Arial, sans-serif;
     background-color: #5158ff;
+    width: var(--page-width);
+    height:var(--page-height);
 }
 
 /* Title Elements */
 
 .title-container {
     display: flex;
-    justify-content: space-around;
-    width: 70%;
+    justify-content: center;
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -16,8 +25,8 @@ body {
     position: relative;
     display: block;
     left: -10px;
-    width: 60%;
-    margin: 0 auto;
+    width: 40%;
+    margin: 0;
 }
 
 .title-sprite {
@@ -31,7 +40,7 @@ body {
 
 .top-banners {
     display: flex;
-    max-width: 1160px;
+    max-width: var(--page-width);
     align-items: flex-start;
 }
 
@@ -53,7 +62,7 @@ body {
 /* Main Content Elements */
 
 main {
-    width: 1160px;
+    width: var(--page-width);
 }
 
 .anniversaries-container {
@@ -74,7 +83,7 @@ main {
 }
 
 .anniversaries-table td {
-    padding: 10px 25px
+    padding: 10px 45px
 }
 
 /* Custom Scrollbar */
@@ -127,14 +136,14 @@ main {
 
 .divider {
     position: absolute;
-    top: 705px;
-    width: 565px;
+    bottom: 158px;
+    width: 50%;
 }
 
 .moon {
     position: absolute;
-    top: 180px;
-    left: 250px;
+    top: 250px;
+    left: 350px;
 }
 
 .sailor-moon {
@@ -143,12 +152,13 @@ main {
 
 .sailor-moon--1 {
     top: 264px;
-    left: 870px;
+    /* left: 870px; */
+    right: 100px;
 }
 
 .sailor-moon--2 {
     top: 425px;
-    left: 180px;
+    left: 200px;
 }
 
 .sailor-moon--3 {
@@ -160,7 +170,7 @@ main {
 
 .sailor-moon--4 {
     top: 550px;
-    left: 880px;
+    right: 200px;
 }
 
 /* Sidebar Elements */
@@ -210,9 +220,9 @@ main {
 /* Footer Elements */
 
 footer {
-    position: relative;
-    left: 230px;
-    max-width: fit-content;
+    position: absolute;
+    bottom: 20px;
+    width: var(--page-width);
 }
 
 .flashy-buttons {

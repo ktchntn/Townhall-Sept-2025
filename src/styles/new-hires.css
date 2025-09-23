@@ -1,5 +1,12 @@
+:root {
+    /* vars */
+    --page-width: 1512px;
+    --page-height: 982px;
+}
 
 body {
+    width: var(--page-width);
+    height: var(--page-height);
     background-color: #000;
     color: #0f0;
     font-family: 'Courier New', Courier, monospace;
@@ -108,16 +115,7 @@ body {
     position: absolute;
     top: 20px;
     right: 20px;
-}
-
-.back-button {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-}
-
-.back-button img {
-    width: 100px;
+    width: 120px;
 }
 
 /* Sidebar Content */
@@ -161,9 +159,9 @@ a {
     border: 0px solid;
 }
 
-#new-hires-tbody td {
+.new-hires-table td {
     padding: 15px 40px;
-    font-size: 18px;
+    font-size: 26px;
 }
 
 .frame-sidebar h2 {
