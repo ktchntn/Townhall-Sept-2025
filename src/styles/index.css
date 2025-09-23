@@ -108,6 +108,10 @@ h1 {
   height: 25px;
 }
 
+.spot-bonus_link {
+  padding: 0 50px;
+}
+
 .new-hires {
   top: 30px;
   left: 60px;
