@@ -94,10 +94,9 @@ h1 {
 }
 
 .shout-outs {
-  top: -120px;
+  top: -140px;
   left: 20px;
-  transform: rotate(0.02turn)
-
+  transform: rotate(-0.03turn)
 }
 
 .shout-outs img {
@@ -106,10 +105,6 @@ h1 {
 
 .promotions img {
   height: 25px;
-}
-
-.spot-bonus_link {
-  padding: 0 50px;
 }
 
 .new-hires {
@@ -123,18 +118,18 @@ h1 {
 }
 
 .spot-bonuses {
-  top: -140px;
-  left: 40px;
+  top: -20px;
+  left: -230px;
   transform: rotate(0.03turn)
 }
 
 .spot-bonuses img {
-  width: 250px;
+  width: 130px;
 }
 
 .qna {
-  top: -80px;
-  left: 40px;
+  top: -120px;
+  left: 290px;
 }
 
 /* Animations */
