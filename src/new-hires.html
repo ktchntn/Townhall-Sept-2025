@@ -22,7 +22,7 @@
     <aside class="frame frame-sidebar">
         <h2>&lt;NAV&gt;</h2>
         <ul>
-            <li><a href="index.html">Home</a></li>
+            <li><a href="#" class="back">Home</a></li>
             <li><a href="anniversaries.html">Anniversaries</a></li>
             <li><a href="promotions.html">On the Move</a></li>
             <li><a href="shoutouts.html">Shout Outs</a></li>
@@ -74,5 +74,21 @@
     </footer>
 
     <script type="module" src="./new-hires-main.js"></script>
+    <script type="module">
+        import { createTriviaPopup } from './modules/nineties-popup.js';
+        import { createFireWorks } from './modules/fireworks.js';
+        import { triviaQuestions } from "./data/trivia.js";
+        const tq = triviaQuestions[1];
+
+        document.querySelector('.back').addEventListener('click', ()=>{
+            createTriviaPopup({
+                title: 'TRIVIA TIME!!',
+                triviaQuestion: tq.question,
+                triviaAnswers: tq.answers,
+                answerIndex: tq.answerIndex,
+                onCorrect: ()=> createFireWorks()
+            });
+        });
+    </script>
 </body>
 </html>

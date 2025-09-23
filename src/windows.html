@@ -22,7 +22,7 @@
 					<p>Shout Outs</p>
 				</div>
 				<div class="folder-container">
-          <a href="./index.html">
+          <a href="#">
 						<div class="icon internet"></div>
             <p>Internet</p>
           </a>
@@ -88,4 +88,20 @@
 			}
 		});
 </script>
+	<script type="module">
+		import { createTriviaPopup } from './modules/nineties-popup.js';
+		import { createFireWorks } from './modules/fireworks.js';
+		import { triviaQuestions } from "./data/trivia.js";
+		const tq = triviaQuestions[3];
+
+		document.querySelector('.internet').addEventListener('click', ()=>{
+			createTriviaPopup({
+				title: 'TRIVIA TIME!!',
+				triviaQuestion: tq.question,
+				triviaAnswers: tq.answers,
+				answerIndex: tq.answerIndex,
+				onCorrect: ()=> createFireWorks()
+			});
+		});
+	</script>
 </html>

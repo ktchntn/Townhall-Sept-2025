@@ -244,8 +244,42 @@ const baseStyles = `
 
 @keyframes npScroll {
   to {
-    transform: translateX(-120%);
+    transform: translateX(-200%);
   }
+}
+
+/* Trivia Popup Styles */
+
+.tp-popup {
+  scale: 1.5;
+}
+.tp-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px 0;
+}
+
+.tp-btn {
+  flex-basis: 50%;
+  word-break: break-word;
+}
+
+.tp-hero-text {
+  text-shadow: none;
+}
+
+.tp-hero-correct-text{
+  text-shadow: none;
+  color: #32a852;
+}
+
+.tp-actions {
+  padding-top: 20px;
+  text-align: center;
+}
+
+.tp-actions button{
+  font-size: 16px;
 }
 `;
 
@@ -483,6 +517,220 @@ export function createPopup(options = {}) {
           });
         }
         close();
+        break;
+    }
+  });
+
+  const onKey = (e) => {
+    if (e.key === 'Escape') close();
+  };
+  document.addEventListener('keydown', onKey);
+
+  // Return public API
+  return {
+    element: popup,
+    close
+  };
+}
+
+export function createTriviaPopup(options = {}) {
+  injectStyles();
+
+  const {
+    title = '🔥 TRIVIA TIME!! 🔥',
+    onClose = null,
+    autoFocus = true,
+    startPosition = null,
+    triviaQuestion = "What is one plus one",
+    answerIndex = 4,
+    triviaAnswers = ['one', "two", "three", "four"],
+    onCorrect = ()=> alert("CORRECT!")
+  } = options;
+
+  const popup = document.createElement('section');
+  popup.className = 'np-popup tp-popup';
+  popup.setAttribute('role', 'dialog');
+  popup.setAttribute('aria-modal', 'true');
+  popup.setAttribute('aria-label', title);
+
+
+  popup.innerHTML = `
+    <div class="np-focus-sentinel" tabindex="0"></div>
+    <div class="np-titlebar">
+      <div class="np-title">${title}</div>
+      <div class="np-controls">
+        <button class="np-btn" data-action="min" aria-label="Minimize">_</button>
+        <button class="np-btn" data-action="max" aria-label="Maximize">▢</button>
+        <button class="np-btn" data-action="close" aria-label="Close">X</button>
+      </div>
+    </div>
+    <div class="np-body">
+      <div class="np-burst np-bling" aria-hidden="true"></div>
+      <span class="np-badge">DO YOU KNOW? <span class="np-glitter">✨</span></span>
+      <div class="np-hero">
+        <div class="np-hero-emoji">⚠️</div>
+        <div class="np-hero-text tp-hero-text">
+          ${triviaQuestion}</span>
+        </div>
+        <div class="np-hero-emoji">❓</div>
+      </div>
+     
+      <span class="np-sub"> YOU MUST ANSWER IN:</span>
+      <div class="tp-buttons"></div>
+     
+     <div class="np-marquee"><span class="tp-bling">🔥 HOT DEALS 🔥 BEST VIEWED IN NETSCAPE 🔥 CLICK BEFORE YOUR BOSS SEES 🔥</span></div>
+      <div class="tp-actions">
+        <button class="np-btn" data-action="nope">No thanks</button>
+      </div>
+    </div>
+    <div class="np-focus-sentinel" tabindex="0"></div>
+  `;
+
+
+
+  document.body.appendChild(popup);
+
+  let stopBounce = null;
+
+  const titleEl = popup.querySelector('.np-title');
+  const badgeEl = popup.querySelector('.np-badge');
+  const marqueeEl = popup.querySelector('.np-marquee');
+  const heroEl = popup.querySelector('.np-hero');
+
+  let time = 120;
+  let timer = setInterval(()=>{
+    time--;
+    const minutes = Math.floor(time / 60);
+    const seconds = time - minutes * 60;
+    popup.querySelector('.np-sub').innerText = `YOU MUST ANSWER IN: ${minutes}: ${seconds < 10 ? "0" + seconds : seconds}`;
+
+    if(time === 0){
+      clearInterval(timer);
+      window.location.reload();
+    }
+  },1000)
+
+  const fakeClose = () =>{
+    stopBounce = bounceAround(popup);
+    popup.classList.toggle('tp-popup');
+
+    ['mousedown', 'keydown', 'touchstart'].forEach(evt => {
+      popup.addEventListener(evt, () => {
+        if (stopBounce) {
+          stopBounce();
+          stopBounce = null;
+          popup.classList.toggle('tp-popup');
+        }
+      }, { once: true });
+    });
+  }
+
+  triviaAnswers.map( (ans, index) => {
+    const triviaButton = document.createElement("button");
+    triviaButton.classList.add("np-cta", "tp-btn");
+    triviaButton.innerText = ans;
+
+    if(index !== answerIndex - 1){
+      triviaButton.addEventListener('click', ()=>{
+        fakeClose();
+        titleEl.innerText = 'WRONG!';
+        badgeEl.innerText = 'NOOOOOO';
+        marqueeEl.querySelector('span').innerText = 'NEED A HINT? 🔥 HERE\'S A HINT! 🔥 IT\'S NOT THAT LAST ONE 🔥 I DON\'T KNOW EITHER 🔥';
+      });
+    }
+
+    else{
+      triviaButton.addEventListener('click', ()=> {
+        onCorrect();
+        clearInterval(timer);
+
+        titleEl.innerText = 'CORRECT!!!!!';
+        badgeEl.innerText = 'WINNER!';
+
+        const emoji = document.createElement("div");
+        emoji.classList.add("np-hero-emoji");
+        emoji.innerText = "🎆🎇🎈🎉";
+
+
+        const text = document.createElement("div");
+        text.classList.add('np-hero-text', 'tp-hero-correct-text');
+        text.innerText = 'YOU GOT IT';
+
+        heroEl.replaceChildren(emoji, text);
+
+        const winSpan = document.createElement('span');
+        winSpan.classList.add('np-glitter');
+        winSpan.innerText = "✨";
+        badgeEl.appendChild(winSpan);
+
+        marqueeEl.querySelector('span').innerText = 'WOWIE 🔥 YOU DID IT! 🔥 PROUD OF YOU 🔥 LEARNING IS FUN 🔥';
+         setTimeout(()=>{
+           window.location.href= 'index.html';
+         }, 4000)
+      });
+    }
+    document.querySelector('.tp-buttons').appendChild(triviaButton);
+  });
+
+
+  const rect = popup.getBoundingClientRect();
+  const maxLeft = Math.max(8, window.innerWidth - rect.width - 8);
+  const maxTop = Math.max(8, window.innerHeight - rect.height - 8);
+
+  const left = startPosition?.left ?? clamp(Math.random() * (window.innerWidth - rect.width), 8, maxLeft);
+  const top = startPosition?.top ?? clamp(Math.random() * (window.innerHeight - rect.height), 8, maxTop);
+
+  popup.style.left = `${left}px`;
+  popup.style.top = `${top}px`;
+
+
+  const titlebar = popup.querySelector('.np-titlebar');
+  makeDraggable(popup, titlebar);
+
+
+  trapFocus(popup);
+
+  if (autoFocus) {
+    const firstButton = popup.querySelector('[data-action="cta"]') || popup.querySelector('button');
+    firstButton?.focus();
+  }
+
+  // Close function
+  const body = popup.querySelector('.np-body');
+  function close() {
+    if (stopBounce) stopBounce();
+    document.removeEventListener('keydown', onKey);
+    popup.remove();
+    if (typeof onClose === 'function') {
+      try {
+        onClose();
+      } catch (err) {
+        console.error('Error in onClose callback:', err);
+      }
+    }
+  }
+
+  popup.addEventListener('click', (e) => {
+    const btn = e.target.closest('button[data-action]');
+    if (!btn) return;
+
+    const act = btn.getAttribute('data-action');
+
+    switch (act) {
+      case 'close':
+        fakeClose();
+        break;
+
+      case 'min':
+        body.classList.toggle('np-hidden');
+        break;
+
+      case 'max':
+        popup.style.width = popup.style.width ? '' : 'min(520px, 96vw)';
+        break;
+
+      case 'nope':
+          fakeClose();
         break;
     }
   });
