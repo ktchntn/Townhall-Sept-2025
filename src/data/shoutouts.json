@@ -15,7 +15,7 @@
     },
     {
       "slideId": "intro-2",
-      "message": "Are you sure about that?<br/><br/>You're kinda f*cked without me right now, bro.",
+      "message": "Are you sure about that?<br/><br/>You're kinda screwed without me right now, bro.",
       "buttons": [
         {
           "text": "I don't need your help 🙄",
@@ -30,7 +30,7 @@
     },
     {
       "slideId": "intro-3",
-      "message": "Look, I really insist that you do bud. Just look at the sorry state of this page...<br/><br/>Oh, and do you remember your last townhall? You know, the hot-takes live poll app that literally sh*t itself 3 questions in? 😐",
+      "message": "Look, I really insist that you do bud. Just look at the sorry state of this page...<br/><br/>Oh, and do you remember your last townhall? You know, the live poll app that broke literally 3 questions in? 😐",
       "buttons": [
         {
           "text": "Ok, fine.",
