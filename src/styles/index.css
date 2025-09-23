@@ -72,6 +72,10 @@ h1 {
   height: 25px;
 }
 
+.spot-bonus_link {
+  padding: 0 50px;
+}
+
 .new-hires {
   margin: -30px 0 0 -30px;
   transform: rotate(-0.02turn)
