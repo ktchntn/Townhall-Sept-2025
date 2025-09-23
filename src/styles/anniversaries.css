@@ -13,9 +13,11 @@ body {
 }
 
 .title {
+    position: relative;
     display: block;
-    width: 70%;
-    margin: 15px auto;
+    left: -10px;
+    width: 60%;
+    margin: 0 auto;
 }
 
 .title-sprite {
@@ -125,13 +127,13 @@ main {
 
 .divider {
     position: absolute;
-    top: 762px;
+    top: 705px;
     width: 565px;
 }
 
 .moon {
     position: absolute;
-    top: 280px;
+    top: 180px;
     left: 250px;
 }
 
@@ -140,12 +142,12 @@ main {
 }
 
 .sailor-moon--1 {
-    top: 334px;
+    top: 264px;
     left: 870px;
 }
 
 .sailor-moon--2 {
-    top: 525px;
+    top: 425px;
     left: 180px;
 }
 
@@ -157,7 +159,7 @@ main {
 }
 
 .sailor-moon--4 {
-    top: 650px;
+    top: 550px;
     left: 880px;
 }
 
@@ -217,7 +219,7 @@ footer {
     display: flex;
     justify-content: center;
     max-width: 700px;
-    margin: 20px auto 0;
+    margin: 10px auto 0;
 }
 
 .flashy-buttons img {
@@ -228,7 +230,7 @@ footer {
 .guestbook {
     position: relative;
     width: 300px;
-    margin: 50px -50% 0 0;
+    margin: 2cap -50% 0 0;
     left: 50%;
     transform: translateX(-50%);
 }
