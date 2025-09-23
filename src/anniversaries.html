@@ -16,7 +16,7 @@
     <section class="top-banners">
         <img src="./assets/at-t-the-first-banner-1994.png" class="h-banner">
         <img src="./assets/panasonic-1998.gif" class="h-banner">
-        <a href="index.html" class="back-button"></a>
+        <a href="#" class="back-button"></a>
     </section>
     <main>
         <div class="title-container">
@@ -31,10 +31,10 @@
                 </tbody>
             </table>
             <img src="./assets/moon.gif" class="moon">
-            
+
             <img src="./assets/sailor-moon-divider.gif" class="divider">
         </div>
-        
+
         <img src="./assets/sailor-moon1.gif" class="sailor-moon sailor-moon--1">
         <img src="./assets/sailor-moon2.gif" class="sailor-moon sailor-moon--2">
         <img src="./assets/sailor-moon4.gif" class="sailor-moon sailor-moon--4">
@@ -55,6 +55,23 @@
             <img src="./assets/gameboy_advance_net.gif">
         </div>
     </footer>
+
+    <script type="module">
+        import { createTriviaPopup } from './modules/nineties-popup.js';
+        import { createFireWorks } from './modules/fireworks.js';
+        import { triviaQuestions } from "./data/trivia.js";
+        const tq = triviaQuestions[0];
+
+        document.querySelector('.back-button').addEventListener('click', ()=>{
+            createTriviaPopup({
+                title: 'TRIVIA TIME!!',
+                triviaQuestion: tq.question,
+                triviaAnswers: tq.answers,
+                answerIndex: tq.answerIndex,
+                onCorrect: ()=> createFireWorks()
+            });
+        });
+    </script>
 
     <script type="module">
         import { createPopup as createNinetiesPopup } from './modules/nineties-popup.js';

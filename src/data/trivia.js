@@ -1,0 +1,32 @@
+export const triviaQuestions = [
+    {
+        title: "HttpQuestion",
+        question: "What does HTTP even mean?",
+        answers: ["Hyper Text Transfer Protocol", "Hardware Translation Telecommunications Protocol", "Head To Toe Protocol", "Hold The Tele Phone"],
+        answerIndex: 1
+    },
+    {
+        title: "HttpResponseQuestion",
+        question: "Which of these numbers signifies a Successful Response in HTTP?",
+        answers: ["500", "404", "200", "104"],
+        answerIndex: 3
+    },
+    {
+        title: "ninetiesWebsiteQuestion",
+        question: "Which of these sites actually launched in the 90's?",
+        answers: ["Neopets.com", "Wikipedia.com", "Myspace.com", "Amazon.com"],
+        answerIndex: 4
+    },
+    {
+        title: "internetSlangQuestion",
+        question: "Which of these popular internet slangs was invented by an Edmontonian in an early internet chatroom?",
+        answers: ["BRB", "WTF", "MCSMBOMPANILLIPM ( My cat spilled my beer on my pants and now it looks like I peed myself)", "LOL"],
+        answerIndex: 4
+    },
+    {
+        title: "Which of these was the first item ever sold on Ebay?",
+        question: "What does HTTP even mean?",
+        answers: ["Music Box", "Broken Laser Pointer", "Bart Simpson T-Shirt", "Collection of Beanie Babies"],
+        answerIndex: 2
+    },
+]
