@@ -19,8 +19,8 @@ export const triviaQuestions = [
     },
     {
         title: "internetSlangQuestion",
-        question: "Which of these popular internet slangs was invented by an Edmontonian in an early internet chatroom?",
-        answers: ["BRB", "WTF", "MCSMBOMPANILLIPM ( My cat spilled my beer on my pants and now it looks like I peed myself)", "LOL"],
+        question: "Which of these popular acronyms was created by an Edmontonian in an early internet chatroom?",
+        answers: ["BRB", "WTF", "SBOMPANILLIP (Spilled Beer On My Pants And Now It Looks Like I Peed)", "LOL"],
         answerIndex: 4
     },
     {
