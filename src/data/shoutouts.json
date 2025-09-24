@@ -2,7 +2,7 @@
   "slides": [
     {
       "slideId": "intro-1",
-      "message": "Hey, it's me, Clippy!<br/><br/>It looks like you're having some trouble finding your \"shout outs\" page.<br/><br/>Would you like some help?",
+      "message": "Hi there, I'm Clippy!<br/><br/>It looks like you're having some trouble finding your \"shout outs\" page.<br/><br/>Would you like some help?",
       "audioPath": "/assets/sounds/shoutouts_intro-1.mp3",
       "buttons": [
         {
@@ -32,7 +32,7 @@
     },
     {
       "slideId": "intro-3",
-      "message": "Look, I really insist that you do bud. Just look at the sorry state of this page...<br/><br/>Oh, and do you remember your last townhall? You know, the live poll app that broke literally 3 questions in? 😐",
+      "message": "Look, I really insist that you do, bud. Just look at the sorry state of this page...<br/><br/>Oh, and do you remember your last townhall? You know, the live poll app that literally broke 3 questions in? 😐",
       "audioPath": "/assets/sounds/shoutouts_intro-3.mp3",
       "buttons": [
         {
