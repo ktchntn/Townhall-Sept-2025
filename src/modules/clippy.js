@@ -168,6 +168,26 @@ class Clippy {
       this.spriteSheetEl.classList.add(`anim_${this.currentEmote}`);
       this.stopOnFinalEmote();
     }, 10);
+
+    this.playSound('scientist-start', document.getElementById('dial-up'))
+    this.pauseSound('raise-eyebrow', document.getElementById('dial-up'))
+  }
+
+
+  /**
+   * Play sound
+   * @private
+   */
+  playSound(emoteName, audio) {
+    if (this.currentEmote == emoteName) audio.play()
+  }
+
+  /**
+   * Pause sound
+   * @private
+   */
+  pauseSound(emoteName, audio) {
+    if (this.currentEmote == emoteName) audio.pause()
   }
 
   /**
