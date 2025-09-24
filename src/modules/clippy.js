@@ -15,6 +15,7 @@ const STYLE_ID = "clippy-styles-v1";
  * @typedef {Object} DialogueContentData
  * @property {string} slideId Unique identifier of the content.
  * @property {string} message Main message of content
+ * @property {string} [audioPath] Relative path to audio which plays on showing the slide
  * @property {string} [recipient] Recipient of message
  * @property {string} [sender] Sender of message
  * @property {Object[]} [buttons] Array of buttons to display and their action
@@ -72,6 +73,7 @@ class Clippy {
     this.emoteEndCallback = null;
     this.onExit = options.onExit;
     this.isExiting = false;
+    this.currentDialogueAudio = null;
 
     // Public methods
     this.queueNextEmote = this.queueNextEmote.bind(this);
@@ -559,6 +561,16 @@ class Clippy {
         slideData.endBehaviour || "return-to-blink",
         slideData.playImmediately
       );
+    }
+
+    // play audio
+    if (slideData.audioPath) {
+      this.currentDialogueAudio?.pause?.();
+      const audio = new Audio(slideData.audioPath);
+      this.currentDialogueAudio = audio;
+      setTimeout(() => {
+        audio.play();
+      }, 250);
     }
 
     this.repositionDialogue();

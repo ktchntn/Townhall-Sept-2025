@@ -3,6 +3,7 @@
     {
       "slideId": "intro-1",
       "message": "Hey, it's me, Clippy!<br/><br/>It looks like you're having some trouble finding your \"shout outs\" page.<br/><br/>Would you like some help?",
+      "audioPath": "/assets/sounds/shoutouts_intro-1.mp3",
       "buttons": [
         {
           "text": "Yes"
@@ -16,6 +17,7 @@
     {
       "slideId": "intro-2",
       "message": "Are you sure about that?<br/><br/>You're kinda screwed without me right now, bro.",
+      "audioPath": "/assets/sounds/shoutouts_intro-2.mp3",
       "buttons": [
         {
           "text": "I don't need your help 🙄",
@@ -31,6 +33,7 @@
     {
       "slideId": "intro-3",
       "message": "Look, I really insist that you do bud. Just look at the sorry state of this page...<br/><br/>Oh, and do you remember your last townhall? You know, the live poll app that broke literally 3 questions in? 😐",
+      "audioPath": "/assets/sounds/shoutouts_intro-3.mp3",
       "buttons": [
         {
           "text": "Ok, fine.",
@@ -44,6 +47,7 @@
     {
       "slideId": "intro-4",
       "message": "Great choice!<br/><br/>One moment... Fetching the shout outs...",
+      "audioPath": "/assets/sounds/shoutouts_intro-4.mp3",
       "nextSlideOnEmoteEnd": true,
       "emote": ["scientist-start", "exclamation"],
       "playImmediately": true
@@ -51,6 +55,7 @@
     {
       "slideId": "intro-5",
       "message": "Looks like I was able to fetch the shout outs.<br/><br/>Would you like me to display them? ",
+      "audioPath":"/assets/sounds/shoutouts_intro-5.mp3",
       "buttons": [
         {
           "text": "Yes",
@@ -155,6 +160,7 @@
     {
       "slideId": "outro-1",
       "message": "And that's all!<br/><br/>There's still a trivia question coming your way, but that's none of my business. Peace out!",
+      "audioPath":"/assets/sounds/shoutouts_outro-1.mp3",
       "buttons": [
         {
           "text": "Go back",
