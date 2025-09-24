@@ -5,33 +5,32 @@
     <link rel="stylesheet" href="./styles/windows.css" />
 	<link rel="stylesheet" href="./styles/pixelated-corners.css" />
 
-    <!-- Google Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- <link href="https://fonts.googleapis.com/css2?family=Coral+Pixels&family=Slackey&display=swap" rel="stylesheet"> -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Handjet:wght@100..900&family=VT323&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <div class="main">
-      <div class="container">
-        <div class="folder-container" id="cmvp">
-          <div class="icon folder"></div>
-          <p>CMVP</p>
-        </div>
-        <div class="folder-container">
-          <div class="icon folder"></div>
-          <p>HR</p>
-        </div>
-        <div class="folder-container">
-          <div class="icon folder"></div>
-          <p>DE&I</p>
-        </div>
-        <div class="folder-container">
-          <a href="#">
-            <div class="icon internet"></div>
+		<!-- Google Font -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<!-- <link href="https://fonts.googleapis.com/css2?family=Coral+Pixels&family=Slackey&display=swap" rel="stylesheet"> -->
+		<link href="https://fonts.googleapis.com/css2?family=Handjet:wght@100..900&family=VT323&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<div class="main">
+			<div class="container">
+				<div class="folder-container">
+					<div class="icon folder"></div>
+					<p>HR</p>
+				</div>
+				<div class="folder-container">
+					<a href="./assets/TownHall Content/I&I HHM.SEPT TH (CA ONLY).pdf">
+						<div class="icon folder"></div>
+						<p>I&I</p>
+					</a>
+				</div>
+				<div class="folder-container" id="cmvp">
+					<div class="icon play"></div>
+					<p>CMVP</p>
+				</div>
+				<div class="folder-container">
+					<a href="#">
+						<div class="icon internet"></div>
             <p>Internet</p>
           </a>
         </div>
@@ -87,10 +86,11 @@
   </script>
 
   <script type="module">
-    import { createMediaPlayer } from "./modules/windows98-media-player.js";
-    const videos = [
-      { title: "Welcome Video", src: "./assets/videos/placeholder.mp4" },
-    ];
+		import { createMediaPlayer } from './modules/windows98-media-player.js';
+
+		const videos = [
+			{ title: "Welcome Video", src: "./assets/videos/CMVP.SEPTTH.mp4" }
+		];
 
     let mediaPlayer = null;
 
@@ -104,88 +104,26 @@
           initialVolume: 1,
         });
 
-        mediaPlayer.onClose(() => {
-          mediaPlayer = null;
-        });
-      }
-    });
-  </script>
-  <script type="module">
-    import { createTriviaPopup } from "./modules/nineties-popup.js";
-    import { createFireWorks } from "./modules/fireworks.js";
-    import { triviaQuestions } from "./data/trivia.js";
-    const tq = triviaQuestions[3];
+				mediaPlayer.onClose(() => {
+					mediaPlayer = null;
+				});
+			}
+		});
+	</script>
+	<script type="module">
+		import { createTriviaPopup } from './modules/nineties-popup.js';
+		import { createFireWorks } from './modules/fireworks.js';
+		import { triviaQuestions } from "./data/trivia.js";
+		const tq = triviaQuestions[3];
 
-    document.querySelector(".internet").addEventListener("click", () => {
-      createTriviaPopup({
-        title: "TRIVIA TIME!!",
-        triviaQuestion: tq.question,
-        triviaAnswers: tq.answers,
-        answerIndex: tq.answerIndex,
-        onCorrect: () => createFireWorks(),
-      });
-    });
-  </script>
-  <script type="module">
-    import Clippy from "./modules/clippy.js";
-    import shoutoutsData from "./data/shoutouts-2.json";
-    import clippyMetaData from "./data/clippy-metadata.json";
-    let clippy;
-
-    const { spriteWidth: SPRITE_WIDTH, spriteHeight: SPRITE_HEIGHT } =
-      clippyMetaData;
-
-    const vw = Math.max(
-      document.documentElement.clientWidth || 0,
-      window.innerWidth || 0
-    );
-    const vh = Math.max(
-      document.documentElement.clientHeight || 0,
-      window.innerHeight || 0
-    );
-
-	const onShoutoutsClick = () => {
-      clippy = new Clippy({
-        size: 2,
-        slides: shoutoutsData.slides,
-        startingEmote: "bike-arrive",
-        startingPosition: {
-          top: vh / 2 - SPRITE_HEIGHT,
-          left: vw / 2 - SPRITE_WIDTH,
-        },
-      });
-
-      const onClippyEndTransition = () => {
-        clippy.containerEl.classList.remove("position-transition");
-        clippy.containerEl.removeEventListener(
-          "transitionend",
-          onClippyEndTransition
-        );
-
-        setTimeout(() => {
-          clippy.showDialogue();
-        }, 100);
-      };
-
-      const onClippyEnter = () => {
-        clippy.containerEl.classList.add("position-transition");
-        clippy.containerEl.addEventListener(
-          "transitionend",
-          onClippyEndTransition
-        );
-
-		const left = document.querySelector(".container").clientWidth - 60;
-		const top = document.querySelector(".bottom-nav").offsetTop - (SPRITE_HEIGHT * 2) - 20;
-        clippy.updatePosition({ left, top });
-
-        clippy.spriteSheetEl.removeEventListener("animationend", onClippyEnter);
-      };
-
-      clippy.spriteSheetEl.addEventListener("animationend", onClippyEnter);
-	  shoutoutsBtn.removeEventListener("click", onShoutoutsClick);
-    }
-
-    const shoutoutsBtn = document.getElementById("shoutouts-icon");
-    shoutoutsBtn.addEventListener("click", onShoutoutsClick);
-  </script>
+		// document.querySelector('.internet').addEventListener('click', ()=>{
+		// 	createTriviaPopup({
+		// 		title: 'TRIVIA TIME!!',
+		// 		triviaQuestion: tq.question,
+		// 		triviaAnswers: tq.answers,
+		// 		answerIndex: tq.answerIndex,
+		// 		onCorrect: ()=> createFireWorks()
+		// 	});
+		// });
+	</script>
 </html>

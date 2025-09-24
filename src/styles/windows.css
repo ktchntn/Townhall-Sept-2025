@@ -75,6 +75,11 @@ p {
 	margin-bottom: 8px;
 }
 
+.folder-container .icon.play {
+	background-image: url('../assets/icons/play.png');
+	margin-bottom: 8px;
+}
+
 .folder-container .icon.paint {
 	background-image: url('../assets/icons/paint.png');
 	/* background-position-x: -5px; */
