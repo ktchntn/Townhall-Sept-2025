@@ -2,7 +2,7 @@
   "slides": [
     {
       "slideId": "intro-1",
-      "message": "Hey, it's me, Clippy!<br/><br/>It looks like you are in need of some assistance.<br/><br/>Would you like some help?",
+      "message": "Hey, it's me, Clippy!<br/><br/>It looks like you're having some trouble finding your \"shout outs\" page.<br/><br/>Would you like some help?",
       "buttons": [
         {
           "text": "Yes"
@@ -43,14 +43,14 @@
     },
     {
       "slideId": "intro-4",
-      "message": "Great choice!<br/><br/>Hold on, fetching Shout Outs...",
+      "message": "Great choice!<br/><br/>One moment... Fetching the shout outs...",
       "nextSlideOnEmoteEnd": true,
       "emote": ["scientist-start", "exclamation"],
       "playImmediately": true
     },
     {
       "slideId": "intro-5",
-      "message": "I was able to fetch the Shout Outs.<br/><br/>Would you like me to display them? ",
+      "message": "Looks like I was able to fetch the shout outs.<br/><br/>Would you like me to display them? ",
       "buttons": [
         {
           "text": "Yes",
@@ -154,7 +154,7 @@
     },
     {
       "slideId": "outro-1",
-      "message": "Looks like those are all the Shout Outs!<br/><br/>",
+      "message": "And that's all!<br/><br/>There's still a trivia question coming your way, but that's none of my business. Peace out!",
       "buttons": [
         {
           "text": "Go back",

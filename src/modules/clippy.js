@@ -53,6 +53,7 @@ class Clippy {
    * @param {string} [options.startingEmote] The name of the emote Clippy is rendered with.
    * @param {DialogueContentData[]} [options.slides] An array of data to display on Clippy's dialogue box
    * @param {{ left: number, top: number }} [options.startingPosition] Position where Clippy first renders
+   * @param {Function} [options.onExit] A callback which runs when Clippy exits via the hide-and-leave action
    */
   constructor(options = {}) {
     this.clippyEl = null;
@@ -69,6 +70,8 @@ class Clippy {
     this.slides = options.slides || [];
     this.currentSlideIndex = 0;
     this.emoteEndCallback = null;
+    this.onExit = options.onExit;
+    this.isExiting = false;
 
     // Public methods
     this.queueNextEmote = this.queueNextEmote.bind(this);
@@ -246,7 +249,11 @@ class Clippy {
         "animationend",
         this.onAnimationEnd
       );
+      if (this.isExiting) {
+        this.spriteSheetEl.addEventListener("animationend", this.onExit);
+      }
       this.currentEndBehaviour = null;
+      this.isExiting = false;
     }
   }
 
@@ -515,6 +522,7 @@ class Clippy {
           case "hide-and-leave":
             buttonEl.addEventListener("click", () => {
               this.hideDialogue();
+              this.isExiting = true;
               this.queueNextEmote("bike-leave", "stop-at-end", true);
             });
             break;
