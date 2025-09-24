@@ -5,6 +5,10 @@ body {
     font-family: var(--font-family, "Comic Neue", "Handjet", cursive, sans-serif);
 }
 
+.glitter-layer {
+    overflow: hidden;
+}
+
 .spot-bonus.glitter-container {
     overflow: unset;
     overflow-x: hidden;
@@ -13,6 +17,7 @@ body {
 .spot-bonus_fireworks {
     position: absolute;
     top: 0;
+    overflow: hidden;
 }
 
 .spot-bonus {
@@ -82,7 +87,7 @@ body {
     border: 2px solid red;
     border-radius: 20px;
     width: 100%;
-    margin: 20px 0;
+    margin: 20px 5px;
 }
 
 .banner-list {
@@ -99,7 +104,7 @@ body {
 .banner-end-image {
     position: absolute;
     rotate: 40deg;
-    height: 90px;
+    height: 75px;
     align-self: center;
     float: inline-end;
     padding: 0 30px;
@@ -140,7 +145,7 @@ body {
 }
 
 .spot-bonus_headline {
-    color: yellow;
+    color: blue;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
     font-style: italic;
     z-index: 1;
@@ -153,7 +158,7 @@ body {
 }
 
 .spot-bonus_table {
-    color: yellow;
+    color: blue;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
     font-style: italic;
     font-size: 32px;
@@ -224,7 +229,7 @@ body {
 
 .vab-container.vab-right {
     position: absolute;
-    top: 10%;
+    top: 15%;
 }
 
 .vab-container.vab-left.integrated_banner {
@@ -235,6 +240,7 @@ body {
 
 .spot-bonus_banner2.vab-container {
     background-image: url('../assets/background-images/rainbow_trip.gif');
+    position: fixed;
 }
 
 .spot-bonus_banner2 .vab-button{
