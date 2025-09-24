@@ -14,59 +14,51 @@
 	<body>
 		<div class="main">
 			<div class="container">
-				<div class="folder-container">
+				<a class="folder-container" href="./assets/townhall-content/biz-update/index.html">
 					<div class="icon folder"></div>
-					<p>HR</p>
-				</div>
-				<div class="folder-container">
-					<a href="./assets/TownHall Content/I&I HHM.SEPT TH (CA ONLY).pdf">
-						<div class="icon folder"></div>
-						<p>I&I</p>
-					</a>
-				</div>
+					<p>Biz Updates</p>
+				</a>
+				<a class="folder-container" href="./assets/townhall-content/i&i/index.html">
+					<div class="icon folder"></div>
+					<p>I&I</p>
+				</a>
+				<a class="folder-container" href="./assets/townhall-content/social-club/index.html">
+					<div class="icon folder"></div>
+					<p>Social Club</p>
+				</a>
 				<div class="folder-container" id="cmvp">
 					<div class="icon play"></div>
 					<p>CMVP</p>
 				</div>
+				<a class="folder-container" id="interweb">
+					<div class="icon internet"></div>
+					<p>Internet</p>
+				</a>
+				<a class="folder-container" href="./question-and-answer.html">
+					<div class="icon question"></div>
+					<p>Q&A</p>
+				</a>
+				<div class="folder-container" class="paint">
+					<div class="icon paint"></div>
+					<p>Paint</p>
+				</div>
 				<div class="folder-container">
-					<a href="#">
-						<div class="icon internet"></div>
-            <p>Internet</p>
-          </a>
-        </div>
-        <div class="folder-container">
-          <a href="./index.html">
-            <div class="icon paint"></div>
-            <p>Paint</p>
-          </a>
-        </div>
-        <div class="folder-container">
-          <a href="./index.html">
-            <div class="icon solitaire"></div>
-            <p>Solitaire</p>
-          </a>
-        </div>
-        <div class="folder-container">
-          <span id="shoutouts-icon">
-            <div class="icon shoutouts"></div>
-            <p>Shoutouts Part 2</p>
-          </span>
-        </div>
-      </div>
-
-      <div class="bottom-nav">
-        <a href="/index.html">
-          <button>
-            <img class="cm-logo" src="./assets/90s-CM-Logo.png" />Start
-          </button>
-        </a>
-        <div class="time-container">
-          <img class="icon" src="./assets/icons/volume-up.png" />
-          <p id="time"></p>
-        </div>
-      </div>
-    </div>
-  </body>
+					<div class="icon solitaire"></div>
+					<p>Solitaire</p>
+				</div>
+			</div>
+			<dialog id="dialog"></dialog>
+			<div class="bottom-nav">
+				<a href="/index.html">
+					<button><img class="cm-logo" src="./assets/90s-CM-Logo.png"/>Start</button>
+				</a>
+				<div class="time-container">
+					<img class="icon" src="./assets/icons/volume-up.png"/>
+					<p id="time"></p>
+				</div>
+			</div>
+		</div>
+	</body>
 
   <script>
     function updateClock() {
@@ -83,6 +75,18 @@
 
     // Update the clock every second
     setInterval(updateClock, 1000);
+
+		const internetButton = document.getElementById('interweb')
+		const dialog = document.getElementById('dialog')
+
+		internetButton.addEventListener('click', () => {
+			dialog.showModal()
+		}) 
+
+		dialog.addEventListener('click', () => {
+			console.log('close')
+			dialog.close()
+		})
   </script>
 
   <script type="module">
@@ -116,14 +120,14 @@
 		import { triviaQuestions } from "./data/trivia.js";
 		const tq = triviaQuestions[3];
 
-		// document.querySelector('.internet').addEventListener('click', ()=>{
-		// 	createTriviaPopup({
-		// 		title: 'TRIVIA TIME!!',
-		// 		triviaQuestion: tq.question,
-		// 		triviaAnswers: tq.answers,
-		// 		answerIndex: tq.answerIndex,
-		// 		onCorrect: ()=> createFireWorks()
-		// 	});
-		// });
+		document.querySelector('.paint').addEventListener('click', ()=>{
+			createTriviaPopup({
+				title: 'TRIVIA TIME!!',
+				triviaQuestion: tq.question,
+				triviaAnswers: tq.answers,
+				answerIndex: tq.answerIndex,
+				onCorrect: ()=> createFireWorks()
+			});
+		});
 	</script>
 </html>
