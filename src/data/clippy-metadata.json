@@ -147,8 +147,8 @@
     {
       "name": "scientist-start",
       "rowIndex": 23,
-      "duration": 7300,
-      "numFrames": 71
+      "duration": 10500,
+      "numFrames": 108
     },
     {
       "name": "scientist-write",

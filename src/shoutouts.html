@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>September Town Hall</title>
+    <title>Shout Outs</title>
     <link rel="stylesheet" href="./styles/shoutouts.css" />
 
     <!-- Google Font -->
@@ -26,16 +26,20 @@
     </section>
     <section class="content">
       <div class="start-button-container">
-        <button id="ominous-button">Ominous Button</button>
+        <button id="ominous-button">Ominous Button...</button>
         <audio src="./assets/sounds/dial-up-modem-01.mp3" id="dial-up"></audio>
       </div>
     </section>
   </body>
 
   <script type="module">
+    import Clippy from "./modules/clippy.js";
+    import { createTriviaPopup } from './modules/nineties-popup.js';
+    import { createFireWorks } from './modules/fireworks.js';
+
     import shoutoutsData from "./data/shoutouts.json";
     import clippyMetaData from "./data/clippy-metadata.json";
-    import Clippy from "./modules/clippy.js";
+    import { triviaQuestions } from "./data/trivia.js";
 
     let clippy;
 
@@ -50,6 +54,8 @@
       document.documentElement.clientHeight || 0,
       window.innerHeight || 0
     );
+
+    const tq = triviaQuestions[3];
 
     const ominousButton = document.querySelector("#ominous-button");
     ominousButton.addEventListener("click", () => {
@@ -66,6 +72,15 @@
           top: vh / 2 - SPRITE_HEIGHT,
           left: vw / 2 - SPRITE_WIDTH,
         },
+        onExit: () => {
+          createTriviaPopup({
+            title: 'TRIVIA TIME!!',
+            triviaQuestion: tq.question,
+            triviaAnswers: tq.answers,
+            answerIndex: tq.answerIndex,
+            onCorrect: ()=> createFireWorks()
+          });
+        }
       });
 
       const onClippyEndTransition = () => {

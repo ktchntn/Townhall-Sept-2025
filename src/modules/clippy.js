@@ -15,6 +15,7 @@ const STYLE_ID = "clippy-styles-v1";
  * @typedef {Object} DialogueContentData
  * @property {string} slideId Unique identifier of the content.
  * @property {string} message Main message of content
+ * @property {string} [audioPath] Relative path to audio which plays on showing the slide
  * @property {string} [recipient] Recipient of message
  * @property {string} [sender] Sender of message
  * @property {Object[]} [buttons] Array of buttons to display and their action
@@ -53,6 +54,7 @@ class Clippy {
    * @param {string} [options.startingEmote] The name of the emote Clippy is rendered with.
    * @param {DialogueContentData[]} [options.slides] An array of data to display on Clippy's dialogue box
    * @param {{ left: number, top: number }} [options.startingPosition] Position where Clippy first renders
+   * @param {Function} [options.onExit] A callback which runs when Clippy exits via the hide-and-leave action
    */
   constructor(options = {}) {
     this.clippyEl = null;
@@ -69,6 +71,9 @@ class Clippy {
     this.slides = options.slides || [];
     this.currentSlideIndex = 0;
     this.emoteEndCallback = null;
+    this.onExit = options.onExit;
+    this.isExiting = false;
+    this.currentDialogueAudio = null;
 
     // Public methods
     this.queueNextEmote = this.queueNextEmote.bind(this);
@@ -246,7 +251,11 @@ class Clippy {
         "animationend",
         this.onAnimationEnd
       );
+      if (this.isExiting) {
+        this.spriteSheetEl.addEventListener("animationend", this.onExit);
+      }
       this.currentEndBehaviour = null;
+      this.isExiting = false;
     }
   }
 
@@ -515,6 +524,7 @@ class Clippy {
           case "hide-and-leave":
             buttonEl.addEventListener("click", () => {
               this.hideDialogue();
+              this.isExiting = true;
               this.queueNextEmote("bike-leave", "stop-at-end", true);
             });
             break;
@@ -551,6 +561,16 @@ class Clippy {
         slideData.endBehaviour || "return-to-blink",
         slideData.playImmediately
       );
+    }
+
+    // play audio
+    if (slideData.audioPath) {
+      this.currentDialogueAudio?.pause?.();
+      const audio = new Audio(slideData.audioPath);
+      this.currentDialogueAudio = audio;
+      setTimeout(() => {
+        audio.play();
+      }, 250);
     }
 
     this.repositionDialogue();
