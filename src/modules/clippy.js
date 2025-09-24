@@ -163,8 +163,6 @@ class Clippy {
       this.spriteSheetEl.classList.add(`anim_${this.currentEmote}`);
       this.stopOnFinalEmote();
     }, 10);
-   
-    console.log(this.currentEmote)
 
     this.playSound('scientist-start', document.getElementById('dial-up'))
     this.pauseSound('raise-eyebrow', document.getElementById('dial-up'))
