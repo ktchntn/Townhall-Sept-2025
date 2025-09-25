@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>September Town Hall</title>
-    <link rel="stylesheet" href="./styles/windows.css" />
-	<link rel="stylesheet" href="./styles/pixelated-corners.css" />
+	<head>
+		<title>September Town Hall</title>
+		<link rel="stylesheet" href="./styles/windows.css">
 
 		<!-- Google Font -->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -69,11 +68,8 @@
   <script>
     function updateClock() {
       const now = new Date();
-      const time = now.toLocaleTimeString("en-US", {
-        hour: "2-digit",
-        minute: "2-digit",
-      });
-      document.getElementById("time").innerText = `${time}`;
+      const time = now.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" });
+      document.getElementById('time').innerText = `${time}`;
     }
 
     // Call updateClock initially to display the time immediately
@@ -102,17 +98,17 @@
 			{ title: "Welcome Video", src: "./assets/videos/CMVP.SEPTTH.mp4" }
 		];
 
-    let mediaPlayer = null;
+		let mediaPlayer = null;
 
-    document.getElementById("cmvp").addEventListener("click", function () {
-      if (!mediaPlayer) {
-        mediaPlayer = createMediaPlayer({
-          videos: videos,
-          width: 640,
-          height: 480,
-          centered: false,
-          initialVolume: 1,
-        });
+		document.getElementById('cmvp').addEventListener('click', function () {
+			if (!mediaPlayer) {
+				mediaPlayer = createMediaPlayer({
+					videos: videos,
+					width: 640,
+					height: 480,
+					centered: false,
+					initialVolume: 1
+				});
 
 				mediaPlayer.onClose(() => {
 					mediaPlayer = null;
