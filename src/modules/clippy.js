@@ -16,6 +16,7 @@ const STYLE_ID = "clippy-styles-v1";
  * @property {string} slideId Unique identifier of the content.
  * @property {string} message Main message of content
  * @property {string} [audioPath] Relative path to audio which plays on showing the slide
+ * @property {number} [playDelay] Delay before audio plays in ms
  * @property {string} [recipient] Recipient of message
  * @property {string} [sender] Sender of message
  * @property {Object[]} [buttons] Array of buttons to display and their action
@@ -25,6 +26,7 @@ const STYLE_ID = "clippy-styles-v1";
  * @property {("loop" | "stop-at-end" | "return-to-blink")} [endBehaviour] Behaviour of emote when it reaches the end
  * @property {boolean} [playImmediately] Flag to play animation immediately when this method is called.
  * @property {boolean} [nextSlideOnEmoteEnd] Flag to switch to the next slide once the emote(s) end.
+ * @property {boolean} [leaveOnAudioEnd] Flag to trigger the hide and leave emote when the dialogue audio ends.
  */
 
 /**
@@ -33,6 +35,7 @@ const STYLE_ID = "clippy-styles-v1";
  * @property {number} rowIndex Row position of emote in sprite sheet
  * @property {number} duration Duration of emote in milliseconds
  * @property {number} numFrames Number of frames of the emote
+ * @property {string} sfxPath Path to the emote's sound effect
  */
 
 /**
@@ -74,6 +77,7 @@ class Clippy {
     this.onExit = options.onExit;
     this.isExiting = false;
     this.currentDialogueAudio = null;
+    this.currentEmoteSFX = null;
 
     // Public methods
     this.queueNextEmote = this.queueNextEmote.bind(this);
@@ -83,6 +87,7 @@ class Clippy {
     this.onAnimationEnd = this.onAnimationEnd.bind(this);
     this.playCurrentEmote = this.playCurrentEmote.bind(this);
     this.updatePosition = this.updatePosition.bind(this);
+    this.hideAndLeave = this.hideAndLeave.bind(this);
 
     // Initialization
     this.renderStyles();
@@ -167,12 +172,28 @@ class Clippy {
     setTimeout(() => {
       this.spriteSheetEl.classList.add(`anim_${this.currentEmote}`);
       this.stopOnFinalEmote();
+
+      this.currentEmoteSFX?.pause();
+      this.currentEmoteSFX = null;
+      if (this.getEmoteData(this.currentEmote)?.sfxPath) {
+        this.currentEmoteSFX = new Audio(this.getEmoteData(this.currentEmote).sfxPath);
+        this.currentEmoteSFX.play();
+      }
     }, 10);
 
     this.playSound('scientist-start', document.getElementById('dial-up'))
-    this.pauseSound('raise-eyebrow', document.getElementById('dial-up'))
+    this.pauseSound('exclamation', document.getElementById('dial-up'))
   }
 
+
+  /**
+   * Returns data of an emote given its name
+   * @param {string} emoteName 
+   * @returns {EmoteData} Emote data associated with the emote name
+   */
+  getEmoteData(emoteName) {
+    return metadata.emotes.find((data) => data.name === emoteName);
+  }
 
   /**
    * Play sound
@@ -260,6 +281,15 @@ class Clippy {
   }
 
   /**
+   * Hides dialogue and triggers Clippy's leave emote with a forwards animation fill mode
+   */
+  hideAndLeave() {
+    this.hideDialogue();
+    this.isExiting = true;
+    this.queueNextEmote("bike-leave", "stop-at-end", true);
+  }
+
+  /**
    * Generates all styles necessary for this class.
    * @private
    * @returns {void}
@@ -315,6 +345,15 @@ class Clippy {
               font-size: 20px;
               width: max-content;
               max-width: 75vw;
+            }
+
+            .clippy-dialogue-message {
+              margin: 15px 0;
+            }
+
+            
+            .clippy-dialogue-sender {
+              margin: 28px 0;
             }
 
             .clippy-dialogue-button {
@@ -523,9 +562,7 @@ class Clippy {
             break;
           case "hide-and-leave":
             buttonEl.addEventListener("click", () => {
-              this.hideDialogue();
-              this.isExiting = true;
-              this.queueNextEmote("bike-leave", "stop-at-end", true);
+              this.hideAndLeave();
             });
             break;
           default:
@@ -563,14 +600,31 @@ class Clippy {
       );
     }
 
+    // cut off previous audio
+    this.currentDialogueAudio?.pause?.();
+    if (this.dialoguePlayTimer) {
+      clearTimeout(this.dialoguePlayTimer);
+      this.dialoguePlayTimer = null;
+    }
+
     // play audio
     if (slideData.audioPath) {
-      this.currentDialogueAudio?.pause?.();
       const audio = new Audio(slideData.audioPath);
+      audio.volume = 0.8;
       this.currentDialogueAudio = audio;
-      setTimeout(() => {
+
+      if (slideData.leaveOnAudioEnd) {
+        const onAudioEnd = () => {
+          this.hideAndLeave();
+          audio.removeEventListener("ended", onAudioEnd)
+        }
+
+        audio.addEventListener("ended", onAudioEnd);
+      }
+
+      this.dialoguePlayTimer = setTimeout(() => {
         audio.play();
-      }, 250);
+      }, slideData.playDelay || 250);
     }
 
     this.repositionDialogue();
@@ -608,8 +662,15 @@ class Clippy {
    */
   hideDialogue() {
     if (!this.dialogueWrapperEl) return;
-
+    
     this.dialogueWrapperEl.classList.add("hidden");
+
+    // cut off previous audio
+    this.currentDialogueAudio?.pause?.();
+    if (this.dialoguePlayTimer) {
+      clearTimeout(this.dialoguePlayTimer);
+      this.dialoguePlayTimer = null;
+    }
   }
 }
 
