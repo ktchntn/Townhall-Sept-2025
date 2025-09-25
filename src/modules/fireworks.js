@@ -31,7 +31,7 @@ class Firework {
         this.x = Math.random() * canvas.width;
         this.y = canvas.height;
         this.targetY = Math.random() * canvas.height / 2;
-        this.speed = 3;
+        this.speed = 8;
         this.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
     }
 

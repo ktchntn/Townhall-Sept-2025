@@ -264,6 +264,10 @@ const baseStyles = `
   word-break: break-word;
 }
 
+.tp-in-motion .tp-btn{
+  pointer-events: none;
+}
+
 .tp-hero-text {
   text-shadow: none;
 }
@@ -583,6 +587,7 @@ export function createTriviaPopup(options = {}) {
         <button class="np-btn" data-action="nope">No thanks</button>
       </div>
     </div>
+    <audio src="../assets/sounds/windows-98-chord.mp3" autoplay/>
     <div class="np-focus-sentinel" tabindex="0"></div>
   `;
 
@@ -596,6 +601,7 @@ export function createTriviaPopup(options = {}) {
   const badgeEl = popup.querySelector('.np-badge');
   const marqueeEl = popup.querySelector('.np-marquee');
   const heroEl = popup.querySelector('.np-hero');
+  const buttonsContainerEl = popup.querySelector('.tp-buttons');
 
   let time = 120;
   let timer = setInterval(()=>{
@@ -611,8 +617,9 @@ export function createTriviaPopup(options = {}) {
   },1000)
 
   const fakeClose = () =>{
-    stopBounce = bounceAround(popup);
     popup.classList.toggle('tp-popup');
+    buttonsContainerEl.classList.toggle('tp-in-motion');
+    stopBounce = bounceAround(popup);
 
     ['mousedown', 'keydown', 'touchstart'].forEach(evt => {
       popup.addEventListener(evt, () => {
@@ -620,9 +627,35 @@ export function createTriviaPopup(options = {}) {
           stopBounce();
           stopBounce = null;
           popup.classList.toggle('tp-popup');
+          buttonsContainerEl.classList.toggle('tp-in-motion');
+          outOfBoundsCheck();
         }
       }, { once: true });
     });
+  }
+
+  const outOfBoundsCheck = ()=>{
+    const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    const rect = popup.getBoundingClientRect();
+
+    // I did this the lazy way of measuring the dimensions and copying them.
+    // We should do this on our presentation monitor
+    if (rect.top < 0) {
+      popup.style.top = "131px";
+    }
+
+    if(rect.left < 0){
+      popup.style.left = "100px";
+    }
+
+    if(rect.bottom > viewportHeight){
+      popup.style.top = "295px";
+    }
+
+    if(rect.right > viewportWidth){
+      popup.style.left = "1188px";
+    }
   }
 
   triviaAnswers.map( (ans, index) => {
@@ -654,7 +687,10 @@ export function createTriviaPopup(options = {}) {
 
         const text = document.createElement("div");
         text.classList.add('np-hero-text', 'tp-hero-correct-text');
-        text.innerText = 'YOU GOT IT';
+        text.innerText =  triviaAnswers[answerIndex - 1];
+
+        document.querySelector('.tp-buttons').remove();
+        document.querySelector('.tp-actions').remove();
 
         heroEl.replaceChildren(emoji, text);
 
@@ -666,19 +702,15 @@ export function createTriviaPopup(options = {}) {
         marqueeEl.querySelector('span').innerText = 'WOWIE 🔥 YOU DID IT! 🔥 PROUD OF YOU 🔥 LEARNING IS FUN 🔥';
          setTimeout(()=>{
            window.location.href= 'index.html';
-         }, 4000)
+         }, 5000)
       });
     }
     document.querySelector('.tp-buttons').appendChild(triviaButton);
   });
 
 
-  const rect = popup.getBoundingClientRect();
-  const maxLeft = Math.max(8, window.innerWidth - rect.width - 8);
-  const maxTop = Math.max(8, window.innerHeight - rect.height - 8);
-
-  const left = startPosition?.left ?? clamp(Math.random() * (window.innerWidth - rect.width), 8, maxLeft);
-  const top = startPosition?.top ?? clamp(Math.random() * (window.innerHeight - rect.height), 8, maxTop);
+  const left = window.innerWidth / 3.75;
+  const top = window.innerHeight / 3.75;
 
   popup.style.left = `${left}px`;
   popup.style.top = `${top}px`;
