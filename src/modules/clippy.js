@@ -347,6 +347,15 @@ class Clippy {
               max-width: 75vw;
             }
 
+            .clippy-dialogue-message {
+              margin: 15px 0;
+            }
+
+            
+            .clippy-dialogue-sender {
+              margin: 28px 0;
+            }
+
             .clippy-dialogue-button {
               padding: 5px;
               font-family: inherit;

@@ -1,0 +1,204 @@
+{
+    "slides": [
+      {
+        "slideId": "intro-6",
+        "message": "Hey! I got some more shout outs data.<br/><br/>Oh and by the way, you're not in any of them. 😬",
+        "audioPath": "/assets/sounds/shoutouts_intro-6.mp3",
+        "buttons": [
+          {
+            "text": "Next",
+            "action": "next"
+          }
+        ],
+        "emote": ["blink"]
+      },
+      {
+        "slideId": "intro-7",
+        "message": "Sorry, that was a bit uncalled for...",
+        "audioPath": "/assets/sounds/shoutouts_intro-7.mp3",
+        "buttons": [
+          {
+            "text": "Next",
+            "action": "next"
+          }
+        ],
+        "emote": ["head-scratch", "raise-eyebrow"],
+        "playImmediately": true
+      },
+      {
+        "slideId": "intro-8",
+        "message": "As an apology, let me read the rest of the shoutouts for you!",
+        "audioPath": "/assets/sounds/shoutouts_intro-8.mp3",
+        "buttons": [
+          {
+            "text": "Next",
+            "action": "next"
+          }
+        ],
+        "emote": ["idle-lean"],
+        "playImmediately": true
+      },
+      {
+        "slideId": "shoutout-8",
+        "message": "Emily, I'm so grateful that I get to work alongside you every day, and it's been incredible to witness you returning to work as an absolute rockstar after your time off. Not only are you an incredible researcher and smart Curious cookie, you're a wonderful friend and definitely the coolest mom around.<br/><br/>Your dedication and thoroughness to Curious' research is an admirable inspiration to us all, and doesn't go unnoticed. Whilst the Malts project in particular had us all needing a drink at some point, you championed it right through to the end with incredible levels of in-depth analysis that showed the clients what Curious and CM do best.<br/><br/>Girl power!",
+        "sender": "Alisha Camm-Stokes",
+        "recipient": "Emily Peschel",
+        "audioPath": "/assets/sounds/shoutouts_shoutout-8.mp3",
+        "buttons": [
+          {
+            "text": "Previous",
+            "action": "disabled"
+          },
+          {
+            "text": "Next",
+            "action": "next"
+          }
+        ],
+        "playImmediately": true,
+        "emote": ["point-up", "blink", "lounge"]
+      },
+      {
+        "slideId": "shoutout-9",
+        "message": "I just want to take a moment to say how much I appreciate all the hard work you do every day. It's wonderful to see how much you two care about supporting everyone and making sure we all succeed together.",
+        "sender": "Morgan Cheung",
+        "recipient": "Thinh Thang & Ellen Vuong",
+        "audioPath": "/assets/sounds/shoutouts_shoutout-9.mp3",
+        "buttons": [
+          {
+            "text": "Previous",
+            "action": "previous"
+          },
+          {
+            "text": "Next",
+            "action": "next"
+          }
+        ],
+        "emote": ["scientist-write", "blink"],
+
+        "endBehaviour": "loop"
+      },
+      {
+        "slideId": "shoutout-10",
+        "message": "There are some people who work \"behind the scenes\" contributing to the success of our agency without most of us knowing; Amy is one of them. Working with all the data the Ops team manage every day is surely not an easy task, and you always support us as a delivery lead with grace, professionalism, and lots of talent too. I thank you for all the patience you had with me in the past few months as I joined the BMW/MINI team, and for answering my millions of questions. You helped me succeed in my role making it easier for me to do. Keep shining bright!",
+        "sender": "Alice Pinto",
+        "recipient": "Amy Damus",
+        "audioPath": "/assets/sounds/shoutouts_shoutout-10.mp3",
+        "buttons": [
+          {
+            "text": "Previous",
+            "action": "previous"
+          },
+          {
+            "text": "Next",
+            "action": "next"
+          }
+        ],
+        "emote": ["read", "raise-eyebrow", "blink", "scientist-write"],
+        "endBehaviour": "return-to-blink"
+      },
+      {
+        "slideId": "shoutout-11",
+        "message": "iPhone’s amazing producer this NPI, Joanna, seems to be at least two people at once. The speed and efficiency she brings to her work are incredible, helping to keep the team aligned and on schedule. Her comprehensive knowledge across all deliverables meant she often had the answers before most of us even knew what questions to ask. She’s incredibly communicative, deeply knowledgeable, and a friendly voice in the onslaught of Radars.<br/><br/>Thank you, Joanna, for being our rock!",
+        "sender": "Maaike Lambalgen",
+        "recipient": "Joanna Chaffin",
+        "audioPath": "/assets/sounds/shoutouts_shoutout-11.mp3",
+        "buttons": [
+          {
+            "text": "Previous",
+            "action": "previous"
+          },
+          {
+            "text": "Next",
+            "action": "next"
+          }
+        ],
+        "emote": ["airplane", "look-left-right"],
+        "endBehaviour": "loop"
+      },
+      {
+        "slideId": "shoutout-12",
+        "message": "Thank you again, Liz, you are amazing. So incredibly helpful, and quick to respond to my Concur expense related questions. You are the BEST co-worker. I'd be lost without you! :-)",
+        "sender": "Jeanine Berigliano",
+        "recipient": "Liz Yeung",
+        "audioPath": "/assets/sounds/shoutouts_shoutout-12.mp3",
+        "buttons": [
+          {
+            "text": "Previous",
+            "action": "previous"
+          },
+          {
+            "text": "Next",
+            "action": "next"
+          }
+        ],
+        "emote": ["trapped", "blink", "trapped"],
+        "endBehaviour": "return-to-blink"
+      },
+      {
+        "slideId": "shoutout-13",
+        "message": "Allison is amazing!! Sometimes we have checkmate situations for dev and we anxiously reach out to design. Allison always responds  “No problem!” and we find a solution almost instantly.<br/><br/>How does she do it??<br/><br/>Allison is talented, helpful, creative, and resourceful… I could go on…<br/>But she’s done it again to pull off a stellar launch, and we couldn’t have done it without her. Thank you Allison!",
+        "sender": "Clyde Bueckert",
+        "recipient": "Allison Gray",
+        "audioPath": "/assets/sounds/shoutouts_shoutout-13.mp3",
+        "buttons": [
+          {
+            "text": "Previous",
+            "action": "previous"
+          },
+          {
+            "text": "Next",
+            "action": "next"
+          }
+        ],
+        "emote": ["look-around", "music"],
+        "endBehaviour": "return-to-blink"
+      },
+      {
+        "slideId": "shoutout-14",
+        "message": "Thank you for all of the new hires and extension processing this month! You all are amazing and appreciated! :-)",
+        "sender": "Melissa Hennessy",
+        "recipient": "Versailles Zayshley, Milan Gaida, Carolyn Hackenburg, and Tacey Kradukunda",
+        "audioPath": "/assets/sounds/shoutouts_shoutout-14.mp3",
+        "buttons": [
+          {
+            "text": "Previous",
+            "action": "previous"
+          },
+          {
+            "text": "Next",
+            "action": "next"
+          }
+        ],
+        "emote": ["search", "blink"],
+        "endBehaviour": "loop"
+      },
+      {
+        "slideId": "shoutout-15",
+        "message": "Thank you for all you do! It's been a whirlwind of a year so far with a few months to go!<br/>You are very much appreciated!",
+        "sender": "Melissa Hennessy",
+        "recipient": "Gino and Savreen",
+        "audioPath": "/assets/sounds/shoutouts_shoutout-15.mp3",
+        "buttons": [
+          {
+            "text": "Previous",
+            "action": "previous"
+          },
+          {
+            "text": "Next",
+            "action": "next"
+          }
+        ],
+        "emote": ["tornado", "raise-eyebrow", "tornado"],
+        "endBehaviour": "return-to-blink"
+      },
+      {
+        "slideId": "outro-1",
+        "message": "And that's a wrap on the shout outs!<br/><br/>Seeya later Critical Mass!",
+        "audioPath":"/assets/sounds/shoutouts_outro-2.mp3",
+        "emote": ["check-mark", "blink"],
+        "playImmediately": true,
+        "leaveOnAudioEnd": true
+      }
+    ]
+  }
+  
