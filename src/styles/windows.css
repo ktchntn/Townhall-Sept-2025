@@ -103,7 +103,8 @@ p {
 .folder-container .icon.internet:hover,
 .folder-container .icon.paint:hover,
 .folder-container .icon.solitaire:hover,
-.folder-container .icon.play:hover {
+.folder-container .icon.play:hover,
+.folder-container .icon.shoutouts:hover {
 	transform: scale(1.1);
 }
 
@@ -212,4 +213,8 @@ dialog {
 
 dialog:hover {
 	cursor: pointer;
+}
+
+.position-transition {
+    transition: top linear 0.5s, left linear 0.5s;
 }
