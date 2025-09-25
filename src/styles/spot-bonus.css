@@ -141,7 +141,7 @@ body {
 .spot-bonus_container {
     margin: auto;
     padding: 20px 0;
-    width: 60%;
+    width: 70%;
 }
 
 .spot-bonus_headline {
@@ -179,7 +179,7 @@ body {
     border-bottom-color: rgb(255, 164, 61);
     top: 0;
     width: calc(100% - 10px);
-    height: 90%;
+    height: 100%;
     opacity: 1;
 }
 
@@ -195,6 +195,7 @@ body {
 .spot-bonus_reveal_button {
     position: absolute;
     bottom: 0;
+    left: 5px;
 }
 
 .spot-bonus_footer {
