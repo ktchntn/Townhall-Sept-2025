@@ -195,6 +195,24 @@
       "endBehaviour": "loop"
     },
     {
+      "slideId": "shoutout-16",
+      "message": "Shout out to Franca for being the mother (admin) of all the other mothers (admins) across CM. It was so wonderful to have a CD that not only cared about me and my growth, but also wanted all the admins to love the work they do and be appreciated for it. Whatever love you send her way isn't enough!",
+      "sender": "Joshua",
+      "recipient": "Franca",
+      "buttons": [
+        {
+          "text": "Previous",
+          "action": "previous"
+        },
+        {
+          "text": "Next",
+          "action": "next"
+        }
+      ],
+      "emote": ["look-around", "blink"],
+      "endBehaviour": "loop"
+    },
+    {
       "slideId": "outro-1",
       "message": "And that's all for now!<br/><br/>There's still a trivia question coming your way, but that's none of my business.<br/>Peace out!",
       "audioPath":"/assets/sounds/shoutouts_outro-1.mp3",
