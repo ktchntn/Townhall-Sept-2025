@@ -4,6 +4,7 @@
       "slideId": "intro-1",
       "message": "Hi there, I'm Clippy!<br/><br/>It looks like you're having some trouble finding your \"shout outs\" page.<br/><br/>Would you like some help?",
       "audioPath": "/assets/sounds/shoutouts_intro-1.mp3",
+      "playDelay": 3600,
       "buttons": [
         {
           "text": "Yes"
@@ -32,7 +33,7 @@
     },
     {
       "slideId": "intro-3",
-      "message": "Look, I really insist that you do, bud. Just look at the sorry state of this page...<br/><br/>Oh, and do you remember your last townhall? You know, the live poll app that literally broke 3 questions in? 😐",
+      "message": "Look, I really insist that you do, bud. Just look at the sorry state of this page...<br/><br/>If you can even call it a page, this is. 😐",
       "audioPath": "/assets/sounds/shoutouts_intro-3.mp3",
       "buttons": [
         {
@@ -46,10 +47,10 @@
     },
     {
       "slideId": "intro-4",
-      "message": "Great choice!<br/><br/>One moment... Fetching the shout outs...",
+      "message": "Great choice!<br/><br/>One moment... Fetching shout outs...",
       "audioPath": "/assets/sounds/shoutouts_intro-4.mp3",
       "nextSlideOnEmoteEnd": true,
-      "emote": ["scientist-start", "exclamation"],
+      "emote": ["raise-eyebrow", "scientist-start", "exclamation"],
       "playImmediately": true
     },
     {
@@ -100,7 +101,7 @@
           "action": "next"
         }
       ],
-      "emote": ["tornado", "blink"],
+      "emote": ["read", "raise-eyebrow"],
       "endBehaviour": "loop"
     },
     {
@@ -158,21 +159,66 @@
       "endBehaviour": "loop"
     },
     {
-      "slideId": "outro-1",
-      "message": "And that's all!<br/><br/>There's still a trivia question coming your way, but that's none of my business. Peace out!",
-      "audioPath":"/assets/sounds/shoutouts_outro-1.mp3",
+      "slideId": "shoutout-6",
+      "message": "Big thanks to these three for stepping up and volunteering at the UofC Markathon! I really appreciate you giving up part of your long weekend to come into the office on a Saturday and help me and more importantly the students. Your positive attitudes and support made the day more fun and a huge success!",
+      "sender": "Aimee Wilson",
+      "recipient": "Nikki Thomson, Lady Acheampong and Omi Brown",
       "buttons": [
         {
-          "text": "Go back",
+          "text": "Previous",
           "action": "previous"
         },
         {
-          "text": "Finish",
-          "action": "hide-and-leave"
+          "text": "Next",
+          "action": "next"
         }
       ],
-      "emote": ["check-mark", "blink", "lounge", "blink", "dozing"],
-      "playImmediately": true
+      "emote": ["tornado", "blink"],
+      "endBehaviour": "loop"
+    },
+    {
+      "slideId": "shoutout-7",
+      "message": "A big big shoutout to the social club folks here in Calgary for helping with the Chess Beer O'clock! Your support, help and vibes made the event turn out to be super fun and smooth sailing. Appreciate y'all so much.",
+      "sender": "Savreen Kaur",
+      "recipient": "The Social Club",
+      "buttons": [
+        {
+          "text": "Previous",
+          "action": "previous"
+        },
+        {
+          "text": "Next",
+          "action": "next"
+        }
+      ],
+      "emote": ["search", "blink"],
+      "endBehaviour": "loop"
+    },
+    {
+      "slideId": "shoutout-16",
+      "message": "Shout out to Franca for being the mother (admin) of all the other mothers (admins) across CM. It was so wonderful to have a CD that not only cared about me and my growth, but also wanted all the admins to love the work they do and be appreciated for it. Whatever love you send her way isn't enough!",
+      "sender": "Joshua",
+      "recipient": "Franca",
+      "buttons": [
+        {
+          "text": "Previous",
+          "action": "previous"
+        },
+        {
+          "text": "Next",
+          "action": "next"
+        }
+      ],
+      "emote": ["look-around", "blink"],
+      "endBehaviour": "loop"
+    },
+    {
+      "slideId": "outro-1",
+      "message": "And that's all for now!<br/><br/>There's still a trivia question coming your way, but that's none of my business.<br/>Peace out!",
+      "audioPath":"/assets/sounds/shoutouts_outro-1.mp3",
+      "emote": ["check-mark", "blink"],
+      "playImmediately": true,
+      "leaveOnAudioEnd": true
     }
   ]
 }

@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>September Town Hall</title>
-		<link rel="stylesheet" href="./styles/windows.css">
+  <head>
+    <title>September Town Hall</title>
+    <link rel="stylesheet" href="./styles/windows.css" />
+	<link rel="stylesheet" href="./styles/pixelated-corners.css" />
 
 		<!-- Google Font -->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,37 +14,40 @@
 	<body>
 		<div class="main">
 			<div class="container">
-				<div class="folder-container" id ="cmvp">
+				<a class="folder-container" href="./assets/townhall-content/biz-update/index.html">
 					<div class="icon folder"></div>
+					<p>Biz Updates</p>
+				</a>
+				<a class="folder-container" href="./assets/townhall-content/i&i/index.html">
+					<div class="icon folder"></div>
+					<p>I&I</p>
+				</a>
+				<a class="folder-container" href="./assets/townhall-content/social-club/index.html">
+					<div class="icon folder"></div>
+					<p>Social Club</p>
+				</a>
+				<div class="folder-container" id="cmvp">
+					<div class="icon play"></div>
 					<p>CMVP</p>
 				</div>
-				<div class="folder-container">
-					<div class="icon folder"></div>
-					<p>HR</p>
+				<a class="folder-container" id="interweb">
+					<div class="icon internet"></div>
+					<p>Internet</p>
+				</a>
+				<a class="folder-container" href="./question-and-answer.html">
+					<div class="icon question"></div>
+					<p>Q&A</p>
+				</a>
+				<div class="folder-container" class="paint">
+					<div class="icon paint"></div>
+					<p>Paint</p>
 				</div>
 				<div class="folder-container">
-					<div class="icon folder"></div>
-					<p>DE&I</p>
-				</div>
-				<div class="folder-container">
-          <a href="#">
-						<div class="icon internet"></div>
-            <p>Internet</p>
-          </a>
-				</div>
-				<div class="folder-container">
-          <a href="./index.html">
-						<div class="icon paint"></div>
-            <p>Paint</p>
-          </a>
-				</div>
-				<div class="folder-container">
-          <a href="./index.html">
-						<div class="icon solitaire"></div>
-            <p>Solitaire</p>
-          </a>
+					<div class="icon solitaire"></div>
+					<p>Solitaire</p>
 				</div>
 			</div>
+			<dialog id="dialog"></dialog>
 			<div class="bottom-nav">
 				<a href="/index.html">
 					<button><img class="cm-logo" src="./assets/90s-CM-Logo.png"/>Start</button>
@@ -59,8 +63,11 @@
   <script>
     function updateClock() {
       const now = new Date();
-      const time = now.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" });
-      document.getElementById('time').innerText = `${time}`;
+      const time = now.toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+      });
+      document.getElementById("time").innerText = `${time}`;
     }
 
     // Call updateClock initially to display the time immediately
@@ -68,25 +75,38 @@
 
     // Update the clock every second
     setInterval(updateClock, 1000);
+
+		const internetButton = document.getElementById('interweb')
+		const dialog = document.getElementById('dialog')
+
+		internetButton.addEventListener('click', () => {
+			dialog.showModal()
+		}) 
+
+		dialog.addEventListener('click', () => {
+			console.log('close')
+			dialog.close()
+		})
   </script>
 
   <script type="module">
-	import { createMediaPlayer } from './modules/windows98-media-player.js';
+		import { createMediaPlayer } from './modules/windows98-media-player.js';
+
 		const videos = [
-			{ title: "Welcome Video", src: "./assets/videos/placeholder.mp4" }
+			{ title: "Welcome Video", src: "./assets/videos/CMVP.SEPTTH.mp4" }
 		];
 
-		let mediaPlayer = null;
+    let mediaPlayer = null;
 
-		document.getElementById('cmvp').addEventListener('click', function () {
-			if (!mediaPlayer) {
-				mediaPlayer = createMediaPlayer({
-					videos: videos,
-					width: 640,
-					height: 480,
-					centered: false,
-					initialVolume: 1
-				});
+    document.getElementById("cmvp").addEventListener("click", function () {
+      if (!mediaPlayer) {
+        mediaPlayer = createMediaPlayer({
+          videos: videos,
+          width: 640,
+          height: 480,
+          centered: false,
+          initialVolume: 1,
+        });
 
 				mediaPlayer.onClose(() => {
 					mediaPlayer = null;
