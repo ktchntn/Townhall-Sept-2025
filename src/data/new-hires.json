@@ -47,5 +47,17 @@
         "name": "Alix Blankson",
         "title": "Copy Lead",
         "office": "Vancouver, BC"
+    },
+    {
+        "id": "nh-009",
+        "name": "Nix Jain",
+        "title": "Marketing Science Analyst",
+        "office": "Calgary, AB"
+    },
+    {
+        "id": "nh-010",
+        "name": "Linsong Han",
+        "title": "Product Engineer - 3D",
+        "office": "Vancouver, BC"
     }
 ]
