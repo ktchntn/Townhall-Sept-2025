@@ -46,7 +46,7 @@
             <img class="spot-bonus_winner winner_1" src="./assets/winner.gif">
             <img class="spot-bonus_winner winner_2" src="./assets/winner.gif">
             <div class="spot-bonus_banner">
-                <a href="index.html"><img src="./assets/CM/CM-1_thin.png" class="banner-image"></a>
+                <a href="#"><img src="./assets/CM/CM-1_thin.png" class="banner-image"></a>
                 <ul class="banner-list">
                     <li>
                         <a href="promotions.html">Promos!</a>
@@ -393,6 +393,23 @@
 
             document.querySelector('.spot-bonus_side-bar .ad_section').appendChild(document.querySelector('.vab-left'));
             
+        </script>
+
+        <script type="module">
+            import { createTriviaPopup } from './modules/nineties-popup.js';
+            import { createFireWorks } from './modules/fireworks.js';
+            import { triviaQuestions } from "./data/trivia.js";
+            const tq = triviaQuestions[3];
+
+            document.querySelector('.banner-image').addEventListener('click', ()=>{
+                createTriviaPopup({
+                    title: 'TRIVIA TIME!!',
+                    triviaQuestion: tq.question,
+                    triviaAnswers: tq.answers,
+                    answerIndex: tq.answerIndex,
+                    onCorrect: ()=> createFireWorks()
+                });
+            });
         </script>
     </body>
 </html>

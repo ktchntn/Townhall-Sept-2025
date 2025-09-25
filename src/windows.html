@@ -113,21 +113,5 @@
 				});
 			}
 		});
-	</script>
-	<script type="module">
-		import { createTriviaPopup } from './modules/nineties-popup.js';
-		import { createFireWorks } from './modules/fireworks.js';
-		import { triviaQuestions } from "./data/trivia.js";
-		const tq = triviaQuestions[3];
-
-		document.querySelector('.paint').addEventListener('click', ()=>{
-			createTriviaPopup({
-				title: 'TRIVIA TIME!!',
-				triviaQuestion: tq.question,
-				triviaAnswers: tq.answers,
-				answerIndex: tq.answerIndex,
-				onCorrect: ()=> createFireWorks()
-			});
-		});
-	</script>
+</script>
 </html>

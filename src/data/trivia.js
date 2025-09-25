@@ -19,13 +19,13 @@ export const triviaQuestions = [
     },
     {
         title: "internetSlangQuestion",
-        question: "Which of these popular acronyms was created by an Edmontonian in an early internet chatroom?",
+        question: "Which of these popular acronyms was created by a Calgarian an early internet chatroom?",
         answers: ["BRB", "WTF", "SBOMPANILLIP (Spilled Beer On My Pants And Now It Looks Like I Peed)", "LOL"],
         answerIndex: 4
     },
     {
-        title: "Which of these was the first item ever sold on Ebay?",
-        question: "What does HTTP even mean?",
+        title: "ebayQuestion",
+        question: "Which of these was the first item ever sold on Ebay?",
         answers: ["Music Box", "Broken Laser Pointer", "Bart Simpson T-Shirt", "Collection of Beanie Babies"],
         answerIndex: 2
     },
